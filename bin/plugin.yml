@@ -1,0 +1,55 @@
+main: es.yoshibv.SimpleTools.Main
+name: SimpleTools
+version: 1.1
+description: Herramientas simples y útiles.
+api-version: 1.18
+author: yoshibv
+website: www.yoshibv.es
+prefix: SimpleTools
+commands:
+   spawn:
+      description: Admin TP Admin TP
+      aliases:
+      - sp
+      permission: SimpleTools.spawn
+      permission-message: "§cNo tienes permisos para esto, put!"
+      usage: "§cUso: /<command>"
+   discord:
+      description: Invitación al discord
+      permission: SimpleTools.discord
+      permission-message: "§cNo tienes permisos para esto, put!"
+      usage: "§cUso: /<command>"
+   thunder:
+      description: Furia de los dioses
+      permission: SimpleTools.rayo
+      permission-message: "§cNo tienes permisos para esto, put!"
+      usage: "§cUso: /<command>"
+   freefall:
+      description: Caída libre a un jugador
+      permission-message: "§cNo tienes permisos para esto, put!"
+      usage: "§cUso: /<command>"
+permissions:
+   SimpleTools.spawn:
+      description: Permite usar el comando spawn
+      default: op
+   SimpleTools.spawn.others:
+      description: Permite teletransportar a otro jugador al spawn
+      default: op
+   SimpleTools.discord:
+      description: Permite usar el comando discord
+      default: op
+   SimpleTools.thunder:
+      description: Permite usar el comando thunder
+      default: op
+   SimpleTools.freefall:
+      description: Permite usar el comando freefall
+      default: op
+   SimpleTools.*:
+      description: Permiso para todos los comandos
+      default: op
+      children:
+         SimpleTools.spawn: true
+         SimpleTools.spawn.others: true
+         SimpleTools.discord: true
+         SimpleTools.thunder: true
+         SimpleTools.freefall: true
