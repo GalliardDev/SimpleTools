@@ -21,7 +21,7 @@ commands:
       usage: "§cUso: /<command>"
    thunder:
       description: Furia de los dioses
-      permission: SimpleTools.rayo
+      permission: SimpleTools.thunder
       permission-message: "§cNo tienes permisos para esto, put!"
       usage: "§cUso: /<command> <jugador>"
    freefall:

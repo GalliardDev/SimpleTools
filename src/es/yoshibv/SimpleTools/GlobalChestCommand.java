@@ -11,13 +11,11 @@ import org.bukkit.inventory.Inventory;
 /* THIS FEATURE IS STILL WIP */
 
 public class GlobalChestCommand implements CommandExecutor {
-    public static final Inventory inv = null;
-
+    public static final Inventory inv = Bukkit.createInventory(null, 54, ChatColor.DARK_GREEN + "Global Chest");
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                Inventory inv = Bukkit.createInventory(null, 54, ChatColor.DARK_GREEN + "Global Chest");
                 player.openInventory(inv);
             } else {
                 sender.sendMessage("§cEste comando sólo lo puede ejecutar un jugador");

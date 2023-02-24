@@ -3,7 +3,6 @@ package es.yoshibv.SimpleTools;
 import java.io.File;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.Listener;
@@ -26,9 +25,9 @@ public class Main extends JavaPlugin implements Listener {
     
     public void onEnable() {
         super.onEnable();
-        configFile = new File(getDataFolder(), "config.yml");
+        configFile = new File(getDataFolder(), "items.yml");
         config = YamlConfiguration.loadConfiguration(configFile);
-        globalChestInventory = Bukkit.createInventory(null, 54, ChatColor.DARK_GREEN + "Global Chest");
+        globalChestInventory = GlobalChestCommand.inv;
         
         getCommand("spawn").setExecutor(new SpawnCommand());
         getCommand("discord").setExecutor(new DiscordCommand());
@@ -36,8 +35,25 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("freefall").setExecutor(new FreeFallCommand());
         getCommand("globalchest").setExecutor(new GlobalChestCommand());
 
-        Bukkit.getPluginManager().registerEvents(this, this);
-        loadGlobalChest();
+        Bukkit.getPluginManager().registerEvents(new Listener() {
+            @EventHandler
+            public void onInventoryOpen(InventoryOpenEvent event) {
+                // Verifica si el inventario abierto es el cofre virtual
+                if (event.getInventory().equals(globalChestInventory)) {
+                    // Realiza alguna acción al abrir el inventario, si es necesario
+                    loadGlobalChest();
+                }
+            }
+    
+            @EventHandler
+            public void onInventoryClose(InventoryCloseEvent event) {
+                // Verifica si el inventario cerrado es el cofre virtual
+                if (event.getInventory().equals(globalChestInventory)) {
+                    // Guarda el contenido del cofre virtual en el archivo de configuración
+                    saveGlobalChest();
+                }
+            }
+        }, this);
 
         this.getLogger().info("SimpleTools ha sido habilitado!");
     }
@@ -69,19 +85,5 @@ public class Main extends JavaPlugin implements Listener {
             e.printStackTrace();
         }
     }
-
-    @EventHandler
-    public void onInventoryClose(InventoryCloseEvent event) {
-    // Verifica si el inventario cerrado es el cofre virtual
-    if (event.getInventory().equals(globalChestInventory)) {
-        // Guarda el contenido del cofre virtual en el archivo de configuración
-        saveGlobalChest();
-    }
-}
-@EventHandler
-    public void onInventoryOpen(InventoryOpenEvent event) {
-    // Verifica si el inventario cerrado es el cofre virtual
-    loadGlobalChest();
-}
 
 }
