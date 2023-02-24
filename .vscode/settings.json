@@ -3,6 +3,7 @@
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "d:\\LocalRepo\\JAVA\\SimpleToolsVSCODE\\spigot-api-1.18.2-R0.1-20220605.001135-49.jar"
+        "d:\\LocalRepo\\JAVA\\SimpleToolsVSCODE\\spigot-api-1.18.2-R0.1-20220605.001135-49.jar",
+        "c:\\Users\\jomaa\\Desktop\\test\\spigot-api-1.18.2-R0.1-20220605.001135-49.jar"
     ]
 }

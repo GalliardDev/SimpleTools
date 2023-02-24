@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
+
 /* THIS FEATURE IS STILL WIP */
 /* THIS FEATURE IS STILL WIP */
 /* THIS FEATURE IS STILL WIP */
@@ -19,18 +20,14 @@ public class GlobalChestCommand implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("globalchest")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                if (player.hasPermission("simpletools.globalchest")) {
                     Inventory inv = Bukkit.createInventory(null, 54, "Global Chest");
                     player.openInventory(inv);
-                } else {
-                    player.sendMessage("You don't have permission to use this command!");
-                }
             } else {
-                sender.sendMessage("You must be a player to use this command!");
+                sender.sendMessage("§cEste comando sólo lo puede ejecutar un jugador");
             }
         }
     
-        return false;
+        return true;
     }
 
 }
