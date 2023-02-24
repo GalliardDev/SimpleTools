@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 public class GlobalChestCommand implements CommandExecutor {
-    public static final Inventory inv = Bukkit.createInventory(null, 54, ChatColor.DARK_GREEN + "Global Chest");
+    private static final Inventory inv = Bukkit.createInventory(null, 54, ChatColor.DARK_GREEN + "Global Chest");
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
             if (sender instanceof Player) {
@@ -22,4 +22,7 @@ public class GlobalChestCommand implements CommandExecutor {
         return true;
     }
 
+    public static Inventory getInv() {
+        return inv;
+    }
 }

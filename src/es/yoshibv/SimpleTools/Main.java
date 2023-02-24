@@ -19,15 +19,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.ItemStack;
 
 public class Main extends JavaPlugin implements Listener {
-    public File configFile;
-    public FileConfiguration config;
-    public Inventory globalChestInventory;
+    private File configFile;
+    private FileConfiguration config;
+    private Inventory globalChestInventory;
    
     public void onEnable() {
         super.onEnable();
         configFile = new File(getDataFolder(), "items.yml");
         config = YamlConfiguration.loadConfiguration(configFile);
-        globalChestInventory = GlobalChestCommand.inv;
+        globalChestInventory = GlobalChestCommand.getInv();
 
         loadGlobalChest();
 
@@ -74,6 +74,7 @@ public class Main extends JavaPlugin implements Listener {
         saveGlobalChest();
     }
 
+    
     // Load the global chest inventory from the configuration file
     @SuppressWarnings("unchecked")
     public void loadGlobalChest() {
