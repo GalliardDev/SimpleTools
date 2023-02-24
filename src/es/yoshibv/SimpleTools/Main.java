@@ -30,7 +30,14 @@ public class Main extends JavaPlugin implements Listener {
         globalChestInventory = GlobalChestCommand.inv;
 
         loadGlobalChest();
-        
+
+        /*File langFile = new File(getDataFolder(), "lang.yml");
+        if (!langFile.exists()) {
+            langFile.getParentFile().mkdirs();
+            saveResource("lang.yml", false);
+        }
+        YamlConfiguration lang = YamlConfiguration.loadConfiguration(langFile);*/
+
         getCommand("spawn").setExecutor(new SpawnCommand());
         getCommand("discord").setExecutor(new DiscordCommand());
         getCommand("thunder").setExecutor(new LightningCommand());
