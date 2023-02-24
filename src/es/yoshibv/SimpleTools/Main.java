@@ -22,12 +22,14 @@ public class Main extends JavaPlugin implements Listener {
     public File configFile;
     public FileConfiguration config;
     public Inventory globalChestInventory;
-    
+   
     public void onEnable() {
         super.onEnable();
         configFile = new File(getDataFolder(), "items.yml");
         config = YamlConfiguration.loadConfiguration(configFile);
         globalChestInventory = GlobalChestCommand.inv;
+
+        loadGlobalChest();
         
         getCommand("spawn").setExecutor(new SpawnCommand());
         getCommand("discord").setExecutor(new DiscordCommand());
@@ -85,5 +87,4 @@ public class Main extends JavaPlugin implements Listener {
             e.printStackTrace();
         }
     }
-
 }
