@@ -8,8 +8,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
-/* THIS FEATURE IS STILL WIP */
-
 public class GlobalChestCommand implements CommandExecutor {
     public static final Inventory inv = Bukkit.createInventory(null, 54, ChatColor.DARK_GREEN + "Global Chest");
     @Override
