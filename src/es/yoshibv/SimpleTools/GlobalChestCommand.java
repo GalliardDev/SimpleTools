@@ -8,11 +8,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
-import es.yoshibv.SimpleTools.utils.GlobalChest;
-
 /* THIS FEATURE IS STILL WIP */
 
-public class GlobalChestCommand extends GlobalChest implements CommandExecutor {
+public class GlobalChestCommand implements CommandExecutor {
     public static final Inventory inv = null;
 
     @Override
