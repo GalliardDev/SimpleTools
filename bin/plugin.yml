@@ -13,7 +13,7 @@ commands:
       - sp
       permission: SimpleTools.spawn
       permission-message: "§cNo tienes permisos para esto, put!"
-      usage: "§cUso: /<command>"
+      usage: "§cUso: /<command> [player]"
    discord:
       description: Invitación al discord
       permission: SimpleTools.discord
@@ -23,9 +23,13 @@ commands:
       description: Furia de los dioses
       permission: SimpleTools.rayo
       permission-message: "§cNo tienes permisos para esto, put!"
-      usage: "§cUso: /<command>"
+      usage: "§cUso: /<command> <jugador>"
    freefall:
       description: Caída libre a un jugador
+      permission-message: "§cNo tienes permisos para esto, put!"
+      usage: "§cUso: /<command> <jugador>"
+   globalchest:
+      description: Cofre global
       permission-message: "§cNo tienes permisos para esto, put!"
       usage: "§cUso: /<command>"
 permissions:
@@ -44,6 +48,9 @@ permissions:
    SimpleTools.freefall:
       description: Permite usar el comando freefall
       default: op
+   SimpleTools.globalchest:
+      description: Permite usar el comando globalchest
+      default: op
    SimpleTools.*:
       description: Permiso para todos los comandos
       default: op
@@ -53,3 +60,4 @@ permissions:
          SimpleTools.discord: true
          SimpleTools.thunder: true
          SimpleTools.freefall: true
+         SimpleTools.globalchest: true
