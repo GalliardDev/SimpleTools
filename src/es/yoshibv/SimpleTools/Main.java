@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -35,7 +36,7 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("freefall").setExecutor(new FreeFallCommand());
         getCommand("globalchest").setExecutor(new GlobalChestCommand());
 
-        Bukkit.getPluginManager().registerEvent(InventoryCloseEvent.class, this, null, null, this);
+        Bukkit.getPluginManager().registerEvents(this, this);
         loadGlobalChest();
 
         this.getLogger().info("SimpleTools ha sido habilitado!");
@@ -77,4 +78,10 @@ public class Main extends JavaPlugin implements Listener {
         saveGlobalChest();
     }
 }
+@EventHandler
+    public void onInventoryOpen(InventoryOpenEvent event) {
+    // Verifica si el inventario cerrado es el cofre virtual
+    loadGlobalChest();
+}
+
 }
