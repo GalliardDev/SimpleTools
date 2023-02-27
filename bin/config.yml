@@ -7,6 +7,7 @@ language:
   onlyPlayerCommand: "§6[§9SimpleTools§6] §cEste comando sólo lo puede ejecutar un jugador"
   noPermission: "§6[§9SimpleTools§6] §cNo tienes permisos para esto, put!"
   tooManyArguments: "§6[§9SimpleTools§6] §cDemasiados argumentos!"
+  playerRequired: "§6[§9SimpleTools§6] §cDebes especificar un jugador!"
   # Spawn Command
   spawnSelf: "§6[§9SimpleTools§6] §7Has sido teletransportado al spawn"
   spawnYouOthers: "§6[§9SimpleTools§6] §7Has teletransportado a §a%player% §7al spawn"
@@ -14,6 +15,4 @@ language:
   # Discord Command
   discordMsg: "§6[§9SimpleTools§6] §7Aquí tienes nuestro discord, §a%player% §7:\n§9§nhttps://discord.gg/HHtQ8wU2TK"
   # Free Fall Command
-  freefallMsg: "§6[§9SimpleTools§6] §d§lHas sido teletransportado aquí arriba por nuv"
-  # Lightning Command
-  playerRequired: "§6[§9SimpleTools§6] §7Necesitas especificar un §ajugador §7a quien tirarle el rayo"
+  freefallMsg: "§6[§9SimpleTools§6] §d§lHas sido teletransportado aquí arriba por nuv"  
