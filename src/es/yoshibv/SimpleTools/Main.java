@@ -19,14 +19,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.ItemStack;
 
 public class Main extends JavaPlugin implements Listener {
-    private File configFile;
-    private FileConfiguration config;
+    private File itemsFile;
+    private FileConfiguration items;
     private Inventory globalChestInventory;
    
     public void onEnable() {
         super.onEnable();
-        configFile = new File(getDataFolder(), "items.yml");
-        config = YamlConfiguration.loadConfiguration(configFile);
+        itemsFile = new File(getDataFolder(), "items.yml");
+        items = YamlConfiguration.loadConfiguration(itemsFile);
         globalChestInventory = GlobalChestCommand.getInv();
 
         loadGlobalChest();
@@ -78,7 +78,7 @@ public class Main extends JavaPlugin implements Listener {
     // Load the global chest inventory from the configuration file
     @SuppressWarnings("unchecked")
     public void loadGlobalChest() {
-        ConfigurationSection inventorySection = config.getConfigurationSection("inventory");
+        ConfigurationSection inventorySection = items.getConfigurationSection("inventory");
         if (inventorySection != null) {
             globalChestInventory.setContents(((List<ItemStack>) inventorySection.getList("items")).toArray(ItemStack[]::new));
         }
@@ -86,11 +86,11 @@ public class Main extends JavaPlugin implements Listener {
 
     // Save the global chest inventory to the configuration file
     public void saveGlobalChest() {
-        ConfigurationSection inventorySection = config.createSection("inventory");
+        ConfigurationSection inventorySection = items.createSection("inventory");
         inventorySection.set("items", globalChestInventory.getContents());
 
         try {
-            config.save(configFile);
+            items.save(itemsFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
