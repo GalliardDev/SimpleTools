@@ -23,11 +23,11 @@ commands:
       description: Furia de los dioses
       permission: SimpleTools.thunder
       permission-message: "§cNo tienes permisos para esto, put!"
-      usage: "§cUso: /<command> <jugador>"
+      usage: "§cUso: /<command> <player>"
    freefall:
       description: Caída libre a un jugador
       permission-message: "§cNo tienes permisos para esto, put!"
-      usage: "§cUso: /<command> <jugador>"
+      usage: "§cUso: /<command> <player>"
    globalchest:
       description: Cofre global
       permission-message: "§cNo tienes permisos para esto, put!"

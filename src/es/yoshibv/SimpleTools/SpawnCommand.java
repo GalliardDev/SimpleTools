@@ -11,7 +11,7 @@ public class SpawnCommand implements CommandExecutor {
 
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     if (!(sender instanceof Player)) {
-      sender.sendMessage("§cEste comando sólo lo puede ejecutar un jugador");
+      sender.sendMessage(Main.plugin.getConfig().getString("language.onlyPlayerCommand"));
       return false;
     }
     
@@ -23,16 +23,16 @@ public class SpawnCommand implements CommandExecutor {
     if (args.length == 0) {
     	Location spawnCoords = new Location(player.getWorld(), xSpawn, ySpawn, zSpawn);
     	player.teleport(spawnCoords);
-	    player.sendMessage("§7Has sido teletransportado al spawn");
+	    player.sendMessage(Main.plugin.getConfig().getString("language.spawnSelf"));
     } else if (args.length >= 1) {
     	if (player.hasPermission("SimpleTools.spawn.others")) {
     		Player p = Bukkit.getServer().getPlayer(args[0]);
         	Location spawnCoords = new Location(p.getWorld(), xSpawn, ySpawn, zSpawn);
         	p.teleport(spawnCoords);
-        	player.sendMessage("§7Has teletransportado a §a"+args[0]+" §7al spawn");
-        	p.sendMessage("§7Has sido teletransportado al spawn por §a"+player.getName());
+        	player.sendMessage(Main.plugin.getConfig().getString("language.spawnYouOthers"));
+        	p.sendMessage(Main.plugin.getConfig().getString("language.spawnOthersYou"));
     	} else {
-    		player.sendMessage("§cNo tienes permisos para esto, put!");
+    		player.sendMessage(Main.plugin.getConfig().getString("language.noPermission"));
     	}
     	
     }

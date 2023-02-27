@@ -22,60 +22,30 @@ public class Main extends JavaPlugin implements Listener {
     private File itemsFile;
     private FileConfiguration items;
     private Inventory globalChestInventory;
+    private File config;
+    public static Main plugin;
    
     public void onEnable() {
         super.onEnable();
-        itemsFile = new File(getDataFolder(), "items.yml");
-        items = YamlConfiguration.loadConfiguration(itemsFile);
-        globalChestInventory = GlobalChestCommand.getInv();
-
+        loadConfig();
+        loadGlobalChestConfig();
         loadGlobalChest();
-
-        /*File langFile = new File(getDataFolder(), "lang.yml");
-        if (!langFile.exists()) {
-            langFile.getParentFile().mkdirs();
-            saveResource("lang.yml", false);
-        }
-        YamlConfiguration lang = YamlConfiguration.loadConfiguration(langFile);*/
-
-        getCommand("spawn").setExecutor(new SpawnCommand());
-        getCommand("discord").setExecutor(new DiscordCommand());
-        getCommand("thunder").setExecutor(new LightningCommand());
-        getCommand("freefall").setExecutor(new FreeFallCommand());
-        getCommand("globalchest").setExecutor(new GlobalChestCommand());
-
-        Bukkit.getPluginManager().registerEvents(new Listener() {
-            @EventHandler
-            public void onInventoryOpen(InventoryOpenEvent event) {
-                // Verifica si el inventario abierto es el cofre virtual
-                if (event.getInventory().equals(globalChestInventory)) {
-                    // Realiza alguna acción al abrir el inventario, si es necesario
-                    loadGlobalChest();
-                }
-            }
-    
-            @EventHandler
-            public void onInventoryClose(InventoryCloseEvent event) {
-                // Verifica si el inventario cerrado es el cofre virtual
-                if (event.getInventory().equals(globalChestInventory)) {
-                    // Guarda el contenido del cofre virtual en el archivo de configuración
-                    saveGlobalChest();
-                }
-            }
-        }, this);
-
-        this.getLogger().info("SimpleTools ha sido habilitado!");
+        registerEvents();
+        registerCommands();
+        plugin = this;        
+        this.getLogger().info(getConfig().getString("language.onEnable"));
     }
 
     public void onDisable() {
         super.onDisable();
-        this.getLogger().info("SimpleTools ha sido deshabilitado!");
-
         saveGlobalChest();
+        this.getLogger().info(getConfig().getString("language.onDisable"));
     }
 
-    
-    // Load the global chest inventory from the configuration file
+    /* =================================== */
+    /* ZONA DE MÉTODOS AUXILIARES DEL MAIN */
+    /* =================================== */
+
     @SuppressWarnings("unchecked")
     public void loadGlobalChest() {
         ConfigurationSection inventorySection = items.getConfigurationSection("inventory");
@@ -84,7 +54,6 @@ public class Main extends JavaPlugin implements Listener {
         }
     }
 
-    // Save the global chest inventory to the configuration file
     public void saveGlobalChest() {
         ConfigurationSection inventorySection = items.createSection("inventory");
         inventorySection.set("items", globalChestInventory.getContents());
@@ -94,5 +63,45 @@ public class Main extends JavaPlugin implements Listener {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void registerCommands() {
+        getCommand("spawn").setExecutor(new SpawnCommand());
+        getCommand("discord").setExecutor(new DiscordCommand());
+        getCommand("thunder").setExecutor(new LightningCommand());
+        getCommand("freefall").setExecutor(new FreeFallCommand());
+        getCommand("globalchest").setExecutor(new GlobalChestCommand());
+    }
+
+    public void registerEvents() {
+        Bukkit.getPluginManager().registerEvents(new Listener() {
+            @EventHandler
+            public void onInventoryOpen(InventoryOpenEvent event) {
+                if (event.getInventory().equals(globalChestInventory)) {
+                    loadGlobalChest();
+                }
+            }
+    
+            @EventHandler
+            public void onInventoryClose(InventoryCloseEvent event) {
+                if (event.getInventory().equals(globalChestInventory)) {
+                    saveGlobalChest();
+                }
+            }
+        }, this);
+    }
+
+    public void loadConfig() {
+        config = new File(getDataFolder(), "config.yml");
+        if (!config.exists()) {
+            getConfig().options().copyDefaults(true);
+            saveConfig();
+        }
+    }
+
+    public void loadGlobalChestConfig() {
+        itemsFile = new File(getDataFolder(), "items.yml");
+        items = YamlConfiguration.loadConfiguration(itemsFile);
+        globalChestInventory = GlobalChestCommand.getInv();
     }
 }

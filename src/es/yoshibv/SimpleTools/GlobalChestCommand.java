@@ -16,7 +16,7 @@ public class GlobalChestCommand implements CommandExecutor {
                 Player player = (Player) sender;
                 player.openInventory(inv);
             } else {
-                sender.sendMessage("§cEste comando sólo lo puede ejecutar un jugador");
+                sender.sendMessage(Main.plugin.getConfig().getString("language.onlyPlayerCommand"));
             }
     
         return true;

@@ -9,16 +9,16 @@ public class DiscordCommand implements CommandExecutor {
 	@Override
 	  public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 	    if (!(sender instanceof Player)) {
-	      sender.sendMessage("§cEste comando sólo lo puede ejecutar un jugador");
+	      sender.sendMessage(Main.plugin.getConfig().getString("language.onlyPlayerCommand"));
 	      return false;
 	    }
 	    if (args.length > 0) {
-	        sender.sendMessage("§cDemasiados argumentos!");
+	        sender.sendMessage(Main.plugin.getConfig().getString("language.tooManyArguments"));
 	        return false;
 	    }
 	    
 	    Player player = (Player) sender;
-	    player.sendMessage("§7Aquí tienes nuestro discord, §a"+sender.getName()+"§7:\n§9§nhttps://discord.gg/HHtQ8wU2TK");
+	    player.sendMessage(Main.plugin.getConfig().getString("language.discordMsg"));
 	    
 	    return true;
 	}

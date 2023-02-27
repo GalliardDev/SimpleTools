@@ -1,0 +1,19 @@
+language:
+  #onEnable
+  enableMsg: "§6[§9SimpleTools§6] SimpleTools ha sido habilitado!"
+  #onDisable
+  disableMsg: "§6[§9SimpleTools§6] SimpleTools ha sido deshabilitado!"
+  #Errors
+  onlyPlayerCommand: "§6[§9SimpleTools§6] §cEste comando sólo lo puede ejecutar un jugador"
+  noPermission: "§6[§9SimpleTools§6] §cNo tienes permisos para esto, put!"
+  tooManyArguments: "§6[§9SimpleTools§6] §cDemasiados argumentos!"
+  # Spawn Command
+  spawnSelf: "§6[§9SimpleTools§6] §7Has sido teletransportado al spawn"
+  spawnYouOthers: "§6[§9SimpleTools§6] §7Has teletransportado a §a%player% §7al spawn"
+  spawnOthersYou: "§6[§9SimpleTools§6] §7Has sido teletransportado al spawn por §a%player%"
+  # Discord Command
+  discordMsg: "§6[§9SimpleTools§6] §7Aquí tienes nuestro discord, §a%player% §7:\n§9§nhttps://discord.gg/HHtQ8wU2TK"
+  # Free Fall Command
+  freefallMsg: "§6[§9SimpleTools§6] §d§lHas sido teletransportado aquí arriba por nuv"
+  # Lightning Command
+  playerRequired: "§6[§9SimpleTools§6] §7Necesitas especificar un §ajugador §7a quien tirarle el rayo"

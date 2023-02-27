@@ -27,7 +27,7 @@ public class LightningCommand implements CommandExecutor {
 					}	
 				}
 			} else {
-				player.sendMessage("§7Necesitas especificar un §ajugador §7a quien tirarle el rayo");
+				player.sendMessage(Main.plugin.getConfig().getString("language.playerRequired"));
 			}
 		
 		return true;
