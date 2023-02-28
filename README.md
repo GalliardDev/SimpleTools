@@ -6,7 +6,7 @@
 > **/thunder <player> <times> -** Strikes a player with a thunder <times> times
 
 # Permissions:
-> **SimpleTools.* -** All commands
+> **SimpleTools.&#42; -** All commands
 > **SimpleTools.spawn -** /spawn
 > **SimpleTools.spawn.others -** /spawn <player>
 > **SimpleTools.thunder -** /thunder <player> <times>
