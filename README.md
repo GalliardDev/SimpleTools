@@ -1,12 +1,42 @@
-# <b>SimpleTools Spigot Plugin</b>
-This is my first java plugin. I made it for practising what I learned in college. I will update it with everything I think of. It hasn't a specific utility, just random commands.
+Commands:
+/spawn [player] - Teleports you or other player to the spawn
+/freefall <player> - Makes a player fall from their Y + 200
+/discord - Gives you your discord invitation link if exists
+/globalchest - Opens an inventory which allows you and other players to deposit and withdraw items. It is useful to community projects (I'm working on a way to prevent stealing)
+/thunder <player> <times> - Strikes a player with a thunder <times> times
 
-## <b>Commands</b>
+Permissions:
+SimpleTools.* - All commands
+SimpleTools.spawn - /spawn
+SimpleTools.spawn.others - /spawn <player>
+SimpleTools.thunder - /thunder <player> <times>
+SimpleTools.discord - /discord
+SimpleTools.globalchest - /globalchest
+SimpleTools.freefall - /freefall <player>
 
-> `[] - optional argument`<br>
-> `<> - required argument`
+Config file:
+[code=YAML]language:
+  # onEnable
+  enableMsg: §6[§9SimpleTools§6] SimpleTools ha sido habilitado!
+  # onDisable
+  disableMsg: §6[§9SimpleTools§6] SimpleTools ha sido deshabilitado!
+  # Errors
+  onlyPlayerCommand: §6[§9SimpleTools§6] §cEste comando sólo lo puede ejecutar un
+    jugador
+  noPermission: §6[§9SimpleTools§6] §cNo tienes permisos para esto, put!
+  tooManyArguments: §6[§9SimpleTools§6] §cDemasiados argumentos!
+  playerRequired: §6[§9SimpleTools§6] §cDebes especificar un jugador!
+  # Spawn Command
+  spawnSelf: §6[§9SimpleTools§6] §7Has sido teletransportado al spawn
+  spawnYouOthers: §6[§9SimpleTools§6] §7Has teletransportado a §a%victim% §7al spawn
+  spawnOthersYou: §6[§9SimpleTools§6] §7Has sido teletransportado al spawn por §a%sender%
+  # Discord Command
+  discordMsg: |-
+    §6[§9SimpleTools§6] §7Aquí tienes nuestro discord, §a%sender% §7:
+    §9§nhttps://discord.gg/HHtQ8wU2TK
+  # Free Fall Command
+  freefallMsg: §6[§9SimpleTools§6] §d§lHas sido teletransportado aquí arriba por nuv
+[/code]
 
-* `/spawn [player]` - Gets you or a player to the default spawnpoint of the world. Specifically to X+500 and Z+500 to spawn in the middle of the block and not in the intersection of four blocks.
-* `/freefall <player>` - Throws a player from their Y+200.
-* `/thunder <player> <times>` - Strikes a player with thunder n times.
-* `/discord` - Sends you my discord server invitation link, in case you wanna hang out with great people.
+Placeholders:
+Coming soon...
