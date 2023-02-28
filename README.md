@@ -1,21 +1,22 @@
-Commands:
-/spawn [player] - Teleports you or other player to the spawn
-/freefall <player> - Makes a player fall from their Y + 200
-/discord - Gives you your discord invitation link if exists
-/globalchest - Opens an inventory which allows you and other players to deposit and withdraw items. It is useful to community projects (I'm working on a way to prevent stealing)
-/thunder <player> <times> - Strikes a player with a thunder <times> times
+# Commands:
+> **/spawn [player] -** Teleports you or other player to the spawn
+> **/freefall <player> -** Makes a player fall from their Y + 200
+> **/discord -** Gives you your discord invitation link if exists
+> **/globalchest -** Opens an inventory which allows you and other players to deposit and withdraw items. It is useful to community projects (I'm working on a way to prevent stealing)
+> **/thunder <player> <times> -** Strikes a player with a thunder <times> times
 
-Permissions:
-SimpleTools.* - All commands
-SimpleTools.spawn - /spawn
-SimpleTools.spawn.others - /spawn <player>
-SimpleTools.thunder - /thunder <player> <times>
-SimpleTools.discord - /discord
-SimpleTools.globalchest - /globalchest
-SimpleTools.freefall - /freefall <player>
+# Permissions:
+> **SimpleTools.* -** All commands
+> **SimpleTools.spawn -** /spawn
+> **SimpleTools.spawn.others -** /spawn <player>
+> **SimpleTools.thunder -** /thunder <player> <times>
+> **SimpleTools.discord -** /discord
+> **SimpleTools.globalchest -** /globalchest
+> **SimpleTools.freefall -** /freefall <player>
 
-Config file:
-[code=YAML]language:
+# Config file:
+```YAML
+language:
   # onEnable
   enableMsg: §6[§9SimpleTools§6] SimpleTools ha sido habilitado!
   # onDisable
@@ -36,7 +37,7 @@ Config file:
     §9§nhttps://discord.gg/HHtQ8wU2TK
   # Free Fall Command
   freefallMsg: §6[§9SimpleTools§6] §d§lHas sido teletransportado aquí arriba por nuv
-[/code]
+```
 
-Placeholders:
-Coming soon...
+# Placeholders:
+>Coming soon...
