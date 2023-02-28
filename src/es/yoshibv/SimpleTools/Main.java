@@ -5,6 +5,7 @@ import java.io.File;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
@@ -47,14 +48,14 @@ public class Main extends JavaPlugin implements Listener {
     /* =================================== */
 
     @SuppressWarnings("unchecked")
-    public void loadGlobalChest() {
+    private void loadGlobalChest() {
         ConfigurationSection inventorySection = items.getConfigurationSection("inventory");
         if (inventorySection != null) {
             globalChestInventory.setContents(((List<ItemStack>) inventorySection.getList("items")).toArray(ItemStack[]::new));
         }
     }
 
-    public void saveGlobalChest() {
+    private void saveGlobalChest() {
         ConfigurationSection inventorySection = items.createSection("inventory");
         inventorySection.set("items", globalChestInventory.getContents());
 
@@ -65,7 +66,7 @@ public class Main extends JavaPlugin implements Listener {
         }
     }
 
-    public void registerCommands() {
+    private void registerCommands() {
         getCommand("spawn").setExecutor(new SpawnCommand());
         getCommand("discord").setExecutor(new DiscordCommand());
         getCommand("thunder").setExecutor(new LightningCommand());
@@ -73,7 +74,7 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("globalchest").setExecutor(new GlobalChestCommand());
     }
 
-    public void registerEvents() {
+    private void registerEvents() {
         Bukkit.getPluginManager().registerEvents(new Listener() {
             @EventHandler
             public void onInventoryOpen(InventoryOpenEvent event) {
@@ -91,7 +92,7 @@ public class Main extends JavaPlugin implements Listener {
         }, this);
     }
 
-    public void loadConfig() {
+    private void loadConfig() {
         config = new File(getDataFolder(), "config.yml");
         if (!config.exists()) {
             getConfig().options().copyDefaults(true);
@@ -99,9 +100,19 @@ public class Main extends JavaPlugin implements Listener {
         }
     }
 
-    public void loadGlobalChestConfig() {
+    private void loadGlobalChestConfig() {
         itemsFile = new File(getDataFolder(), "items.yml");
         items = YamlConfiguration.loadConfiguration(itemsFile);
         globalChestInventory = GlobalChestCommand.getInv();
+    }
+
+    public static String victimParser(String message, Player victim) {
+        message = message.replace("%victim%", victim.getName()); 
+        return message;
+    }
+    
+      public static String senderParser(String message, Player sender) {
+        message = message.replace("%sender%", sender.getName());
+        return message;
     }
 }

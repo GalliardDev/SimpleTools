@@ -1,5 +1,6 @@
 package es.yoshibv.SimpleTools;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,7 +19,7 @@ public class DiscordCommand implements CommandExecutor {
 	    }
 	    
 	    Player player = (Player) sender;
-	    player.sendMessage(Main.plugin.getConfig().getString("language.discordMsg"));
+	    player.sendMessage(Main.senderParser(Main.plugin.getConfig().getString("language.discordMsg"), Bukkit.getServer().getPlayer(player.getName())));
 	    
 	    return true;
 	}

@@ -26,11 +26,11 @@ public class SpawnCommand implements CommandExecutor {
 	    player.sendMessage(Main.plugin.getConfig().getString("language.spawnSelf"));
     } else if (args.length >= 1) {
     	if (player.hasPermission("SimpleTools.spawn.others")) {
-    		Player p = Bukkit.getServer().getPlayer(args[0]);
-        	Location spawnCoords = new Location(p.getWorld(), xSpawn, ySpawn, zSpawn);
-        	p.teleport(spawnCoords);
-        	player.sendMessage(Main.plugin.getConfig().getString("language.spawnYouOthers"));
-        	p.sendMessage(Main.plugin.getConfig().getString("language.spawnOthersYou"));
+    		Player victim = Bukkit.getServer().getPlayer(args[0]);
+        	Location spawnCoords = new Location(victim.getWorld(), xSpawn, ySpawn, zSpawn);
+        	victim.teleport(spawnCoords);
+        	player.sendMessage(Main.victimParser(Main.plugin.getConfig().getString("language.spawnYouOthers"), Bukkit.getServer().getPlayer(victim.getName())));
+        	victim.sendMessage(Main.senderParser(Main.plugin.getConfig().getString("language.spawnOthersYou"), Bukkit.getServer().getPlayer(sender.getName())));
     	} else {
     		player.sendMessage(Main.plugin.getConfig().getString("language.noPermission"));
     	}
@@ -38,6 +38,8 @@ public class SpawnCommand implements CommandExecutor {
     }
     return true;
   }
+
+  
 
 }
 

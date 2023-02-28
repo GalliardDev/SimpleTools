@@ -10,9 +10,9 @@ language:
   playerRequired: "§6[§9SimpleTools§6] §cDebes especificar un jugador!"
   # Spawn Command
   spawnSelf: "§6[§9SimpleTools§6] §7Has sido teletransportado al spawn"
-  spawnYouOthers: "§6[§9SimpleTools§6] §7Has teletransportado a §a%player% §7al spawn"
-  spawnOthersYou: "§6[§9SimpleTools§6] §7Has sido teletransportado al spawn por §a%player%"
+  spawnYouOthers: "§6[§9SimpleTools§6] §7Has teletransportado a §a%victim% §7al spawn"
+  spawnOthersYou: "§6[§9SimpleTools§6] §7Has sido teletransportado al spawn por §a%sender%"
   # Discord Command
-  discordMsg: "§6[§9SimpleTools§6] §7Aquí tienes nuestro discord, §a%player% §7:\n§9§nhttps://discord.gg/HHtQ8wU2TK"
+  discordMsg: "§6[§9SimpleTools§6] §7Aquí tienes nuestro discord, §a%victim% §7:\n§9§nhttps://discord.gg/HHtQ8wU2TK"
   # Free Fall Command
   freefallMsg: "§6[§9SimpleTools§6] §d§lHas sido teletransportado aquí arriba por nuv"  
