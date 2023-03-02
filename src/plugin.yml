@@ -1,6 +1,6 @@
 main: es.yoshibv.SimpleTools.Main
 name: SimpleTools
-version: 1.2.2
+version: 1.2.3
 description: Herramientas simples y útiles.
 api-version: 1.18
 author: yoshibv
@@ -32,6 +32,10 @@ commands:
       description: Cofre global
       permission-message: "§cNo tienes permisos para esto, put!"
       usage: "§cUso: /<command>"
+   simpletools:
+      description: Comando principal
+      permission-message: "§cNo tienes permisos para esto, put!"
+      usage: "§cUso: /<command> [reload]"
 permissions:
    SimpleTools.spawn:
       description: Permite usar el comando spawn
@@ -51,6 +55,12 @@ permissions:
    SimpleTools.globalchest:
       description: Permite usar el comando globalchest
       default: op
+   SimpleTools.simpletools:
+      description: Permite usar el comando simpletools
+      default: op
+   SimpleTools.simpletools.reload:
+      description: Permite usar el comando simpletools reload
+      default: op
    SimpleTools.*:
       description: Permiso para todos los comandos
       default: op
@@ -61,3 +71,5 @@ permissions:
          SimpleTools.thunder: true
          SimpleTools.freefall: true
          SimpleTools.globalchest: true
+         SimpleTools.simpletools: true
+         SimpleTools.simpletools.reload: true

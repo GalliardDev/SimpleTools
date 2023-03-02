@@ -72,6 +72,7 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("thunder").setExecutor(new LightningCommand());
         getCommand("freefall").setExecutor(new FreeFallCommand());
         getCommand("globalchest").setExecutor(new GlobalChestCommand());
+        getCommand("simpletools").setExecutor(new ReloadCommand());
     }
 
     private void registerEvents() {
@@ -114,5 +115,9 @@ public class Main extends JavaPlugin implements Listener {
     public static String senderParser(String message, Player sender) {
         message = message.replace("%sender%", sender.getName());
         return message;
+    }
+
+    public void reloadPluginConfig() {
+        reloadConfig();
     }
 }
