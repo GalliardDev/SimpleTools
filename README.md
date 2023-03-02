@@ -19,10 +19,6 @@
 language:
   # prefix
   prefix: §6[§9SimpleTools§6]
-  # onEnable
-  enableMsg: SimpleTools ha sido habilitado!
-  # onDisable
-  disableMsg: SimpleTools ha sido deshabilitado!
   # Errors
   onlyPlayerCommand: §cEste comando sólo lo puede ejecutar un
     jugador
@@ -39,8 +35,6 @@ language:
     §9§nhttps://discord.gg/HHtQ8wU2TK
   # Free Fall Command
   freefallMsg: §d§lHas sido teletransportado aquí arriba por nuv
-  # Global Chest Command
-  globalChestTitle: Cofre Global
 ```
 
 # Placeholders:
