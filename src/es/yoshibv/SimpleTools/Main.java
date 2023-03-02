@@ -25,8 +25,7 @@ public class Main extends JavaPlugin implements Listener {
     private Inventory globalChestInventory;
     private File config;
     public static Main plugin;
-    public final static String PREFIX = Main.plugin.getConfig().getString("language.discordMsg")+" ";
-   
+    
     public void onEnable() {
         super.onEnable();
         loadConfig();
@@ -34,14 +33,14 @@ public class Main extends JavaPlugin implements Listener {
         loadGlobalChest();
         registerEvents();
         registerCommands();
-        plugin = this;        
-        this.getLogger().info(getConfig().getString("language.onEnable"));
+        plugin = this;       
+        this.getLogger().info("SimpleTools has been enabled!");
     }
-
+    
     public void onDisable() {
         super.onDisable();
         saveGlobalChest();
-        this.getLogger().info(getConfig().getString("language.onDisable"));
+        this.getLogger().info("SimpleTools has been disabled!");
     }
 
     /* =================================== */
@@ -112,7 +111,7 @@ public class Main extends JavaPlugin implements Listener {
         return message;
     }
     
-      public static String senderParser(String message, Player sender) {
+    public static String senderParser(String message, Player sender) {
         message = message.replace("%sender%", sender.getName());
         return message;
     }

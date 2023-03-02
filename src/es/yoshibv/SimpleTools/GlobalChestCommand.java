@@ -9,14 +9,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 public class GlobalChestCommand implements CommandExecutor {
-    private static final Inventory inv = Bukkit.createInventory(null, 54, ChatColor.DARK_RED + Main.plugin.getConfig().getString("language.globalChestTitle"));
+    private static final Inventory inv = Bukkit.createInventory(null, 54, ChatColor.DARK_RED + "Global Chest");
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 player.openInventory(inv);
             } else {
-                sender.sendMessage(Main.PREFIX + Main.plugin.getConfig().getString("language.onlyPlayerCommand"));
+                sender.sendMessage(Main.plugin.getConfig().getString("language.prefix") +" "+ Main.plugin.getConfig().getString("language.onlyPlayerCommand"));
             }
     
         return true;

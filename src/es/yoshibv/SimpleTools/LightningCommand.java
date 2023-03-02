@@ -27,7 +27,7 @@ public class LightningCommand implements CommandExecutor {
 					}	
 				}
 			} else {
-				player.sendMessage(Main.PREFIX + Main.plugin.getConfig().getString("language.playerRequired"));
+				player.sendMessage(Main.plugin.getConfig().getString("language.prefix") +" "+ Main.plugin.getConfig().getString("language.playerRequired"));
 			}
 		
 		return true;
