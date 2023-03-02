@@ -1,6 +1,6 @@
 main: es.yoshibv.SimpleTools.Main
 name: SimpleTools
-version: 1.2
+version: 1.2.1
 description: Herramientas simples y útiles.
 api-version: 1.18
 author: yoshibv

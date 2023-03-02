@@ -23,16 +23,16 @@ public class SpawnCommand implements CommandExecutor {
     if (args.length == 0) {
     	Location spawnCoords = new Location(player.getWorld(), xSpawn, ySpawn, zSpawn);
     	player.teleport(spawnCoords);
-	    player.sendMessage(Main.plugin.getConfig().getString("language.spawnSelf"));
+	    player.sendMessage(Main.PREFIX + Main.plugin.getConfig().getString("language.spawnSelf"));
     } else if (args.length >= 1) {
     	if (player.hasPermission("SimpleTools.spawn.others")) {
     		Player victim = Bukkit.getServer().getPlayer(args[0]);
         	Location spawnCoords = new Location(victim.getWorld(), xSpawn, ySpawn, zSpawn);
         	victim.teleport(spawnCoords);
-        	player.sendMessage(Main.victimParser(Main.plugin.getConfig().getString("language.spawnYouOthers"), Bukkit.getServer().getPlayer(victim.getName())));
-        	victim.sendMessage(Main.senderParser(Main.plugin.getConfig().getString("language.spawnOthersYou"), Bukkit.getServer().getPlayer(sender.getName())));
+        	player.sendMessage(Main.PREFIX + Main.victimParser(Main.plugin.getConfig().getString("language.spawnYouOthers"), Bukkit.getServer().getPlayer(victim.getName())));
+        	victim.sendMessage(Main.PREFIX + Main.senderParser(Main.plugin.getConfig().getString("language.spawnOthersYou"), Bukkit.getServer().getPlayer(sender.getName())));
     	} else {
-    		player.sendMessage(Main.plugin.getConfig().getString("language.noPermission"));
+    		player.sendMessage(Main.PREFIX + Main.plugin.getConfig().getString("language.noPermission"));
     	}
     	
     }

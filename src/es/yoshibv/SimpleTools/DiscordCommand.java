@@ -10,16 +10,16 @@ public class DiscordCommand implements CommandExecutor {
 	@Override
 	  public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 	    if (!(sender instanceof Player)) {
-	      sender.sendMessage(Main.plugin.getConfig().getString("language.onlyPlayerCommand"));
+	      sender.sendMessage(Main.PREFIX + Main.plugin.getConfig().getString("language.onlyPlayerCommand"));
 	      return false;
 	    }
 	    if (args.length > 0) {
-	        sender.sendMessage(Main.plugin.getConfig().getString("language.tooManyArguments"));
+	        sender.sendMessage(Main.PREFIX + Main.plugin.getConfig().getString("language.tooManyArguments"));
 	        return false;
 	    }
 	    
 	    Player player = (Player) sender;
-	    player.sendMessage(Main.senderParser(Main.plugin.getConfig().getString("language.discordMsg"), Bukkit.getServer().getPlayer(player.getName())));
+	    player.sendMessage(Main.senderParser(Main.PREFIX + Main.plugin.getConfig().getString("language.discordMsg"), Bukkit.getServer().getPlayer(player.getName())));
 	    
 	    return true;
 	}

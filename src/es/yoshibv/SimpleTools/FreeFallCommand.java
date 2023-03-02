@@ -15,7 +15,7 @@ public class FreeFallCommand implements CommandExecutor {
     
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 	    if (!(sender instanceof Player)) {
-	      sender.sendMessage(Main.plugin.getConfig().getString("language.onlyPlayerCommand"));
+	      sender.sendMessage(Main.PREFIX + Main.plugin.getConfig().getString("language.onlyPlayerCommand"));
 	      return false;
 	    }
 	    
@@ -25,7 +25,7 @@ public class FreeFallCommand implements CommandExecutor {
 	    double z = player.getLocation().getZ();
 	    Location freeFallCoords = new Location(player.getWorld(), x, y, z);
 	    player.teleport(freeFallCoords);
-	    player.sendMessage(Main.plugin.getConfig().getString("language.freefallMsg"));
+	    player.sendMessage(Main.PREFIX + Main.plugin.getConfig().getString("language.freefallMsg"));
 	    
 	    return true;
 	}

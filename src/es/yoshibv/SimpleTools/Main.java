@@ -25,6 +25,7 @@ public class Main extends JavaPlugin implements Listener {
     private Inventory globalChestInventory;
     private File config;
     public static Main plugin;
+    public final static String PREFIX = Main.plugin.getConfig().getString("language.discordMsg")+" ";
    
     public void onEnable() {
         super.onEnable();
