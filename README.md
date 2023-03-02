@@ -4,6 +4,7 @@
 > **/discord -** Gives you your discord invitation link if exists<br>
 > **/globalchest -** Opens an inventory which allows you and other players to deposit and withdraw items. It is useful to community projects (I'm working on a way to prevent stealing)<br>
 > **/thunder <player> <times> -** Strikes a player with a thunder <times> times<br>
+> **/simpletools [reload] -** Shows basic info of the plugin. If reload argument is used, it'll reload the config.<br>
 
 # Permissions:
 > **SimpleTools.&#42; -** All commands<br>
@@ -13,6 +14,8 @@
 > **SimpleTools.discord -** /discord<br>
 > **SimpleTools.globalchest -** /globalchest<br>
 > **SimpleTools.freefall -** /freefall <player><br>
+> **SimpleTools.simpletools -** /simpletools<br>
+  > **SimpleTools.simpletools.reload -** /simpletools reload<br>
 
 # Config file:
 ```YAML
