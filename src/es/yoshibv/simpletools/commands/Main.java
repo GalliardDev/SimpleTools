@@ -1,4 +1,4 @@
-package es.yoshibv.SimpleTools;
+package es.yoshibv.simpletools.commands;
 
 import java.io.File;
 
