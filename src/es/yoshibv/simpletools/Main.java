@@ -1,4 +1,4 @@
-package es.yoshibv.simpletools.commands;
+package es.yoshibv.simpletools;
 
 import java.io.File;
 
@@ -11,6 +11,15 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import es.yoshibv.simpletools.commands.DiscordCommand;
+import es.yoshibv.simpletools.commands.FreeFallCommand;
+import es.yoshibv.simpletools.commands.GlobalChestCommand;
+import es.yoshibv.simpletools.commands.LightningCommand;
+import es.yoshibv.simpletools.commands.ReloadCommand;
+import es.yoshibv.simpletools.commands.SpawnCommand;
+import es.yoshibv.simpletools.config.ConfigGetter;
+import es.yoshibv.utils.UpdateChecker;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,15 +34,24 @@ public class Main extends JavaPlugin implements Listener {
     private Inventory globalChestInventory;
     private File config;
     public static Main plugin;
+    private static final Integer ID = 108067;
     
     public void onEnable() {
         super.onEnable();
+        plugin = this;
         loadConfig();
         loadGlobalChestConfig();
-        loadGlobalChest();
         registerEvents();
         registerCommands();
-        plugin = this;       
+        loadGlobalChest();
+        new UpdateChecker(this, ID).getLatestVersion(version -> {
+            String currentVersion = ConfigGetter.VERSION;
+            if (version.equals(currentVersion)) {
+                this.getLogger().info("SimpleTools is up to date!");
+            } else {
+                this.getLogger().severe("SimpleTools is not up to date! You can download the last version from SPIGOT_LINK");
+            }
+        });
         this.getLogger().info("SimpleTools has been enabled!");
     }
     
@@ -48,7 +66,7 @@ public class Main extends JavaPlugin implements Listener {
     /* =================================== */
 
     @SuppressWarnings("unchecked")
-    private void loadGlobalChest() {
+	private void loadGlobalChest() {
         ConfigurationSection inventorySection = items.getConfigurationSection("inventory");
         if (inventorySection != null) {
             globalChestInventory.setContents(((List<ItemStack>) inventorySection.getList("items")).toArray(ItemStack[]::new));
