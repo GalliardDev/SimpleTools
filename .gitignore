@@ -1,3 +1,6 @@
 *.jar
 builds
 lib
+bin
+.classpath
+.project
