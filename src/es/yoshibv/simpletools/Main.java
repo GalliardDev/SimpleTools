@@ -33,6 +33,7 @@ public class Main extends JavaPlugin implements Listener {
     private FileConfiguration items;
     private Inventory globalChestInventory;
     private File config;
+    private FileConfiguration configF;
     public static Main plugin;
     private static final Integer ID = 108067;
     
@@ -90,7 +91,7 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("thunder").setExecutor(new LightningCommand());
         getCommand("freefall").setExecutor(new FreeFallCommand());
         getCommand("globalchest").setExecutor(new GlobalChestCommand());
-        getCommand("simpletools").setExecutor(new ReloadCommand());
+        getCommand("spreload").setExecutor(new ReloadCommand());
     }
 
     private void registerEvents() {
@@ -136,6 +137,15 @@ public class Main extends JavaPlugin implements Listener {
     }
 
     public void reloadPluginConfig() {
-        reloadConfig();
+        // Let JavaPlugin do its stuff before
+        super.reloadConfig();
+        // Save default config into plugins/<your-plugin>/config.yml if not exists
+        saveDefaultConfig();
+        // Get config from config file
+        configF = getConfig();
+        // Put default values into it (from your jar's config.yml file)
+        configF.options().copyDefaults(true);
+        // Add missing / new parameters into plugins/<your-plugin>/config.yml
+        saveConfig();
     }
 }

@@ -13,27 +13,27 @@ commands:
       aliases:
       - sp
       permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUso: /<command> [player]"
+      usage: "§cUsage: /<command> [player]"
    discord:
       description: Get this server's discord link
       permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUso: /<command>"
+      usage: "§cUsage: /<command>"
    thunder:
       description: Feel the gods' wrath
       permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUso: /<command> <player>"
+      usage: "§cUsage: /<command> <player>"
    freefall:
       description: U brought a parachute... right?
       permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUso: /<command> <player>"
+      usage: "§cUsage: /<command> <player>"
    globalchest:
       description: Open a global chest anyone can deposit or take items
       permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUso: /<command>"
+      usage: "§cUsage: /<command>"
    simpletools:
       description: Main command
       permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUso: /<command> [reload]"
+      usage: "§cUsage: /<command> [reload]"
 
 permissions:
    SimpleTools.spawn:
@@ -58,7 +58,7 @@ permissions:
       description: Allows you to use the /globalchest <player> command
       default: op
    SimpleTools.simpletools:
-      description: Allows you to use the /simpletools command
+      description: Allows you to use /simpletools command
       default: op
    SimpleTools.simpletools.reload:
       description: Allows you to use /simpletools reload command
