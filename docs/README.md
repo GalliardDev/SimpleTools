@@ -2,9 +2,9 @@
 > **/spawn [player] -** Teleports you or other player to the spawn<br>
 > **/freefall <player> -** Makes a player fall from their Y + 200<br>
 > **/discord -** Gives you your discord invitation link if exists<br>
-> **/globalchest [player] -** Opens an inventory which allows you and other players to deposit and withdraw items. It is useful to community projects (I'm working on a way to prevent stealing)<br>
+> **/globalchest [player] -** Opens an inventory (for you or another player) which allows you and other players to deposit and withdraw items. It is useful to community projects (I'm working on a way to prevent stealing)<br>
 > **/thunder <player> <times> -** Strikes a player with a thunder <times> times<br>
-> **/simpletools [reload] -** Shows basic info of the plugin. If reload argument is used, it'll reload the config.<br>
+> **/simpletools [reload] -** Shows basic info of the plugin. If reload argument is provided, it'll reload the config.<br>
 
 # Permissions:
 > **SimpleTools.&#42; -** All commands<br>
