@@ -19,8 +19,8 @@ language:
   # FREE FALL COMMAND
   freefallMsg: "&d&lHas sido teletransportado aquí arriba por nuv"
   # TITLES MESSAGES
-  deathTitleMsg: "&c&l%player% c murió"
-  joinTitleMsg: "&aha entrado al servidor!"
-  leaveTitleMsg: "&cse ha ido del servidor!"
+  deathTitleMsg: "&c&l%player% ha muerto"
+  joinTitleMsg: "&aHa entrado al servidor!"
+  leaveTitleMsg: "&cSe ha ido del servidor!"
   joinLeaveNameFormat: "&e"
-version: 1.3.2
+version: 1.3.3
