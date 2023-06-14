@@ -13,13 +13,13 @@ public class LightningCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		Player player = (Player) sender;
-		if (args.length > 1) {
+		if (args.length > 2) {
 			sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
 					Main.plugin.getConfig().getString("language.tooManyArguments").replace('&', '§'));
 			return false;
 		}
 		if (player.hasPermission("SimpleTools.thunder")) {
-			if (args.length == 1) {
+			if (args.length == 2) {
 				Player victim = Bukkit.getServer().getPlayer(args[0]);
 				Integer lightningTimes = Integer.valueOf(args[1]);
 				for (int i = 0; i < lightningTimes; i++) {
