@@ -3,12 +3,16 @@ package es.yoshibv.simpletools;
 import java.io.File;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,6 +25,7 @@ import es.yoshibv.simpletools.commands.SpawnCommand;
 import es.yoshibv.utils.UpdateChecker;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 import org.bukkit.configuration.ConfigurationSection;
@@ -35,6 +40,7 @@ public class Main extends JavaPlugin implements Listener {
     private FileConfiguration configF;
     public static Main plugin;
     private static final Integer ID = 108067;
+    private static final String SPIGOT_LINK = "https://www.spigotmc.org/resources/simpletools.108067/";
     
     public void onEnable() {
         super.onEnable();
@@ -49,7 +55,7 @@ public class Main extends JavaPlugin implements Listener {
             if (version.equals(currentVersion)) {
                 this.getLogger().info("SimpleTools is up to date!");
             } else {
-                this.getLogger().severe("SimpleTools is not up to date! You can download the last version from SPIGOT_LINK");
+                this.getLogger().severe("SimpleTools is not up to date! You can download the last version from " + SPIGOT_LINK);
             }
         });
         this.getLogger().info("SimpleTools has been enabled!");
@@ -108,6 +114,43 @@ public class Main extends JavaPlugin implements Listener {
                     saveGlobalChest();
                 }
             }
+            
+            @EventHandler
+            public void onPlayerDeath(PlayerDeathEvent event) {
+            	Player player = event.getEntity();
+            	Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
+            	for(Player p:players) {
+            		p.playSound(player, Sound.ENTITY_WITHER_DEATH, 3, 1);
+            		p.sendTitle(playerParser(Main.plugin.getConfig().getString("language.deathTitleMsg").replace('&', '§'), player), 
+            				event.getDeathMessage().replace(player.getName(), ""), 
+            				30, 30, 30);
+            	}
+            }
+            
+            @EventHandler
+            public void onPlayerJoin(PlayerJoinEvent event) {
+            	Player player = event.getPlayer();
+            	Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
+            	for(Player p:players) {
+            		p.sendTitle(Main.plugin.getConfig().getString("language.joinLeaveNameFormat").replace('&', '§') + 
+            				player.getName(), 
+            				Main.plugin.getConfig().getString("language.joinTitleMsg").replace('&', '§'), 
+            				30, 30, 30);
+            	}
+            }
+            
+            @EventHandler
+            public void onPlayerLeave(PlayerQuitEvent event) {
+            	Player player = event.getPlayer();
+            	Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
+            	for(Player p:players) {
+            		p.sendTitle(Main.plugin.getConfig().getString("language.joinLeaveNameFormat").replace('&', '§') + 
+            				player.getName(), 
+            				Main.plugin.getConfig().getString("language.leaveTitleMsg").replace('&', '§'), 
+            				30, 30, 30);
+            	}
+            }
+            
         }, this);
     }
 
@@ -133,6 +176,11 @@ public class Main extends JavaPlugin implements Listener {
     public static String senderParser(String message, Player sender) {
         message = message.replace("%sender%", sender.getName());
         return message;
+    }
+    
+    public static String playerParser(String message, Player player) {
+    	message = message.replace("%player%", player.getName());
+    	return message;
     }
 
     public void reloadPluginConfig() {
