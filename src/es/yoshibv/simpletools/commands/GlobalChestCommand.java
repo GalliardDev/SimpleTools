@@ -7,20 +7,21 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
-import es.yoshibv.simpletools.config.ConfigGetter;
+import es.yoshibv.simpletools.Main;
 
 public class GlobalChestCommand implements CommandExecutor {
 	private static final Inventory inv = Bukkit.createInventory(null, 54,
-			ConfigGetter.GLOBAL_CHEST_TITLE);
+			Main.plugin.getConfig().getString("language.globalChestTitle").replace('&', '§'));
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(ConfigGetter.ONLY_PLAYER_COMMAND);
+			sender.sendMessage(Main.plugin.getConfig().getString("language.onlyPlayerCommand").replace('&', '§'));
 			return false;
 		}
 		if (args.length > 1) {
-			sender.sendMessage(ConfigGetter.PREFIX + " " + ConfigGetter.TOO_MANY_ARGUMENTS);
+			sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
+					Main.plugin.getConfig().getString("language.tooManyArguments").replace('&', '§'));
 			return false;
 		}
 		if (sender instanceof Player && sender.hasPermission("SimpleTools.globalchest")) {
@@ -32,7 +33,8 @@ public class GlobalChestCommand implements CommandExecutor {
 				player.openInventory(inv);
 			}
 		} else {
-			sender.sendMessage(ConfigGetter.PREFIX + " " + ConfigGetter.NO_PERMISSION);
+			sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
+					Main.plugin.getConfig().getString("language.noPermission").replace('&', '§'));
 		}
 		return true;
 	}

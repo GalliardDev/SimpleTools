@@ -6,29 +6,33 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import es.yoshibv.simpletools.Main;
-import es.yoshibv.simpletools.config.ConfigGetter;
 
 public class ReloadCommand
 implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(ConfigGetter.PREFIX + " " + ConfigGetter.ONLY_PLAYER_COMMAND);
+            sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
+            		Main.plugin.getConfig().getString("language.onlyPlayerCommand").replace('&', '§'));
             return false;
         }
         if (sender.hasPermission("SimpleTools.simpletools")) {
         	if (command.getName().equalsIgnoreCase("simpletools") && sender instanceof Player) {
                 Player player = (Player)sender;
                 if (args.length == 0) {
-                    player.sendMessage(ConfigGetter.PREFIX + " " + "Desarrollado por YoshiBv");
+                    player.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
+                    		"Desarrollado por YoshiBv");
                 } else if (args[0].equalsIgnoreCase("reload") && sender.hasPermission("SimpleTools.simpletools.reload")) {
                     Main.plugin.reloadPluginConfig();
-                    player.sendMessage(ConfigGetter.PREFIX + " " + ConfigGetter.CONFIG_RELOADED);
+                    player.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
+                    		Main.plugin.getConfig().getString("language.configReloaded").replace('&', '§'));
                 } else if (args[0].equalsIgnoreCase("reload") && !(sender.hasPermission("SimpleTools.simpletools.reload"))) {
-                	sender.sendMessage(ConfigGetter.PREFIX + " " + ConfigGetter.NO_PERMISSION);
+                	sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
+                			Main.plugin.getConfig().getString("language.noPermission").replace('&', '§'));
                 }
             }
         } else {
-			sender.sendMessage(ConfigGetter.PREFIX + " " + ConfigGetter.NO_PERMISSION);
+			sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
+					Main.plugin.getConfig().getString("language.noPermission").replace('&', '§'));
 		}
         
         return true;

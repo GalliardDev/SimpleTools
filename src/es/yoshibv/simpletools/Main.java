@@ -18,7 +18,6 @@ import es.yoshibv.simpletools.commands.GlobalChestCommand;
 import es.yoshibv.simpletools.commands.LightningCommand;
 import es.yoshibv.simpletools.commands.ReloadCommand;
 import es.yoshibv.simpletools.commands.SpawnCommand;
-import es.yoshibv.simpletools.config.ConfigGetter;
 import es.yoshibv.utils.UpdateChecker;
 
 import java.io.IOException;
@@ -46,7 +45,7 @@ public class Main extends JavaPlugin implements Listener {
         registerCommands();
         loadGlobalChest();
         new UpdateChecker(this, ID).getLatestVersion(version -> {
-            String currentVersion = ConfigGetter.VERSION;
+            String currentVersion = plugin.getConfig().getString("version");
             if (version.equals(currentVersion)) {
                 this.getLogger().info("SimpleTools is up to date!");
             } else {
@@ -91,7 +90,7 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("thunder").setExecutor(new LightningCommand());
         getCommand("freefall").setExecutor(new FreeFallCommand());
         getCommand("globalchest").setExecutor(new GlobalChestCommand());
-        getCommand("spreload").setExecutor(new ReloadCommand());
+        getCommand("simpletools").setExecutor(new ReloadCommand());
     }
 
     private void registerEvents() {

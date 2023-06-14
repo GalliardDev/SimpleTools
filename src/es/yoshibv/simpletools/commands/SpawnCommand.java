@@ -8,13 +8,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import es.yoshibv.simpletools.Main;
-import es.yoshibv.simpletools.config.ConfigGetter;
 
 public class SpawnCommand implements CommandExecutor {
 
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(ConfigGetter.ONLY_PLAYER_COMMAND);
+			sender.sendMessage(Main.plugin.getConfig().getString("language.onlyPlayerCommand").replace('&', '§'));
 			return false;
 		}
 
@@ -27,22 +26,27 @@ public class SpawnCommand implements CommandExecutor {
 			if (args.length == 0) {
 				Location spawnCoords = new Location(player.getWorld(), xSpawn, ySpawn, zSpawn);
 				player.teleport(spawnCoords);
-				sender.sendMessage(ConfigGetter.PREFIX + " " + ConfigGetter.SPAWN_SELF);
+				sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
+						Main.plugin.getConfig().getString("language.spawnSelf").replace('&', '§'));
 			} else if (args.length >= 1) {
 				if (player.hasPermission("SimpleTools.spawn.others")) {
 					Player victim = Bukkit.getServer().getPlayer(args[0]);
 					Location spawnCoords = new Location(victim.getWorld(), xSpawn, ySpawn, zSpawn);
 					victim.teleport(spawnCoords);
-					sender.sendMessage(ConfigGetter.PREFIX + " " + Main.victimParser(ConfigGetter.SPAWN_YOU_OTHERS,
+					sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
+							Main.victimParser(Main.plugin.getConfig().getString("language.spawnYouOthers").replace('&', '§'),
 							Bukkit.getServer().getPlayer(victim.getName())));
-					victim.sendMessage(ConfigGetter.PREFIX + " " + Main.senderParser(ConfigGetter.SPAWN_OTHERS_YOU,
+					victim.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
+								Main.senderParser(Main.plugin.getConfig().getString("language.spawnOthersYou").replace('&', '§'),
 							Bukkit.getServer().getPlayer(sender.getName())));
 				} else {
-					sender.sendMessage(ConfigGetter.PREFIX + " " + ConfigGetter.NO_PERMISSION);
+					sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
+							Main.plugin.getConfig().getString("language.noPermission").replace('&', '§'));
 				}
 			} 
 		} else {
-			sender.sendMessage(ConfigGetter.PREFIX + " " + ConfigGetter.NO_PERMISSION);
+			sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
+					Main.plugin.getConfig().getString("language.noPermission").replace('&', '§'));
 		}
 		return true;
 	}

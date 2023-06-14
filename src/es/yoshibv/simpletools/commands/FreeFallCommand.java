@@ -8,19 +8,20 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 
-import es.yoshibv.simpletools.config.ConfigGetter;
+import es.yoshibv.simpletools.Main;
 
 public class FreeFallCommand implements CommandExecutor {
 
 	@EventHandler
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (args.length > 1) {
-			sender.sendMessage(ConfigGetter.PREFIX + " " + ConfigGetter.TOO_MANY_ARGUMENTS);
+			sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
+					Main.plugin.getConfig().getString("language.tooManyArguments").replace('&', '§'));
 			return false;
 		}
 		if (sender.hasPermission("SimpleTools.freefall")) {
 			if (args.length == 0) {
-				sender.sendMessage(ConfigGetter.PLAYER_REQUIRED);
+				sender.sendMessage(Main.plugin.getConfig().getString("language.playerRequired").replace('&', '§'));
 			}
 			Player player = Bukkit.getServer().getPlayer(args[0]);
 			double xFreeFall = player.getLocation().getX();
@@ -28,9 +29,11 @@ public class FreeFallCommand implements CommandExecutor {
 			double zFreeFall = player.getLocation().getZ();
 			Location freeFallCoords = new Location(player.getWorld(), xFreeFall, yFreeFall, zFreeFall);
 			player.teleport(freeFallCoords);
-			sender.sendMessage(ConfigGetter.PREFIX + " " + ConfigGetter.FREE_FALL_MSG);
+			sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
+					Main.plugin.getConfig().getString("language.freefallMsg").replace('&', '§'));
 		} else {
-			sender.sendMessage(ConfigGetter.PREFIX + " " + ConfigGetter.NO_PERMISSION);
+			sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
+					Main.plugin.getConfig().getString("language.noPermission").replace('&', '§'));
 		}
 
 		return true;
