@@ -1,3 +1,9 @@
+config:
+  # TITLES
+  joinTitle: true
+  leaveTitle: true 
+  deathTitle: true
+
 language:
   # PLUGIN THINGS
   prefix: "&6[&9SimpleTools&6]"
@@ -23,4 +29,6 @@ language:
   joinTitleMsg: "&aHa entrado al servidor!"
   leaveTitleMsg: "&cSe ha ido del servidor!"
   joinLeaveNameFormat: "&e"
-version: 1.3.3
+  # COORDS MESSAGE
+  coordsMsg: "&8[&c%sender%&8 -> &cTú&8] &7Mis coordenadas son:\n&aX: &7%x%\n&aY: &7%y%\n&aZ: &7%z%"
+version: 1.3.4

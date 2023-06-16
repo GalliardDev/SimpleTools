@@ -1,6 +1,6 @@
 main: es.yoshibv.simpletools.Main
 name: SimpleTools
-version: 1.3.3
+version: 1.3.4
 description: Useful commands for trolling and server managing.
 api-version: '1.20'
 author: yoshibv
@@ -30,6 +30,10 @@ commands:
       description: Open a global chest anyone can deposit or take items
       permission-message: "§cYou don't have permissions to do that!"
       usage: "§cUsage: /<command>"
+   sendcoords:
+      description: Broadcast your actual coordinates to all online players
+      permission-message: "§cYou don't have permissions to do that!"
+      usage: "§cUsage: /<command> <player>"
    simpletools:
       description: Main command
       permission-message: "§cYou don't have permissions to do that!"
@@ -63,6 +67,9 @@ permissions:
    SimpleTools.simpletools.reload:
       description: Allows you to use /simpletools reload command
       default: op
+   SimpleTools.sendcoords:
+      description: Allows you to use /sendcoords <player> command
+      default: op
    SimpleTools.*:
       description: This gives you all the perms
       default: op
@@ -76,3 +83,4 @@ permissions:
          SimpleTools.globalchest.others: true
          SimpleTools.simpletools: true
          SimpleTools.simpletools.reload: true
+         SimpleTools.sendcoords: true

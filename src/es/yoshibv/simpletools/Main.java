@@ -1,12 +1,17 @@
 package es.yoshibv.simpletools;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -14,6 +19,7 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import es.yoshibv.simpletools.commands.DiscordCommand;
@@ -21,16 +27,9 @@ import es.yoshibv.simpletools.commands.FreeFallCommand;
 import es.yoshibv.simpletools.commands.GlobalChestCommand;
 import es.yoshibv.simpletools.commands.LightningCommand;
 import es.yoshibv.simpletools.commands.ReloadCommand;
+import es.yoshibv.simpletools.commands.SendCoordsCommand;
 import es.yoshibv.simpletools.commands.SpawnCommand;
 import es.yoshibv.utils.UpdateChecker;
-
-import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
-
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.event.EventHandler;
-import org.bukkit.inventory.ItemStack;
 
 public class Main extends JavaPlugin implements Listener {
     private File itemsFile;
@@ -97,6 +96,7 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("freefall").setExecutor(new FreeFallCommand());
         getCommand("globalchest").setExecutor(new GlobalChestCommand());
         getCommand("simpletools").setExecutor(new ReloadCommand());
+        getCommand("sendcoords").setExecutor(new SendCoordsCommand());
     }
 
     private void registerEvents() {
@@ -117,39 +117,62 @@ public class Main extends JavaPlugin implements Listener {
             
             @EventHandler
             public void onPlayerDeath(PlayerDeathEvent event) {
-            	Player player = event.getEntity();
-            	Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
-            	for(Player p:players) {
-            		p.playSound(player, Sound.ENTITY_WITHER_DEATH, 3, 1);
-            		p.sendTitle(playerParser(Main.plugin.getConfig().getString("language.deathTitleMsg").replace('&', '§'), player), 
-            				"", 
-            				30, 30, 30);
+            	if(Main.plugin.getConfig().getBoolean("config.deathTitle")  == true) {
+            		Player player = event.getEntity();
+                	Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
+                	for(Player p:players) {
+                		p.playSound(p.getLocation(), Sound.ENTITY_WITHER_DEATH, 1, 1);
+                		p.sendTitle(playerParser(Main.plugin.getConfig().getString("language.deathTitleMsg").replace('&', '§'), player), 
+                				event.getDeathMessage().replace(player.getName(), ""), 
+                				30, 30, 30);
+                	}
             	}
             }
             
             @EventHandler
             public void onPlayerJoin(PlayerJoinEvent event) {
-            	Player player = event.getPlayer();
-            	Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
-            	for(Player p:players) {
-            		p.sendTitle(Main.plugin.getConfig().getString("language.joinLeaveNameFormat").replace('&', '§') + 
-            				player.getName(), 
-            				Main.plugin.getConfig().getString("language.joinTitleMsg").replace('&', '§'), 
-            				30, 30, 30);
+            	if(Main.plugin.getConfig().getBoolean("config.joinTitle") == true) {
+            		Player player = event.getPlayer();
+                	Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
+                	for(Player p:players) {
+                		p.sendTitle(Main.plugin.getConfig().getString("language.joinLeaveNameFormat").replace('&', '§') + 
+                				player.getName(), 
+                				Main.plugin.getConfig().getString("language.joinTitleMsg").replace('&', '§'), 
+                				30, 30, 30);
+                	}
+            	}            	
+            }
+                        
+            @EventHandler
+            public void onPlayerLeave(PlayerQuitEvent event) {
+            	if(Main.plugin.getConfig().getBoolean("config.leaveTitle") == true) {
+            		Player player = event.getPlayer();
+                	Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
+                	for(Player p:players) {
+                		p.sendTitle(Main.plugin.getConfig().getString("language.joinLeaveNameFormat").replace('&', '§') + 
+                				player.getName(), 
+                				Main.plugin.getConfig().getString("language.leaveTitleMsg").replace('&', '§'), 
+                				30, 30, 30);
+                	}
             	}
             }
             
+            /*
             @EventHandler
-            public void onPlayerLeave(PlayerQuitEvent event) {
-            	Player player = event.getPlayer();
-            	Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
-            	for(Player p:players) {
-            		p.sendTitle(Main.plugin.getConfig().getString("language.joinLeaveNameFormat").replace('&', '§') + 
-            				player.getName(), 
-            				Main.plugin.getConfig().getString("language.leaveTitleMsg").replace('&', '§'), 
-            				30, 30, 30);
+            public void onRightClick(PlayerInteractEvent event) {
+            	if(Main.plugin.getConfig().getBoolean("config.harvestOnRightClick") == true) {
+            		Block b = event.getClickedBlock();
+                    Material m = b.getType();
+                    if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+                    	if (b.getBlockData() instanceof Ageable) {
+                    		((Ageable) b).setAge(0);
+                    		event.getPlayer().getWorld().dropItemNaturally(event.getClickedBlock().getLocation(), new ItemStack(m, (int)Math.random() * 6));
+                    	}
+                    }
             	}
             }
+            */
+            
             
         }, this);
     }
@@ -167,7 +190,14 @@ public class Main extends JavaPlugin implements Listener {
         items = YamlConfiguration.loadConfiguration(itemsFile);
         globalChestInventory = GlobalChestCommand.getInv();
     }
-
+    
+    public static String coordsParser(String message, List<String> coords) {
+    	return message
+    			.replace("%x%", coords.get(0))
+    			.replace("%y%", coords.get(1))
+    			.replace("%z%", coords.get(2));
+    }
+    
     public static String victimParser(String message, Player victim) {
         message = message.replace("%victim%", victim.getName()); 
         return message;

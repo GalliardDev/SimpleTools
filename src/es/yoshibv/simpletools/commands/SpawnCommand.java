@@ -37,7 +37,7 @@ public class SpawnCommand implements CommandExecutor {
 							Main.victimParser(Main.plugin.getConfig().getString("language.spawnYouOthers").replace('&', '§'),
 							Bukkit.getServer().getPlayer(victim.getName())));
 					victim.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
-								Main.senderParser(Main.plugin.getConfig().getString("language.spawnOthersYou").replace('&', '§'),
+							Main.senderParser(Main.plugin.getConfig().getString("language.spawnOthersYou").replace('&', '§'),
 							Bukkit.getServer().getPlayer(sender.getName())));
 				} else {
 					sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
