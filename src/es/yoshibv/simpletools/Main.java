@@ -123,7 +123,7 @@ public class Main extends JavaPlugin implements Listener {
                 	for(Player p:players) {
                 		p.playSound(p.getLocation(), Sound.ENTITY_WITHER_DEATH, 1, 1);
                 		p.sendTitle(playerParser(Main.plugin.getConfig().getString("language.deathTitleMsg").replace('&', '§'), player), 
-                				event.getDeathMessage().replace(player.getName(), ""), 
+                				"", 
                 				30, 30, 30);
                 	}
             	}

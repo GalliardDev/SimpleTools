@@ -24,7 +24,7 @@ public class SendCoordsCommand implements CommandExecutor {
 		Player player = Bukkit.getPlayer(args[0]);
 		if(player.hasPermission("SimpleTools.sendcoords")) {
 			Location loc = ((Player) sender).getLocation();
-			List<String> coords = List.of(String.valueOf(loc.getX()),String.valueOf(loc.getY()),String.valueOf(loc.getZ()));
+			List<String> coords = List.of(String.valueOf(loc.getBlockX()),String.valueOf(loc.getBlockY()),String.valueOf(loc.getBlockZ()));
 			player.sendMessage(Main.senderParser(Main.coordsParser(
 									Main.plugin.getConfig().getString("language.coordsMsg").replace('&', '§'),
 									coords), player));
