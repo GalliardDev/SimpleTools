@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import es.yoshibv.simpletools.Main;
+import es.yoshibv.utils.Utils;
 
 public class LightningCommand implements CommandExecutor {
 
@@ -14,8 +15,8 @@ public class LightningCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		Player player = (Player) sender;
 		if (args.length > 2) {
-			sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
-					Main.plugin.getConfig().getString("language.tooManyArguments").replace('&', '§'));
+			sender.sendMessage(Main.PREFIX + " " + 
+					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.tooManyArguments")));
 			return false;
 		}
 		if (player.hasPermission("SimpleTools.thunder")) {
@@ -31,13 +32,13 @@ public class LightningCommand implements CommandExecutor {
 					}
 				}
 			} else if(args.length == 0){
-				sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
-						Main.plugin.getConfig().getString("language.playerRequired").replace('&', '§'));
+				sender.sendMessage(Main.PREFIX + " " + 
+						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.playerRequired")));
 				return false;
 			}
 		} else {
-			sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
-					Main.plugin.getConfig().getString("language.noPermission").replace('&', '§'));
+			sender.sendMessage(Main.PREFIX + " " + 
+					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
 		}
 		return true;
 	}

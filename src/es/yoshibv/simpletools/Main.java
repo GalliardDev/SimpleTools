@@ -6,16 +6,20 @@ import java.util.Collection;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
@@ -30,6 +34,7 @@ import es.yoshibv.simpletools.commands.ReloadCommand;
 import es.yoshibv.simpletools.commands.SendCoordsCommand;
 import es.yoshibv.simpletools.commands.SpawnCommand;
 import es.yoshibv.utils.UpdateChecker;
+import es.yoshibv.utils.Utils;
 
 public class Main extends JavaPlugin implements Listener {
     private File itemsFile;
@@ -40,11 +45,13 @@ public class Main extends JavaPlugin implements Listener {
     public static Main plugin;
     private static final Integer ID = 108067;
     private static final String SPIGOT_LINK = "https://www.spigotmc.org/resources/simpletools.108067/";
+    public static String PREFIX;
     
     public void onEnable() {
         super.onEnable();
         plugin = this;
         loadConfig();
+        PREFIX = Utils.colorCodeParser(Main.plugin.getConfig().getString("language.prefix"));
         loadGlobalChestConfig();
         registerEvents();
         registerCommands();
@@ -157,22 +164,41 @@ public class Main extends JavaPlugin implements Listener {
             	}
             }
             
-            /*
-            @EventHandler
+			@EventHandler
             public void onRightClick(PlayerInteractEvent event) {
             	if(Main.plugin.getConfig().getBoolean("config.harvestOnRightClick") == true) {
             		Block b = event.getClickedBlock();
-                    Material m = b.getType();
-                    if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                    	if (b.getBlockData() instanceof Ageable) {
-                    		((Ageable) b).setAge(0);
-                    		event.getPlayer().getWorld().dropItemNaturally(event.getClickedBlock().getLocation(), new ItemStack(m, (int)Math.random() * 6));
-                    	}
-                    }
-            	}
-            }
-            */
-            
+            		Player p = event.getPlayer();                   
+            		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType().equals(Material.WHEAT)) {
+            			if(b.getBlockData().getAsString().contains("age=7")) {
+            				int n = (int)((Math.random()+1)*2.25);
+            				b.setBlockData(Bukkit.createBlockData("minecraft:wheat[age=0]"));
+            				p.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.WHEAT, n));            				
+            			}            			            			
+            		}
+            		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType().equals(Material.POTATOES)) {
+            			if(b.getBlockData().getAsString().contains("age=7")) {
+            				int n = (int)((Math.random()+1)*2.25);
+            				b.setBlockData(Bukkit.createBlockData("minecraft:potatoes[age=0]"));
+            				p.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.POTATO, n));
+            			}            			            			
+            		}
+            		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType().equals(Material.CARROTS)) {
+            			if(b.getBlockData().getAsString().contains("age=7")) {
+            				int n = (int)((Math.random()+1)*2.25);
+            				b.setBlockData(Bukkit.createBlockData("minecraft:carrots[age=0]"));
+            				p.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.CARROT, n));            				
+            			}            			            			
+            		}
+            		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType().equals(Material.BEETROOTS)) {
+            			if(b.getBlockData().getAsString().contains("age=3")) {
+            				int n = (int)((Math.random()+1)*2.75);
+            				b.setBlockData(Bukkit.createBlockData("minecraft:beetroots[age=0]"));
+            				p.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.BEETROOT, n));            				
+            			}            			            			
+            		}            		 		
+                }
+            }           
             
         }, this);
     }
@@ -212,6 +238,18 @@ public class Main extends JavaPlugin implements Listener {
     	message = message.replace("%player%", player.getName());
     	return message;
     }
+        
+    public static String parser(String message, List<String> placeholders, List<String> values) {
+        int i = 0;
+        message = message.replace('&', '§');
+    	for(String p:placeholders) {
+    		if(message.contains(p)) {
+        	    message = message.replace(p, values.get(i));
+        	    i++;
+        	}
+    	}
+    	return message;
+    }
 
     public void reloadPluginConfig() {
         // Let JavaPlugin do its stuff before
@@ -225,4 +263,5 @@ public class Main extends JavaPlugin implements Listener {
         // Add missing / new parameters into plugins/<your-plugin>/config.yml
         saveConfig();
     }
+
 }

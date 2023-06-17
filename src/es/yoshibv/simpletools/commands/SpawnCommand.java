@@ -1,5 +1,7 @@
 package es.yoshibv.simpletools.commands;
 
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -8,12 +10,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import es.yoshibv.simpletools.Main;
+import es.yoshibv.utils.Utils;
 
 public class SpawnCommand implements CommandExecutor {
 
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(Main.plugin.getConfig().getString("language.onlyPlayerCommand").replace('&', '§'));
+			sender.sendMessage(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.onlyPlayerCommand")));
 			return false;
 		}
 
@@ -26,27 +29,32 @@ public class SpawnCommand implements CommandExecutor {
 			if (args.length == 0) {
 				Location spawnCoords = new Location(player.getWorld(), xSpawn, ySpawn, zSpawn);
 				player.teleport(spawnCoords);
-				sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
-						Main.plugin.getConfig().getString("language.spawnSelf").replace('&', '§'));
+				sender.sendMessage(Main.PREFIX + " " + 
+						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.spawnSelf")));
 			} else if (args.length >= 1) {
 				if (player.hasPermission("SimpleTools.spawn.others")) {
 					Player victim = Bukkit.getServer().getPlayer(args[0]);
 					Location spawnCoords = new Location(victim.getWorld(), xSpawn, ySpawn, zSpawn);
 					victim.teleport(spawnCoords);
-					sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
-							Main.victimParser(Main.plugin.getConfig().getString("language.spawnYouOthers").replace('&', '§'),
-							Bukkit.getServer().getPlayer(victim.getName())));
-					victim.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
-							Main.senderParser(Main.plugin.getConfig().getString("language.spawnOthersYou").replace('&', '§'),
-							Bukkit.getServer().getPlayer(sender.getName())));
+					sender.sendMessage(Main.PREFIX + " " + 
+							Utils.placeholderParser(
+									Utils.colorCodeParser(Main.plugin.getConfig().getString("language.spawnYouOthers")),
+									List.of("%victim%"),
+									List.of(victim.getName())));
+
+					victim.sendMessage(Main.PREFIX + " " + 
+							Utils.placeholderParser(
+									Utils.colorCodeParser(Main.plugin.getConfig().getString("language.spawnOthersYou")),
+									List.of("%sender%"),
+									List.of(sender.getName())));
 				} else {
-					sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
-							Main.plugin.getConfig().getString("language.noPermission").replace('&', '§'));
+					sender.sendMessage(Main.PREFIX + " " + 
+							Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
 				}
 			} 
 		} else {
-			sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
-					Main.plugin.getConfig().getString("language.noPermission").replace('&', '§'));
+			sender.sendMessage(Main.PREFIX + " " + 
+					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
 		}
 		return true;
 	}

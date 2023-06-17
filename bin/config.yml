@@ -3,7 +3,7 @@ config:
   joinTitle: true
   leaveTitle: true 
   deathTitle: true
-
+  harvestOnRightClick: true
 language:
   # PLUGIN THINGS
   prefix: "&6[&9SimpleTools&6]"

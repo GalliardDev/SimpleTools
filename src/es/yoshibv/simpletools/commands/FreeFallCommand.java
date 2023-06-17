@@ -9,19 +9,21 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 
 import es.yoshibv.simpletools.Main;
+import es.yoshibv.utils.Utils;
 
 public class FreeFallCommand implements CommandExecutor {
 
 	@EventHandler
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (args.length > 1) {
-			sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
-					Main.plugin.getConfig().getString("language.tooManyArguments").replace('&', '§'));
+			sender.sendMessage(Main.PREFIX + " " + 
+					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.tooManyArguments")));
 			return false;
 		}
 		if (sender.hasPermission("SimpleTools.freefall")) {
 			if (args.length == 0) {
-				sender.sendMessage(Main.plugin.getConfig().getString("language.playerRequired").replace('&', '§'));
+				sender.sendMessage(Main.PREFIX + " " +
+						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.playerRequired")));
 			}
 			Player player = Bukkit.getServer().getPlayer(args[0]);
 			double xFreeFall = player.getLocation().getX();
@@ -29,11 +31,10 @@ public class FreeFallCommand implements CommandExecutor {
 			double zFreeFall = player.getLocation().getZ();
 			Location freeFallCoords = new Location(player.getWorld(), xFreeFall, yFreeFall, zFreeFall);
 			player.teleport(freeFallCoords);
-			sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
-					Main.plugin.getConfig().getString("language.freefallMsg").replace('&', '§'));
+			sender.sendMessage(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.freefallMsg")));
 		} else {
-			sender.sendMessage(Main.plugin.getConfig().getString("language.prefix").replace('&', '§') + " " + 
-					Main.plugin.getConfig().getString("language.noPermission").replace('&', '§'));
+			sender.sendMessage(Main.PREFIX + " " + 
+					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
 		}
 
 		return true;
