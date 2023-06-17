@@ -129,7 +129,11 @@ public class Main extends JavaPlugin implements Listener {
                 	Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
                 	for(Player p:players) {
                 		p.playSound(p.getLocation(), Sound.ENTITY_WITHER_DEATH, 1, 1);
-                		p.sendTitle(playerParser(Main.plugin.getConfig().getString("language.deathTitleMsg").replace('&', '§'), player), 
+                		p.sendTitle(Utils.colorCodeParser(
+                				Utils.placeholderParser(
+                						Main.plugin.getConfig().getString("language.deathTitleMsg"),
+                						List.of("%player%"),
+                						List.of(player.getName()))), 
                 				"", 
                 				30, 30, 30);
                 	}
@@ -142,9 +146,9 @@ public class Main extends JavaPlugin implements Listener {
             		Player player = event.getPlayer();
                 	Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
                 	for(Player p:players) {
-                		p.sendTitle(Main.plugin.getConfig().getString("language.joinLeaveNameFormat").replace('&', '§') + 
+                		p.sendTitle(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.joinLeaveNameFormat")) + 
                 				player.getName(), 
-                				Main.plugin.getConfig().getString("language.joinTitleMsg").replace('&', '§'), 
+                				Utils.colorCodeParser(Main.plugin.getConfig().getString("language.joinTitleMsg")), 
                 				30, 30, 30);
                 	}
             	}            	
@@ -156,9 +160,9 @@ public class Main extends JavaPlugin implements Listener {
             		Player player = event.getPlayer();
                 	Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
                 	for(Player p:players) {
-                		p.sendTitle(Main.plugin.getConfig().getString("language.joinLeaveNameFormat").replace('&', '§') + 
+                		p.sendTitle(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.joinLeaveNameFormat")) + 
                 				player.getName(), 
-                				Main.plugin.getConfig().getString("language.leaveTitleMsg").replace('&', '§'), 
+                				Utils.colorCodeParser(Main.plugin.getConfig().getString("language.leaveTitleMsg")), 
                 				30, 30, 30);
                 	}
             	}
@@ -215,40 +219,6 @@ public class Main extends JavaPlugin implements Listener {
         itemsFile = new File(getDataFolder(), "items.yml");
         items = YamlConfiguration.loadConfiguration(itemsFile);
         globalChestInventory = GlobalChestCommand.getInv();
-    }
-    
-    public static String coordsParser(String message, List<String> coords) {
-    	return message
-    			.replace("%x%", coords.get(0))
-    			.replace("%y%", coords.get(1))
-    			.replace("%z%", coords.get(2));
-    }
-    
-    public static String victimParser(String message, Player victim) {
-        message = message.replace("%victim%", victim.getName()); 
-        return message;
-    }
-    
-    public static String senderParser(String message, Player sender) {
-        message = message.replace("%sender%", sender.getName());
-        return message;
-    }
-    
-    public static String playerParser(String message, Player player) {
-    	message = message.replace("%player%", player.getName());
-    	return message;
-    }
-        
-    public static String parser(String message, List<String> placeholders, List<String> values) {
-        int i = 0;
-        message = message.replace('&', '§');
-    	for(String p:placeholders) {
-    		if(message.contains(p)) {
-        	    message = message.replace(p, values.get(i));
-        	    i++;
-        	}
-    	}
-    	return message;
     }
 
     public void reloadPluginConfig() {
