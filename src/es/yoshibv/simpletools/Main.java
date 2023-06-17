@@ -200,7 +200,26 @@ public class Main extends JavaPlugin implements Listener {
             				b.setBlockData(Bukkit.createBlockData("minecraft:beetroots[age=0]"));
             				p.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.BEETROOT, n));            				
             			}            			            			
-            		}            		 		
+            		}
+            		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType().equals(Material.COCOA)) {
+            			if(b.getBlockData().getAsString().contains("age=2")) {
+            				int n = (int)((Math.random()+1)*2.25);
+            				b.setBlockData(Bukkit.createBlockData("minecraft:cocoa[age=0]"));
+            				p.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.COCOA_BEANS, n));            				
+            			}            			            			
+            		}
+            		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType().equals(Material.TORCHFLOWER_CROP)) {
+            			if(b.getBlockData().getAsString().contains("age=1")) {
+            				b.setType(Material.AIR);
+            				p.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.TORCHFLOWER, 1));            				
+            			}            			            			
+            		}
+            		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType().equals(Material.PITCHER_CROP)) {
+            			if(b.getBlockData().getAsString().contains("age=4")) {
+            				b.setType(Material.AIR);
+            				p.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.PITCHER_PLANT, 1));            				
+            			}            			            			
+            		}
                 }
             }           
             
