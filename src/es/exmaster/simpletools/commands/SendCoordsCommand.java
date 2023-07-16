@@ -1,17 +1,17 @@
-package es.yoshibv.simpletools.commands;
+package es.exmaster.simpletools.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import es.exmaster.simpletools.Main;
+import es.exmaster.utils.Utils;
+
 import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-
-import es.yoshibv.simpletools.Main;
-import es.yoshibv.utils.Utils;
 
 public class SendCoordsCommand implements CommandExecutor {
 

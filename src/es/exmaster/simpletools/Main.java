@@ -1,4 +1,4 @@
-package es.yoshibv.simpletools;
+package es.exmaster.simpletools;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,15 +26,15 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import es.yoshibv.simpletools.commands.DiscordCommand;
-import es.yoshibv.simpletools.commands.FreeFallCommand;
-import es.yoshibv.simpletools.commands.GlobalChestCommand;
-import es.yoshibv.simpletools.commands.LightningCommand;
-import es.yoshibv.simpletools.commands.ReloadCommand;
-import es.yoshibv.simpletools.commands.SendCoordsCommand;
-import es.yoshibv.simpletools.commands.SpawnCommand;
-import es.yoshibv.utils.UpdateChecker;
-import es.yoshibv.utils.Utils;
+import es.exmaster.simpletools.commands.DiscordCommand;
+import es.exmaster.simpletools.commands.FreeFallCommand;
+import es.exmaster.simpletools.commands.GlobalChestCommand;
+import es.exmaster.simpletools.commands.LightningCommand;
+import es.exmaster.simpletools.commands.ReloadCommand;
+import es.exmaster.simpletools.commands.SendCoordsCommand;
+import es.exmaster.simpletools.commands.SpawnCommand;
+import es.exmaster.utils.UpdateChecker;
+import es.exmaster.utils.Utils;
 
 public class Main extends JavaPlugin implements Listener {
     private File itemsFile;

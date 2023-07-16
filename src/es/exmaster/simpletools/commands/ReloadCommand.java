@@ -1,12 +1,12 @@
-package es.yoshibv.simpletools.commands;
+package es.exmaster.simpletools.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import es.yoshibv.simpletools.Main;
-import es.yoshibv.utils.Utils;
+import es.exmaster.simpletools.Main;
+import es.exmaster.utils.Utils;
 
 public class ReloadCommand
 implements CommandExecutor {

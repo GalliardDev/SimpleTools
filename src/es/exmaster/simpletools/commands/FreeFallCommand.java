@@ -1,4 +1,4 @@
-package es.yoshibv.simpletools.commands;
+package es.exmaster.simpletools.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -8,8 +8,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 
-import es.yoshibv.simpletools.Main;
-import es.yoshibv.utils.Utils;
+import es.exmaster.simpletools.Main;
+import es.exmaster.utils.Utils;
 
 public class FreeFallCommand implements CommandExecutor {
 

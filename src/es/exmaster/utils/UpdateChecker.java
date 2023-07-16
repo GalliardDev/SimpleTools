@@ -1,13 +1,15 @@
-package es.yoshibv.utils;
+package es.exmaster.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Scanner;
 import java.util.function.Consumer;
-import es.yoshibv.simpletools.Main;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
+
+import es.exmaster.simpletools.Main;
 
 public class UpdateChecker {
     private Main plugin;
