@@ -1,3 +1,6 @@
+<h4 style="color:red;"><b>README OUT OF DATE, SEE SPIGOT</b></h4>
+
+
 # Commands:
 > **/spawn [player] -** Teleports you or other player to the spawn<br>
 > **/freefall <player> -** Makes a player fall from their Y + 200<br>
