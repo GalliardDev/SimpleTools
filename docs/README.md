@@ -1,4 +1,4 @@
-<h4 style="color:red;"><b>README OUT OF DATE, SEE SPIGOT</b></h4>
+<h1 style="color:red;"><b>README OUT OF DATE, SEE SPIGOT</b></h4>
 
 
 # Commands:
