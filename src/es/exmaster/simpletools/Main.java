@@ -12,16 +12,24 @@ import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Ageable;
+import org.bukkit.entity.Cow;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Pig;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -221,7 +229,40 @@ public class Main extends JavaPlugin implements Listener {
             			}            			            			
             		}
                 }
-            }           
+            }      
+			
+			@SuppressWarnings("deprecation")
+			@EventHandler
+			public void onEntityRightClick(PlayerInteractEntityEvent event) {
+				Player p = event.getPlayer();
+				Entity e = event.getRightClicked();
+				if (e instanceof Pig && event.getHand().equals(EquipmentSlot.HAND)
+						&& event.getPlayer().getItemInHand().equals(new ItemStack(Material.SHEARS))) {
+					if (((Ageable) e).isAdult()) {
+						int n = (int) ((Math.random() + 1) * 1.25);
+						p.getWorld().dropItemNaturally(e.getLocation(), new ItemStack(Material.PORKCHOP, n));
+						((Ageable) e).setBaby();
+					}
+				}
+				if (event.getRightClicked() instanceof Cow && event.getHand().equals(EquipmentSlot.HAND)
+						&& event.getPlayer().getItemInHand().equals(new ItemStack(Material.SHEARS))) {
+					if (((Ageable) e).isAdult()) {
+						int n = (int) ((Math.random() + 1) * 1.25);
+						p.getWorld().dropItemNaturally(e.getLocation(), new ItemStack(Material.BEEF, n));
+						((Ageable) e).setBaby();
+					}
+				}
+				if (event.getRightClicked() instanceof Zombie && event.getHand().equals(EquipmentSlot.HAND)
+						&& event.getPlayer().getItemInHand().equals(new ItemStack(Material.SHEARS))) {
+					if (((Ageable) e).isAdult()) {
+						int n = (int) ((Math.random() + 1) * 1.25);
+						p.getWorld().dropItemNaturally(e.getLocation(), new ItemStack(Material.ROTTEN_FLESH, n));
+						((Ageable) e).remove();
+						p.getWorld().spawnEntity(e.getLocation(), EntityType.SKELETON);
+					}
+				}
+				
+			}
             
         }, this);
     }
