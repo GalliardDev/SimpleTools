@@ -18,6 +18,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Pig;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -29,9 +30,11 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import es.exmaster.simpletools.commands.DiscordCommand;
@@ -236,30 +239,64 @@ public class Main extends JavaPlugin implements Listener {
 			public void onEntityRightClick(PlayerInteractEntityEvent event) {
 				Player p = event.getPlayer();
 				Entity e = event.getRightClicked();
+				ItemStack i = p.getItemInHand();
+				ItemMeta iMeta = i.getItemMeta();
+				org.bukkit.inventory.meta.Damageable dMeta = (org.bukkit.inventory.meta.Damageable) iMeta; // Creates the Damageable meta that you can use .setDamage() on
+				int damage = dMeta.getDamage(); // Gets current damage of the item
+	            int maxdamage = i.getType().getMaxDurability(); // Gets the maximum durability of the specific tool
+				int amount = i.getAmount();
+				 
 				if (e instanceof Pig && event.getHand().equals(EquipmentSlot.HAND)
-						&& event.getPlayer().getItemInHand().equals(new ItemStack(Material.SHEARS))) {
+						&& event.getPlayer().getItemInHand().getType().equals(new ItemStack(Material.SHEARS).getType())) {
 					if (((Ageable) e).isAdult()) {
 						int n = (int) ((Math.random() + 1) * 1.25);
-						p.getWorld().dropItemNaturally(e.getLocation(), new ItemStack(Material.PORKCHOP, n));
+						p.playSound(p.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1, 1);
 						((Ageable) e).setBaby();
+						p.getWorld().dropItemNaturally(e.getLocation(), new ItemStack(Material.PORKCHOP, n));
+			            if(damage+2 <= maxdamage) {
+			                dMeta.setDamage(damage + 2); // Will make the durability of the item go down by 5 if it has enough durability to do so
+			                i.setItemMeta(dMeta); // NECESSARY: Updates the item with the new durability
+			            }
 					}
 				}
 				if (event.getRightClicked() instanceof Cow && event.getHand().equals(EquipmentSlot.HAND)
-						&& event.getPlayer().getItemInHand().equals(new ItemStack(Material.SHEARS))) {
+						&& event.getPlayer().getItemInHand().getType().equals(new ItemStack(Material.SHEARS).getType())) {
 					if (((Ageable) e).isAdult()) {
 						int n = (int) ((Math.random() + 1) * 1.25);
-						p.getWorld().dropItemNaturally(e.getLocation(), new ItemStack(Material.BEEF, n));
+						p.playSound(p.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1, 1);
 						((Ageable) e).setBaby();
+						p.getWorld().dropItemNaturally(e.getLocation(), new ItemStack(Material.BEEF, n));
+						if(damage+2 <= maxdamage) {
+			                dMeta.setDamage(damage + 2); // Will make the durability of the item go down by 5 if it has enough durability to do so
+			                i.setItemMeta(dMeta); // NECESSARY: Updates the item with the new durability
+			            }
 					}
 				}
 				if (event.getRightClicked() instanceof Zombie && event.getHand().equals(EquipmentSlot.HAND)
-						&& event.getPlayer().getItemInHand().equals(new ItemStack(Material.SHEARS))) {
+						&& event.getPlayer().getItemInHand().getType().equals(new ItemStack(Material.SHEARS).getType())) {
 					if (((Ageable) e).isAdult()) {
 						int n = (int) ((Math.random() + 1) * 1.25);
-						p.getWorld().dropItemNaturally(e.getLocation(), new ItemStack(Material.ROTTEN_FLESH, n));
+						p.playSound(p.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1, 1);
 						((Ageable) e).remove();
-						p.getWorld().spawnEntity(e.getLocation(), EntityType.SKELETON);
+						Skeleton skeleton = (Skeleton) e.getLocation().getWorld().spawnEntity(e.getLocation(), EntityType.SKELETON);
+						EntityEquipment equipment = skeleton.getEquipment();
+				        equipment.setItemInMainHand(null);
+						p.getWorld().dropItemNaturally(e.getLocation(), new ItemStack(Material.ROTTEN_FLESH, n));
+						if(damage+2 <= maxdamage) {
+			                dMeta.setDamage(damage + 2); // Will make the durability of the item go down by 5 if it has enough durability to do so
+			                i.setItemMeta(dMeta); // NECESSARY: Updates the item with the new durability
+			            }
+						
 					}
+				}
+				if (event.getRightClicked() instanceof Skeleton && event.getHand().equals(EquipmentSlot.HAND)
+						&& event.getPlayer().getItemInHand().getType().equals(new ItemStack(Material.ROTTEN_FLESH).getType())
+						&& amount >= 15) {
+					e.remove();
+					i.setAmount(amount-15);
+					Zombie zombie = (Zombie) e.getLocation().getWorld().spawnEntity(e.getLocation(), EntityType.ZOMBIE);
+					EntityEquipment equipment = zombie.getEquipment();
+			        equipment.setItemInMainHand(new ItemStack(Material.BOW));
 				}
 				
 			}
@@ -293,5 +330,4 @@ public class Main extends JavaPlugin implements Listener {
         // Add missing / new parameters into plugins/<your-plugin>/config.yml
         saveConfig();
     }
-
 }
