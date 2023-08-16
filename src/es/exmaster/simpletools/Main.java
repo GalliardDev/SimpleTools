@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.EntityEffect;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -17,8 +18,10 @@ import org.bukkit.entity.Cow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Pig;
+import org.bukkit.entity.Pillager;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
+import org.bukkit.entity.Villager;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -241,10 +244,15 @@ public class Main extends JavaPlugin implements Listener {
 				Entity e = event.getRightClicked();
 				ItemStack i = p.getItemInHand();
 				ItemMeta iMeta = i.getItemMeta();
-				org.bukkit.inventory.meta.Damageable dMeta = (org.bukkit.inventory.meta.Damageable) iMeta; // Creates the Damageable meta that you can use .setDamage() on
-				int damage = dMeta.getDamage(); // Gets current damage of the item
-	            int maxdamage = i.getType().getMaxDurability(); // Gets the maximum durability of the specific tool
+				int damage = 0;
+				org.bukkit.inventory.meta.Damageable dMeta = null;
+				if(iMeta instanceof org.bukkit.inventory.meta.Damageable){
+					dMeta = (org.bukkit.inventory.meta.Damageable) iMeta; // Creates the Damageable meta that you can use .setDamage() on
+					damage = dMeta.getDamage(); // Gets current damage of the item
+				}
+				int maxdamage = i.getType().getMaxDurability(); // Gets the maximum durability of the specific tool
 				int amount = i.getAmount();
+				
 				 
 				if (e instanceof Pig && event.getHand().equals(EquipmentSlot.HAND)
 						&& event.getPlayer().getItemInHand().getType().equals(new ItemStack(Material.SHEARS).getType())) {
@@ -297,6 +305,22 @@ public class Main extends JavaPlugin implements Listener {
 					Zombie zombie = (Zombie) e.getLocation().getWorld().spawnEntity(e.getLocation(), EntityType.ZOMBIE);
 					EntityEquipment equipment = zombie.getEquipment();
 			        equipment.setItemInMainHand(new ItemStack(Material.BOW));
+				}
+				if (event.getRightClicked() instanceof Pillager && event.getHand().equals(EquipmentSlot.HAND)
+						&& event.getPlayer().getItemInHand().getType().equals(new ItemStack(Material.TOTEM_OF_UNDYING).getType())) {
+					i.setAmount(0);
+					double n = Math.random();
+					System.out.println("Número random: " + n);
+					if(n<0.15) {
+						e.remove();
+						Villager villager = (Villager) e.getLocation().getWorld().spawnEntity(e.getLocation(), EntityType.VILLAGER);
+						villager.setBaby();
+						p.playSound(p.getLocation(), Sound.ITEM_TOTEM_USE, 1, 1);
+						p.playEffect(EntityEffect.TOTEM_RESURRECT);
+					} else {
+						
+					}
+					
 				}
 				
 			}

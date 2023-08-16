@@ -31,4 +31,4 @@ language:
   joinLeaveNameFormat: "&e"
   # COORDS MESSAGE
   coordsMsg: "&8[&c%sender%&8 -> &cTú&8] &7Mis coordenadas son:\n&aX: &7%x%\n&aY: &7%y%\n&aZ: &7%z%"
-version: 1.4.1
+version: 1.4.2
