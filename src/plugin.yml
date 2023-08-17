@@ -1,10 +1,10 @@
 main: es.exmaster.simpletools.Main
 name: SimpleTools
-version: 1.4.2
+version: 1.5.1
 description: Useful commands for trolling and server managing.
 api-version: '1.20'
-author: yoshibv
-website: www.yoshibv.es
+author: ExceptionMaster
+website: www.exmaster.es
 prefix: SimpleTools
 
 commands:
@@ -34,6 +34,10 @@ commands:
       description: Broadcast your actual coordinates to all online players
       permission-message: "§cYou don't have permissions to do that!"
       usage: "§cUsage: /<command> <player>"
+   astick:
+      description: Gives yourself the admin stick
+      permission-message: "§cYou don't have permissions to do that!"
+      usage: "§cUsage: /<command>"
    simpletools:
       description: Main command
       permission-message: "§cYou don't have permissions to do that!"
@@ -70,6 +74,9 @@ permissions:
    SimpleTools.sendcoords:
       description: Allows you to use /sendcoords <player> command
       default: op
+   SimpleTools.adminstick:
+      description: Allows you to use /astick command
+      default: op
    SimpleTools.*:
       description: This gives you all the perms
       default: op
@@ -84,3 +91,4 @@ permissions:
          SimpleTools.simpletools: true
          SimpleTools.simpletools.reload: true
          SimpleTools.sendcoords: true
+         SimpleTools.adminstick: true

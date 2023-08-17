@@ -15,8 +15,10 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Ageable;
 import org.bukkit.entity.Cow;
+import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Pig;
 import org.bukkit.entity.Pillager;
 import org.bukkit.entity.Player;
@@ -26,6 +28,7 @@ import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
@@ -40,6 +43,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import es.exmaster.simpletools.commands.AdminStickCommand;
 import es.exmaster.simpletools.commands.DiscordCommand;
 import es.exmaster.simpletools.commands.FreeFallCommand;
 import es.exmaster.simpletools.commands.GlobalChestCommand;
@@ -47,6 +51,8 @@ import es.exmaster.simpletools.commands.LightningCommand;
 import es.exmaster.simpletools.commands.ReloadCommand;
 import es.exmaster.simpletools.commands.SendCoordsCommand;
 import es.exmaster.simpletools.commands.SpawnCommand;
+import es.exmaster.simpletools.recipes.AdminStickRecipe;
+import es.exmaster.simpletools.recipes.TijerasRecipe;
 import es.exmaster.utils.UpdateChecker;
 import es.exmaster.utils.Utils;
 
@@ -70,6 +76,7 @@ public class Main extends JavaPlugin implements Listener {
         registerEvents();
         registerCommands();
         loadGlobalChest();
+        registerRecipes();
         new UpdateChecker(this, ID).getLatestVersion(version -> {
             String currentVersion = plugin.getConfig().getString("version");
             if (version.equals(currentVersion)) {
@@ -118,6 +125,12 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("globalchest").setExecutor(new GlobalChestCommand());
         getCommand("simpletools").setExecutor(new ReloadCommand());
         getCommand("sendcoords").setExecutor(new SendCoordsCommand());
+        getCommand("astick").setExecutor(new AdminStickCommand());
+    }
+    
+    private void registerRecipes() {
+    	getServer().addRecipe(TijerasRecipe.get());
+    	getServer().addRecipe(AdminStickRecipe.get());
     }
 
     private void registerEvents() {
@@ -182,6 +195,7 @@ public class Main extends JavaPlugin implements Listener {
             	}
             }
             
+			@SuppressWarnings("deprecation")
 			@EventHandler
             public void onRightClick(PlayerInteractEvent event) {
             	if(Main.plugin.getConfig().getBoolean("config.harvestOnRightClick") == true) {
@@ -234,6 +248,9 @@ public class Main extends JavaPlugin implements Listener {
             				p.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.PITCHER_PLANT, 1));            				
             			}            			            			
             		}
+            		if(event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+            			event.getPlayer().sendMessage(event.getPlayer().getItemInHand().getItemMeta().toString());
+            		}
                 }
             }      
 			
@@ -247,41 +264,73 @@ public class Main extends JavaPlugin implements Listener {
 				int damage = 0;
 				org.bukkit.inventory.meta.Damageable dMeta = null;
 				if(iMeta instanceof org.bukkit.inventory.meta.Damageable){
-					dMeta = (org.bukkit.inventory.meta.Damageable) iMeta; // Creates the Damageable meta that you can use .setDamage() on
-					damage = dMeta.getDamage(); // Gets current damage of the item
+					dMeta = (org.bukkit.inventory.meta.Damageable) iMeta; 
+					damage = dMeta.getDamage(); 
 				}
-				int maxdamage = i.getType().getMaxDurability(); // Gets the maximum durability of the specific tool
+				int maxdamage = i.getType().getMaxDurability(); 
 				int amount = i.getAmount();
 				
 				 
 				if (e instanceof Pig && event.getHand().equals(EquipmentSlot.HAND)
-						&& event.getPlayer().getItemInHand().getType().equals(new ItemStack(Material.SHEARS).getType())) {
+						&& event.getPlayer().getItemInHand().getType().equals(new ItemStack(Material.SHEARS).getType())
+						&& iMeta.toString().contains("ItemFlags=[HIDE_ENCHANTS]")) {
 					if (((Ageable) e).isAdult()) {
 						int n = (int) ((Math.random() + 1) * 1.25);
 						p.playSound(p.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1, 1);
 						((Ageable) e).setBaby();
 						p.getWorld().dropItemNaturally(e.getLocation(), new ItemStack(Material.PORKCHOP, n));
 			            if(damage+2 <= maxdamage) {
-			                dMeta.setDamage(damage + 2); // Will make the durability of the item go down by 5 if it has enough durability to do so
-			                i.setItemMeta(dMeta); // NECESSARY: Updates the item with the new durability
+			                dMeta.setDamage(damage + 2); 
+			                i.setItemMeta(dMeta); 
 			            }
 					}
 				}
 				if (event.getRightClicked() instanceof Cow && event.getHand().equals(EquipmentSlot.HAND)
-						&& event.getPlayer().getItemInHand().getType().equals(new ItemStack(Material.SHEARS).getType())) {
+						&& event.getPlayer().getItemInHand().getType().equals(new ItemStack(Material.SHEARS).getType())
+						&& iMeta.toString().contains("ItemFlags=[HIDE_ENCHANTS]")) {
 					if (((Ageable) e).isAdult()) {
 						int n = (int) ((Math.random() + 1) * 1.25);
 						p.playSound(p.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1, 1);
 						((Ageable) e).setBaby();
 						p.getWorld().dropItemNaturally(e.getLocation(), new ItemStack(Material.BEEF, n));
 						if(damage+2 <= maxdamage) {
-			                dMeta.setDamage(damage + 2); // Will make the durability of the item go down by 5 if it has enough durability to do so
-			                i.setItemMeta(dMeta); // NECESSARY: Updates the item with the new durability
+			                dMeta.setDamage(damage + 2); 
+			                i.setItemMeta(dMeta); 
 			            }
 					}
 				}
+				if (event.getRightClicked() instanceof Creeper && event.getHand().equals(EquipmentSlot.HAND)
+						&& event.getPlayer().getItemInHand().getType().equals(new ItemStack(Material.SHEARS).getType())
+						&& iMeta.toString().contains("ItemFlags=[HIDE_ENCHANTS]")) {
+					double r = Math.random();
+					int n = (int) ((Math.random() + 1) * 1.25);
+					System.out.println("Número random: " + r);
+					if(r<0.10) {
+						e.remove();
+						p.playSound(p.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1, 1);
+						p.playEffect(EntityEffect.FIREWORK_EXPLODE);
+						p.getWorld().dropItemNaturally(e.getLocation(), new ItemStack(Material.VINE, n));
+						p.getWorld().dropItemNaturally(e.getLocation(), new ItemStack(Material.GUNPOWDER, n));
+						double r2 = Math.random();
+						System.out.println("Número random 2: " + r2);
+						if(r2<0.30) {
+							p.getWorld().dropItemNaturally(e.getLocation(), new ItemStack(Material.CREEPER_HEAD, 1));
+						}
+						if(damage+2 <= maxdamage) {
+			                dMeta.setDamage(damage + 2); 
+			                i.setItemMeta(dMeta); 
+			            }
+					} else {
+						if(damage+1 <= maxdamage) {
+			                dMeta.setDamage(damage + 1); 
+			                i.setItemMeta(dMeta);
+			            }
+					}
+					
+				}
 				if (event.getRightClicked() instanceof Zombie && event.getHand().equals(EquipmentSlot.HAND)
-						&& event.getPlayer().getItemInHand().getType().equals(new ItemStack(Material.SHEARS).getType())) {
+						&& event.getPlayer().getItemInHand().getType().equals(new ItemStack(Material.SHEARS).getType())
+						&& iMeta.toString().contains("ItemFlags=[HIDE_ENCHANTS]")) {
 					if (((Ageable) e).isAdult()) {
 						int n = (int) ((Math.random() + 1) * 1.25);
 						p.playSound(p.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1, 1);
@@ -291,8 +340,8 @@ public class Main extends JavaPlugin implements Listener {
 				        equipment.setItemInMainHand(null);
 						p.getWorld().dropItemNaturally(e.getLocation(), new ItemStack(Material.ROTTEN_FLESH, n));
 						if(damage+2 <= maxdamage) {
-			                dMeta.setDamage(damage + 2); // Will make the durability of the item go down by 5 if it has enough durability to do so
-			                i.setItemMeta(dMeta); // NECESSARY: Updates the item with the new durability
+			                dMeta.setDamage(damage + 2);
+			                i.setItemMeta(dMeta);
 			            }
 						
 					}
@@ -323,6 +372,22 @@ public class Main extends JavaPlugin implements Listener {
 					
 				}
 				
+				
+				
+			}
+			
+			@SuppressWarnings("deprecation")
+			@EventHandler
+			public void onEntityLeftClick(EntityDamageByEntityEvent  event) {
+				if(event.getDamager().getType() == EntityType.PLAYER) {
+					Player player = (Player) event.getDamager();
+					if(player.getItemInHand().getType().equals(Material.STICK)
+							&& player.getItemInHand().getItemMeta().toString().contains("enchants={DAMAGE_ALL=18000}")) {
+						if (event.getEntity() instanceof LivingEntity) {
+							((LivingEntity)event.getEntity()).setHealth(0);
+						}
+					}
+				}
 			}
             
         }, this);
