@@ -2,6 +2,8 @@ package es.exmaster.utils;
 
 import java.util.List;
 
+import org.bukkit.Material;
+
 public class Utils {
 	public static String placeholderParser(String message, List<String> placeholders, List<String> values) {
         int i = 0;
@@ -19,5 +21,16 @@ public class Utils {
 		message = message.replace('&', '§');
 		return message;
 	}
+	
+	public static Material getMaterialWithProb() {
+    	double n = Math.random();
+    	Material res = null;
+    	if(n>0.40) {
+    		res = Material.BEEF;
+    	} else {
+    		res = Material.BONE;
+    	}
+    	return res;
+    }
 	
 }

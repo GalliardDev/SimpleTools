@@ -28,6 +28,7 @@ import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockCookEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -52,6 +53,7 @@ import es.exmaster.simpletools.commands.ReloadCommand;
 import es.exmaster.simpletools.commands.SendCoordsCommand;
 import es.exmaster.simpletools.commands.SpawnCommand;
 import es.exmaster.simpletools.recipes.AdminStickRecipe;
+import es.exmaster.simpletools.recipes.RottenFleshCampfireRecipe;
 import es.exmaster.simpletools.recipes.TijerasRecipe;
 import es.exmaster.utils.UpdateChecker;
 import es.exmaster.utils.Utils;
@@ -131,6 +133,7 @@ public class Main extends JavaPlugin implements Listener {
     private void registerRecipes() {
     	getServer().addRecipe(TijerasRecipe.get());
     	getServer().addRecipe(AdminStickRecipe.get());
+    	getServer().addRecipe(RottenFleshCampfireRecipe.get());
     }
 
     private void registerEvents() {
@@ -249,7 +252,7 @@ public class Main extends JavaPlugin implements Listener {
             			}            			            			
             		}
             		if(event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
-            			event.getPlayer().sendMessage(event.getPlayer().getItemInHand().getItemMeta().toString());
+            			event.getPlayer().sendMessage(event.getPlayer().getItemInHand().toString());
             		}
                 }
             }      
@@ -370,10 +373,7 @@ public class Main extends JavaPlugin implements Listener {
 						
 					}
 					
-				}
-				
-				
-				
+				}	
 			}
 			
 			@SuppressWarnings("deprecation")
@@ -389,7 +389,19 @@ public class Main extends JavaPlugin implements Listener {
 					}
 				}
 			}
-            
+			
+			@EventHandler
+			public void onCampfireCook(BlockCookEvent event) {
+			    if (event.getBlock().getType() == Material.CAMPFIRE) {
+			    	System.out.println("Es hoguera");
+			    	if(event.getSource().getType() == Material.ROTTEN_FLESH) {
+			    		System.out.println("Es rotten flesh");
+			    		event.setResult(new ItemStack(Utils.getMaterialWithProb()));
+			    		System.out.println("Se ha escogido el item random");
+			    	}
+			    }
+			}
+			            
         }, this);
     }
 
