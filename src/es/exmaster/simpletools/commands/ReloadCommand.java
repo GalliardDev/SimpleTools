@@ -21,11 +21,13 @@ implements CommandExecutor {
                 Player player = (Player)sender;
                 if (args.length == 0) {
                     player.sendMessage(Main.PREFIX + " " + 
-                    		"Desarrollado por YoshiBv");
+                    		"Desarrollado por ExceptionMaster");
                 } else if (args[0].equalsIgnoreCase("reload") && sender.hasPermission("SimpleTools.simpletools.reload")) {
-                    Main.plugin.reloadPluginConfig();
+                    /*Main.plugin.reloadConfig();
                     player.sendMessage(Main.PREFIX + " " + 
-                    		Utils.colorCodeParser(Main.plugin.getConfig().getString("language.configReloaded")));
+                    		Utils.colorCodeParser(Main.plugin.getConfig().getString("language.configReloaded")));*/
+                	player.sendMessage(Main.PREFIX + " " + 
+                			Utils.colorCodeParser(Main.plugin.getConfig().getString("language.temporarilyDisabled")));
                 } else if (args[0].equalsIgnoreCase("reload") && !(sender.hasPermission("SimpleTools.simpletools.reload"))) {
                 	sender.sendMessage(Main.PREFIX + " " + 
                 			Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));

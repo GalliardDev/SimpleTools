@@ -14,6 +14,7 @@ language:
   tooManyArguments: "&cDemasiados argumentos!"
   playerRequired: "&cDebes especificar un jugador!"
   invalidArgument: "&cArgumento no válido!"
+  temporarilyDisabled: "&cEste comando está temporalmente desactivado"
   # GLOBAL CHEST COMMAND
   globalChestTitle: "&8Cofre global"
   # SPAWN COMMAND
