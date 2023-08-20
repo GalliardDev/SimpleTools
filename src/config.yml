@@ -36,4 +36,7 @@ language:
   scissorsLore: "&7Vacas, cerdos, zombies"
   adminStickName: "&c&lADMIN STICK"
   adminStickLore: "&dUn palo para dominarlos a todos!"
-version: 1.5.2
+  # WORLD BLOCKER
+  worldBlockSwitched: "&cSe ha alternado el bloqueo del mundo!"
+  worldBlocked: "&cEste mundo está bloqueado"
+version: 1.5.3

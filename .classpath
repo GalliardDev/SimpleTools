@@ -26,5 +26,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Program Files/Java/libs/spigot-api-1.20.1-R0.1-20230806.223227-49.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/libs/snakeyaml-2.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

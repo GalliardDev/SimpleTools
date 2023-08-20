@@ -33,4 +33,14 @@ public class Utils {
     	return res;
     }
 	
+	public static Boolean strToBool(String s) {
+		Boolean res = null;
+		if(s=="true") {
+			res = true;
+		} else if(s=="false") {
+			res = false;
+		}
+		return res;
+	}
+		
 }

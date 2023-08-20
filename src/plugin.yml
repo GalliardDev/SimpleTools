@@ -1,6 +1,6 @@
 main: es.exmaster.simpletools.Main
 name: SimpleTools
-version: 1.5.2
+version: 1.5.3
 description: Useful commands for trolling and server managing.
 api-version: '1.20'
 author: ExceptionMaster
@@ -38,6 +38,10 @@ commands:
       description: Gives yourself the admin stick
       permission-message: "§cYou don't have permissions to do that!"
       usage: "§cUsage: /<command>"
+   worldblock:
+      description: Allows you to block a world
+      permission-message: "§cYou don't have permissions to do that!"
+      usage: "§cUsage: /<command> <world> <blocked>"
    simpletools:
       description: Main command
       permission-message: "§cYou don't have permissions to do that!"
@@ -77,6 +81,9 @@ permissions:
    SimpleTools.adminstick:
       description: Allows you to use /astick command
       default: op
+   SimpleTools.worldblock:
+      description: Allows you to use /worldblock <world> <blocked> command
+      default: op
    SimpleTools.*:
       description: This gives you all the perms
       default: op
@@ -92,3 +99,4 @@ permissions:
          SimpleTools.simpletools.reload: true
          SimpleTools.sendcoords: true
          SimpleTools.adminstick: true
+         SimpleTools.worldblock: true

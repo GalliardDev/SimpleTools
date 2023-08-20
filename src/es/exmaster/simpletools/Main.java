@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -33,6 +34,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -52,11 +54,13 @@ import es.exmaster.simpletools.commands.LightningCommand;
 import es.exmaster.simpletools.commands.ReloadCommand;
 import es.exmaster.simpletools.commands.SendCoordsCommand;
 import es.exmaster.simpletools.commands.SpawnCommand;
+import es.exmaster.simpletools.commands.WorldBlockerCommand;
 import es.exmaster.simpletools.recipes.AdminStickRecipe;
 import es.exmaster.simpletools.recipes.RottenFleshCampfireRecipe;
 import es.exmaster.simpletools.recipes.TijerasRecipe;
 import es.exmaster.utils.UpdateChecker;
 import es.exmaster.utils.Utils;
+import es.exmaster.utils.YAMLFileManager;
 
 public class Main extends JavaPlugin implements Listener {
     private File itemsFile;
@@ -75,6 +79,7 @@ public class Main extends JavaPlugin implements Listener {
         loadConfig();
         PREFIX = Utils.colorCodeParser(Main.plugin.getConfig().getString("language.prefix"));
         loadGlobalChestConfig();
+        loadBlockedWorlds();
         registerEvents();
         registerCommands();
         loadGlobalChest();
@@ -128,6 +133,7 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("simpletools").setExecutor(new ReloadCommand());
         getCommand("sendcoords").setExecutor(new SendCoordsCommand());
         getCommand("astick").setExecutor(new AdminStickCommand());
+        getCommand("worldblock").setExecutor(new WorldBlockerCommand());
     }
     
     private void registerRecipes() {
@@ -198,7 +204,6 @@ public class Main extends JavaPlugin implements Listener {
             	}
             }
             
-			@SuppressWarnings("deprecation")
 			@EventHandler
             public void onRightClick(PlayerInteractEvent event) {
             	if(Main.plugin.getConfig().getBoolean("config.harvestOnRightClick") == true) {
@@ -250,9 +255,6 @@ public class Main extends JavaPlugin implements Listener {
             				b.setType(Material.AIR);
             				p.getWorld().dropItemNaturally(b.getLocation(), new ItemStack(Material.PITCHER_PLANT, 1));            				
             			}            			            			
-            		}
-            		if(event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
-            			event.getPlayer().sendMessage(event.getPlayer().getItemInHand().toString());
             		}
                 }
             }      
@@ -401,6 +403,26 @@ public class Main extends JavaPlugin implements Listener {
 			    	}
 			    }
 			}
+			
+			@EventHandler
+			public void onBlockedWorldEnter(PlayerChangedWorldEvent event) {
+				Player player = event.getPlayer();
+			    Location spawnLoc = Bukkit.getServer().getWorld("world").getSpawnLocation();
+				double xSpawn = spawnLoc.getBlockX() + 0.500;
+				double ySpawn = spawnLoc.getBlockY();
+				double zSpawn = spawnLoc.getBlockZ() + 0.500;
+				String world = player.getWorld().getName();
+				File aux = new File(getDataFolder(), "blockedWorlds.yml");
+				Boolean isBlocked = YAMLFileManager.readYAML(aux.getPath()).entrySet().stream()
+						.filter(x->x.getKey().equals(world))
+						.findFirst().get().getValue();
+				if(isBlocked) {
+					Location loc = new Location(player.getServer().getWorld("world"), xSpawn, ySpawn, zSpawn);
+					player.teleport(loc);
+					player.sendMessage(Utils.colorCodeParser(Main.PREFIX + " " +
+							Main.plugin.getConfig().getString("language.worldBlocked")));
+				}
+			}
 			            
         }, this);
     }
@@ -411,6 +433,16 @@ public class Main extends JavaPlugin implements Listener {
             getConfig().options().copyDefaults(true);
             saveConfig();
         }
+    }
+    
+    private void loadBlockedWorlds() {
+        File blockedWorlds = new File(getDataFolder(), "blockedWorlds.yml");
+        try {
+			blockedWorlds.createNewFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     private void loadGlobalChestConfig() {
