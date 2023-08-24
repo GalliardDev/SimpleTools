@@ -11,6 +11,7 @@ import es.exmaster.simpletools.commands.DiscordCommand;
 import es.exmaster.simpletools.commands.FreeFallCommand;
 import es.exmaster.simpletools.commands.GlobalChestCommand;
 import es.exmaster.simpletools.commands.LightningCommand;
+import es.exmaster.simpletools.commands.LobbyCommand;
 import es.exmaster.simpletools.commands.ReloadCommand;
 import es.exmaster.simpletools.commands.SendCoordsCommand;
 import es.exmaster.simpletools.commands.SpawnCommand;
@@ -79,6 +80,7 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("sendcoords").setExecutor(new SendCoordsCommand());
         getCommand("astick").setExecutor(new AdminStickCommand());
         getCommand("worldblock").setExecutor(new WorldBlockerCommand());
+        getCommand("lobby").setExecutor(new LobbyCommand());
     }
     
     private void registerRecipes() {

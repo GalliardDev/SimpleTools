@@ -1,6 +1,6 @@
 main: es.exmaster.simpletools.Main
 name: SimpleTools
-version: REWRITTEN-1.0.0
+version: REWRITTEN-1.1.0
 description: Useful commands for trolling and server managing.
 api-version: '1.20'
 author: ExceptionMaster
@@ -42,6 +42,10 @@ commands:
       description: Allows you to block a world
       permission-message: "§cYou don't have permissions to do that!"
       usage: "§cUsage: /<command> <world> <blocked>"
+   lobby:
+      description: Teleports you to lobby
+      permission-message: "§cYou don't have permissions to do that!"
+      usage: "§cUsage: /<command> [player]"
    simpletools:
       description: Main command
       permission-message: "§cYou don't have permissions to do that!"
@@ -84,6 +88,9 @@ permissions:
    SimpleTools.worldblock:
       description: Allows you to use /worldblock <world> <blocked> command
       default: op
+   SimpleTools.lobby:
+      description: Allows you to use /lobby command
+      default: op
    SimpleTools.*:
       description: This gives you all the perms
       default: op
@@ -100,3 +107,4 @@ permissions:
          SimpleTools.sendcoords: true
          SimpleTools.adminstick: true
          SimpleTools.worldblock: true
+         SimpleTools.lobby: true
