@@ -2,7 +2,9 @@ package es.exmaster.simpletools.events;
 
 import java.io.File;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;
@@ -30,6 +32,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -326,6 +329,28 @@ public class EventListener {
 					player.sendMessage(Utils.colorCodeParser(Main.PREFIX + " " +
 							Main.plugin.getConfig().getString("language.worldBlocked")));
 				}
+			}
+			
+			@EventHandler
+			public void onChatMessage(AsyncPlayerChatEvent event){
+				Map<String,String> emojisByName = new HashMap<>();
+				emojisByName.put(":skull:", "☠");
+				emojisByName.put(":happy:", "☺");
+				emojisByName.put(":sad:", "☹");
+				emojisByName.put(":love:", "❤");
+				emojisByName.put(":fishingrod:", "🎣");
+				emojisByName.put(":combat:", "⚔");
+				emojisByName.put(":coffee:", "☕");
+				emojisByName.put(":sun:", "☀");
+				emojisByName.put(":cloud:", "☁");
+				emojisByName.put(":snow:", "☃");
+			    String msg = event.getMessage();
+			    for(String s:emojisByName.keySet()) {
+			    	if(msg.contains(s)) {
+			    		msg = msg.replace(s, emojisByName.get(s));
+			    	}
+			    }
+			    event.setMessage(msg);
 			}
 			            
         }, Main.plugin);

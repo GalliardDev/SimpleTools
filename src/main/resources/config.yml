@@ -27,6 +27,7 @@ language:
   lobbySelf: "&7Has sido teletransportado al lobby"
   lobbyYouOthers: "&7Has teletransportado a &a%victim% &7al lobby"
   lobbyOthersYou: "&7Has sido teletransportado al lobby por &a%sender%"
+  noLobby: "&cEl lobby no está definido!"
   # DISCORD COMMAND
   discordMsg: "&7Aquí tienes nuestro discord, &a%sender% &7:\n&9&nhttps://discord.gg/HHtQ8wU2TK"
   # FREE FALL COMMAND
@@ -46,4 +47,4 @@ language:
   # WORLD BLOCKER
   worldBlockSwitched: "&cSe ha alternado el bloqueo del mundo!"
   worldBlocked: "&cEste mundo está bloqueado"
-version: REWRITTEN-1.1.0
+version: REWRITTEN-1.2.0

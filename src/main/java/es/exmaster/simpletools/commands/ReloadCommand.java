@@ -23,11 +23,9 @@ implements CommandExecutor {
                     player.sendMessage(Main.PREFIX + " " + 
                     		"Desarrollado por ExceptionMaster");
                 } else if (args[0].equalsIgnoreCase("reload") && sender.hasPermission("SimpleTools.simpletools.reload")) {
-                    /*Main.plugin.reloadConfig();
+                    Main.plugin.reloadConfig();
                     player.sendMessage(Main.PREFIX + " " + 
-                    		Utils.colorCodeParser(Main.plugin.getConfig().getString("language.configReloaded")));*/
-                	player.sendMessage(Main.PREFIX + " " + 
-                			Utils.colorCodeParser(Main.plugin.getConfig().getString("language.temporarilyDisabled")));
+                    		Utils.colorCodeParser(Main.plugin.getConfig().getString("language.configReloaded")));
                 } else if (args[0].equalsIgnoreCase("reload") && !(sender.hasPermission("SimpleTools.simpletools.reload"))) {
                 	sender.sendMessage(Main.PREFIX + " " + 
                 			Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));

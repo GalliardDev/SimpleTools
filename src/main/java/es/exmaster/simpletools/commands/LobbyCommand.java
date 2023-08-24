@@ -21,38 +21,42 @@ public class LobbyCommand implements CommandExecutor {
 		}
 
 		Player player = (Player) sender;
-		World lobby = Bukkit.getWorld(Main.plugin.getConfig().getString("config.lobby"));
-		double xSpawn = lobby.getSpawnLocation().getBlockX() + 0.500;
-		double ySpawn = lobby.getSpawnLocation().getBlockY();
-		double zSpawn = lobby.getSpawnLocation().getBlockZ() + 0.500;
-
 		if (player.hasPermission("SimpleTools.lobby")) {
-			if (args.length == 0) {
-				Location spawnCoords = new Location(lobby, xSpawn, ySpawn, zSpawn);
-				player.teleport(spawnCoords);
-				sender.sendMessage(Main.PREFIX + " " + 
-						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.lobbySelf")));
-			} else if (args.length >= 1) {
-				if (player.hasPermission("SimpleTools.spawn.others")) {
-					Player victim = Bukkit.getServer().getPlayer(args[0]);
+			if(Bukkit.getServer().getWorld(Main.plugin.getConfig().getString("config.lobby"))!=null) {
+				World lobby = Bukkit.getWorld(Main.plugin.getConfig().getString("config.lobby"));
+				double xSpawn = lobby.getSpawnLocation().getBlockX() + 0.500;
+				double ySpawn = lobby.getSpawnLocation().getBlockY();
+				double zSpawn = lobby.getSpawnLocation().getBlockZ() + 0.500;
+				if (args.length == 0) {
 					Location spawnCoords = new Location(lobby, xSpawn, ySpawn, zSpawn);
-					victim.teleport(spawnCoords);
+					player.teleport(spawnCoords);
 					sender.sendMessage(Main.PREFIX + " " + 
-							Utils.placeholderParser(
-									Utils.colorCodeParser(Main.plugin.getConfig().getString("language.lobbyYouOthers")),
-									List.of("%victim%"),
-									List.of(victim.getName())));
+							Utils.colorCodeParser(Main.plugin.getConfig().getString("language.lobbySelf")));
+				} else if (args.length >= 1) {
+					if (player.hasPermission("SimpleTools.spawn.others")) {
+						Player victim = Bukkit.getServer().getPlayer(args[0]);
+						Location spawnCoords = new Location(lobby, xSpawn, ySpawn, zSpawn);
+						victim.teleport(spawnCoords);
+						sender.sendMessage(Main.PREFIX + " " + 
+								Utils.placeholderParser(
+										Utils.colorCodeParser(Main.plugin.getConfig().getString("language.lobbyYouOthers")),
+										List.of("%victim%"),
+										List.of(victim.getName())));
 
-					victim.sendMessage(Main.PREFIX + " " + 
-							Utils.placeholderParser(
-									Utils.colorCodeParser(Main.plugin.getConfig().getString("language.lobbyOthersYou")),
-									List.of("%sender%"),
-									List.of(sender.getName())));
-				} else {
-					sender.sendMessage(Main.PREFIX + " " + 
-							Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
+						victim.sendMessage(Main.PREFIX + " " + 
+								Utils.placeholderParser(
+										Utils.colorCodeParser(Main.plugin.getConfig().getString("language.lobbyOthersYou")),
+										List.of("%sender%"),
+										List.of(sender.getName())));
+					} else {
+						sender.sendMessage(Main.PREFIX + " " + 
+								Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
+					}
 				}
-			} 
+			} else {
+				player.sendMessage(Main.plugin.getConfig().getString("language.noLobby"));
+			}
+			 
 		} else {
 			sender.sendMessage(Main.PREFIX + " " + 
 					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
