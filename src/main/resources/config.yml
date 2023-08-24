@@ -45,6 +45,7 @@ language:
   adminStickName: "&c&lADMIN STICK"
   adminStickLore: "&dUn palo para dominarlos a todos!"
   # WORLD BLOCKER
-  worldBlockSwitched: "&cSe ha alternado el bloqueo del mundo!"
-  worldBlocked: "&cEste mundo está bloqueado"
+  worldIsBlocked: "&cEste mundo está bloqueado"
+  worldBlocked: "&cSe ha bloqueado el mundo"
+  worldUnblocked: "&aSe ha desbloqueado el mundo"
 version: REWRITTEN

@@ -6,10 +6,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import es.exmaster.simpletools.Main;
+import es.exmaster.utils.ConfigManager;
 import es.exmaster.utils.Utils;
 
 public class ReloadCommand
 implements CommandExecutor {
+	private ConfigManager mainConfigManager = new ConfigManager(Main.plugin, "config.yml");
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
             sender.sendMessage(Main.PREFIX + " " + 
@@ -23,7 +25,7 @@ implements CommandExecutor {
                     player.sendMessage(Main.PREFIX + " " + 
                     		"Desarrollado por ExceptionMaster");
                 } else if (args[0].equalsIgnoreCase("reload") && sender.hasPermission("SimpleTools.simpletools.reload")) {
-                    Main.plugin.reloadConfig();
+                	mainConfigManager.reloadConfig();
                     player.sendMessage(Main.PREFIX + " " + 
                     		Utils.colorCodeParser(Main.plugin.getConfig().getString("language.configReloaded")));
                 } else if (args[0].equalsIgnoreCase("reload") && !(sender.hasPermission("SimpleTools.simpletools.reload"))) {

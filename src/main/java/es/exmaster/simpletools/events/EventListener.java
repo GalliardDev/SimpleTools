@@ -1,6 +1,5 @@
 package es.exmaster.simpletools.events;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.List;
 
@@ -44,10 +43,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import es.exmaster.simpletools.Main;
 import es.exmaster.simpletools.common.EmojiMap;
 import es.exmaster.simpletools.common.GlobalChest;
+import es.exmaster.utils.ConfigManager;
 import es.exmaster.utils.Utils;
-import es.exmaster.utils.YAMLFileManager;
 
 public class EventListener {
+	
 	public static void registerEvents() {
         Bukkit.getPluginManager().registerEvents(new Listener() {
             @EventHandler
@@ -311,24 +311,29 @@ public class EventListener {
 			}
 			
 			@EventHandler
-			public void onBlockedWorldEnter(PlayerChangedWorldEvent event) {
-				Player player = event.getPlayer();
-			    Location spawnLoc = Bukkit.getServer().getWorld("world").getSpawnLocation();
-				double xSpawn = spawnLoc.getBlockX() + 0.500;
-				double ySpawn = spawnLoc.getBlockY();
-				double zSpawn = spawnLoc.getBlockZ() + 0.500;
-				String world = player.getWorld().getName();
-				File aux = new File(Main.plugin.getDataFolder(), "blockedWorlds.yml");
-				Boolean isBlocked = YAMLFileManager.readYAML(aux.getPath()).entrySet().stream()
-						.filter(x->x.getKey().equals(world))
-						.findFirst().get().getValue();
-				if(isBlocked) {
-					Location loc = new Location(player.getServer().getWorld("world"), xSpawn, ySpawn, zSpawn);
-					player.teleport(loc);
-					player.sendMessage(Utils.colorCodeParser(Main.PREFIX + " " +
-							Main.plugin.getConfig().getString("language.worldBlocked")));
-				}
-			}
+		    public void onBlockedWorldEnter(PlayerChangedWorldEvent event) {
+		        Player player = event.getPlayer();
+		        String world = player.getWorld().getName();
+		        
+		        ConfigManager worldBlockerConfigManager = new ConfigManager(Main.plugin, "blockedWorlds.yml");
+		        worldBlockerConfigManager.reloadConfig();
+
+		        List<String> blockedWorlds = worldBlockerConfigManager.getConfig().getStringList("blockedWorlds");
+		        Main.plugin.getLogger().info(blockedWorlds.toString());
+
+		        if (blockedWorlds.contains(world)) {
+		            Location spawnLoc = Bukkit.getWorld("world").getSpawnLocation();
+		            double xSpawn = spawnLoc.getBlockX() + 0.5;
+		            double ySpawn = spawnLoc.getBlockY();
+		            double zSpawn = spawnLoc.getBlockZ() + 0.5;
+
+		            Location loc = new Location(Bukkit.getWorld("world"), xSpawn, ySpawn, zSpawn);
+		            player.teleport(loc);
+
+		            player.sendMessage(Utils.colorCodeParser(Main.PREFIX + " " +
+		                    Main.plugin.getConfig().getString("language.worldIsBlocked")));
+		        }
+		    }
 			
 			@EventHandler
 			public void onChatMessage(AsyncPlayerChatEvent event){
