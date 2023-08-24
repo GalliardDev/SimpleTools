@@ -2,9 +2,7 @@ package es.exmaster.simpletools.events;
 
 import java.io.File;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;
@@ -44,6 +42,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import es.exmaster.simpletools.Main;
+import es.exmaster.simpletools.common.EmojiMap;
 import es.exmaster.simpletools.common.GlobalChest;
 import es.exmaster.utils.Utils;
 import es.exmaster.utils.YAMLFileManager;
@@ -333,17 +332,7 @@ public class EventListener {
 			
 			@EventHandler
 			public void onChatMessage(AsyncPlayerChatEvent event){
-				Map<String,String> emojisByName = new HashMap<>();
-				emojisByName.put(":skull:", "☠");
-				emojisByName.put(":happy:", "☺");
-				emojisByName.put(":sad:", "☹");
-				emojisByName.put(":love:", "❤");
-				emojisByName.put(":fishingrod:", "🎣");
-				emojisByName.put(":combat:", "⚔");
-				emojisByName.put(":coffee:", "☕");
-				emojisByName.put(":sun:", "☀");
-				emojisByName.put(":cloud:", "☁");
-				emojisByName.put(":snow:", "☃");
+				EmojiMap<String,String> emojisByName = new EmojiMap<>();
 			    String msg = event.getMessage();
 			    for(String s:emojisByName.keySet()) {
 			    	if(msg.contains(s)) {
