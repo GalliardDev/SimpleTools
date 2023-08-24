@@ -1,6 +1,6 @@
 main: es.exmaster.simpletools.Main
 name: SimpleTools
-version: REWRITTEN-1.2.0
+version: REWRITTEN
 description: Useful commands for trolling and server managing.
 api-version: '1.20'
 author: ExceptionMaster

@@ -6,7 +6,7 @@
 
     <groupId>es.exmaster</groupId>
     <artifactId>simpletools</artifactId>
-    <version>REWRITTEN-1.2.0</version>
+    <version>REWRITTEN</version>
     
     <build>
         <plugins>

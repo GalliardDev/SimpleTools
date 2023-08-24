@@ -47,4 +47,4 @@ language:
   # WORLD BLOCKER
   worldBlockSwitched: "&cSe ha alternado el bloqueo del mundo!"
   worldBlocked: "&cEste mundo está bloqueado"
-version: REWRITTEN-1.2.0
+version: REWRITTEN
