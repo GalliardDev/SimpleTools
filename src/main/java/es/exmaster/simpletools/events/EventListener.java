@@ -319,7 +319,6 @@ public class EventListener {
 		        worldBlockerConfigManager.reloadConfig();
 
 		        List<String> blockedWorlds = worldBlockerConfigManager.getConfig().getStringList("blockedWorlds");
-		        Main.plugin.getLogger().info(blockedWorlds.toString());
 		        
 		        if (blockedWorlds.contains(world)) {
 		            Location spawnLoc = Bukkit.getWorld("world").getSpawnLocation();

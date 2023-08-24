@@ -29,9 +29,7 @@ public class WorldBlockerCommand implements CommandExecutor {
 
         if (sender.hasPermission("SimpleTools.worldblocker")) {
             String world = args[0];
-            
-            Main.plugin.getLogger().info(blockedWorlds.toString());
-            
+                       
             if (blockedWorlds.contains(world)) {
                 blockedWorlds.remove(world);
                 sender.sendMessage(Main.PREFIX + " " +
