@@ -8,8 +8,6 @@ import es.exmaster.simpletools.common.GlobalChest;
 import es.exmaster.simpletools.events.EventListener;
 import es.exmaster.simpletools.recipes.RecipeManager;
 import es.exmaster.simpletools.utils.ConfigManager;
-import es.exmaster.simpletools.utils.DatabaseManager;
-import es.exmaster.simpletools.utils.SimpleToolsDAO;
 import es.exmaster.simpletools.utils.UpdateChecker;
 import es.exmaster.simpletools.utils.Utils;
 
@@ -25,14 +23,8 @@ public class Main extends JavaPlugin implements Listener {
 	public void onEnable() {
         super.onEnable();
         plugin = this;
-        mainConfigManager.saveDefaultConfig();
-        
-        BDD = plugin.getDataFolder() + "/database.db";
-        DatabaseManager.crearBDD();
-        SimpleToolsDAO.inicializarBaseDeDatos();
-        
+        mainConfigManager.saveDefaultConfig();       
         PREFIX = Utils.colorCodeParser(Main.plugin.getConfig().getString("language.prefix"));
-        
         EventListener.registerEvents();
         CommandManager.registerCommands();
         RecipeManager.registerRecipes();
