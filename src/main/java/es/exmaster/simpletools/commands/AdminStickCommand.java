@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import es.exmaster.simpletools.Main;
-import es.exmaster.utils.Utils;
+import es.exmaster.simpletools.utils.Utils;
 
 public class AdminStickCommand implements CommandExecutor {
 	@Override

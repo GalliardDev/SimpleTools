@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 import es.exmaster.simpletools.Main;
-import es.exmaster.utils.Utils;
+import es.exmaster.simpletools.utils.Utils;
 
 public class GlobalChestCommand implements CommandExecutor {
 	private static final Inventory inv = Bukkit.createInventory(null, 54,

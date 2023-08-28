@@ -10,8 +10,6 @@ prefix: SimpleTools
 commands:
    spawn:
       description: Teleports you to spawn
-      aliases:
-      - sp
       permission-message: "§cYou don't have permissions to do that!"
       usage: "§cUsage: /<command> [player]"
    discord:
@@ -48,6 +46,8 @@ commands:
       usage: "§cUsage: /<command> [player]"
    simpletools:
       description: Main command
+      aliases:
+      - st
       permission-message: "§cYou don't have permissions to do that!"
       usage: "§cUsage: /<command> [reload]"
 

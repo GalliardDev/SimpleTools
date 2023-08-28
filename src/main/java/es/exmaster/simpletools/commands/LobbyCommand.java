@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import es.exmaster.simpletools.Main;
-import es.exmaster.utils.Utils;
+import es.exmaster.simpletools.utils.Utils;
 
 public class LobbyCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

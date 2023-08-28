@@ -1,4 +1,4 @@
-package es.exmaster.utils;
+package es.exmaster.simpletools.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -11,7 +11,7 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import es.exmaster.simpletools.Main;
-import es.exmaster.utils.Utils;
+import es.exmaster.simpletools.utils.Utils;
 
 public class AdminStickRecipe {
 	private static ItemStack crear() {

@@ -1,4 +1,4 @@
-package es.exmaster.utils;
+package es.exmaster.simpletools.utils;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -16,7 +16,8 @@ public class ConfigManager {
     public ConfigManager(JavaPlugin plugin, String fileName) {
         this.plugin = plugin;
         this.configFile = new File(plugin.getDataFolder(), fileName);
-        this.config = YamlConfiguration.loadConfiguration(configFile);
+        //this.config = YamlConfiguration.loadConfiguration(configFile);
+        this.config = plugin.getConfig();
     }
 
     public FileConfiguration getConfig() {
@@ -29,6 +30,14 @@ public class ConfigManager {
         } catch (IOException e) {
             plugin.getLogger().severe(e.getMessage());
         }
+    }
+    
+    public void loadConfig() {
+    	try {
+    		YamlConfiguration.loadConfiguration(configFile);
+    	} catch(Exception e) {
+    		plugin.getLogger().severe(e.getMessage());
+    	}
     }
 
     public void reloadConfig() {

@@ -43,10 +43,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 import es.exmaster.simpletools.Main;
 import es.exmaster.simpletools.common.EmojiMap;
 import es.exmaster.simpletools.common.GlobalChest;
-import es.exmaster.utils.ConfigManager;
-import es.exmaster.utils.Utils;
+import es.exmaster.simpletools.utils.ConfigManager;
+import es.exmaster.simpletools.utils.SimpleToolsDAO;
+import es.exmaster.simpletools.utils.Utils;
 
 public class EventListener {
+	
+	private static String overworld = Bukkit.getServer().getWorlds().get(0).getName();
 	
 	public static void registerEvents() {
         Bukkit.getPluginManager().registerEvents(new Listener() {
@@ -84,6 +87,30 @@ public class EventListener {
             
             @EventHandler
             public void onPlayerJoin(PlayerJoinEvent event) {
+            	Player pl = event.getPlayer();
+            	
+            	long firstJoinedMillis = pl.getFirstPlayed(); // Por ejemplo, tu valor en milisegundos
+                
+                long lastJoinedMillis = pl.getLastPlayed();
+                
+                long playtimeMillis = lastJoinedMillis - firstJoinedMillis;
+                
+                String first_joined = Utils.millisToDate(pl.getFirstPlayed());
+                String last_joined = Utils.millisToDate(pl.getLastPlayed());
+                String playtime = Utils.millisToTimeQuantity(playtimeMillis);
+                
+                Boolean existeUUID = SimpleToolsDAO.leerTabla("players").stream()
+                        .anyMatch(x -> x.contains(pl.getUniqueId().toString()));
+                
+            	if(existeUUID) {
+            		SimpleToolsDAO.modificarDatos("players", "uuid", pl.getUniqueId().toString(),
+            				new String[] {"username", "uuid", "first_join", "last_login", "playtime"},
+            				new String[] {pl.getName(),pl.getUniqueId().toString(),first_joined,last_joined,playtime});
+            	} else {
+            		SimpleToolsDAO.agregarDatos("players", 
+                			new String[] {pl.getName(),pl.getUniqueId().toString(),first_joined,last_joined,playtime});
+            	}
+            	
             	if(Main.plugin.getConfig().getBoolean("config.joinTitle") == true) {
             		Player player = event.getPlayer();
                 	Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
@@ -321,12 +348,12 @@ public class EventListener {
 		        List<String> blockedWorlds = worldBlockerConfigManager.getConfig().getStringList("blockedWorlds");
 		        
 		        if (blockedWorlds.contains(world)) {
-		            Location spawnLoc = Bukkit.getWorld("world").getSpawnLocation();
+		            Location spawnLoc = Bukkit.getWorld(overworld).getSpawnLocation();
 		            double xSpawn = spawnLoc.getBlockX() + 0.5;
 		            double ySpawn = spawnLoc.getBlockY();
 		            double zSpawn = spawnLoc.getBlockZ() + 0.5;
 
-		            Location loc = new Location(Bukkit.getWorld("world"), xSpawn, ySpawn, zSpawn);
+		            Location loc = new Location(Bukkit.getWorld(overworld), xSpawn, ySpawn, zSpawn);
 		            player.teleport(loc);
 
 		            player.sendMessage(Utils.colorCodeParser(Main.PREFIX + " " +

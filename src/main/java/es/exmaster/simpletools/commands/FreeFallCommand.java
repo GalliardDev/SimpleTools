@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 
 import es.exmaster.simpletools.Main;
-import es.exmaster.utils.Utils;
+import es.exmaster.simpletools.utils.Utils;
 
 public class FreeFallCommand implements CommandExecutor {
 

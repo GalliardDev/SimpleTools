@@ -1,5 +1,9 @@
-package es.exmaster.utils;
+package es.exmaster.simpletools.utils;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import org.bukkit.Material;
@@ -41,6 +45,22 @@ public class Utils {
 			res = false;
 		}
 		return res;
+	}
+	
+	public static String millisToDate(long millis) {
+    	Date fecha = new Date(millis);
+        Instant instant = fecha.toInstant();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String res = instant.atZone(ZoneId.systemDefault()).format(formato);
+        return res;
+	}
+	
+	public static String millisToTimeQuantity(long millis) {
+		long segundos = millis / 1000;
+        long minutos = segundos / 60;
+        long horas = minutos / 60;
+        long dias = horas / 24;
+        return dias+";"+horas+";"+minutos+";"+segundos;
 	}
 		
 }
