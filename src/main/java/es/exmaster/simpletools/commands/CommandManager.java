@@ -14,5 +14,6 @@ public class CommandManager {
 		Main.plugin.getCommand("astick").setExecutor(new AdminStickCommand());
 		Main.plugin.getCommand("worldblock").setExecutor(new WorldBlockerCommand());
 		Main.plugin.getCommand("lobby").setExecutor(new LobbyCommand());
+		Main.plugin.getCommand("payxp").setExecutor(new ExperiencePayCommand());
 	}
 }

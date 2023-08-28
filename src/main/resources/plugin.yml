@@ -44,6 +44,10 @@ commands:
       description: Teleports you to lobby
       permission-message: "§cYou don't have permissions to do that!"
       usage: "§cUsage: /<command> [player]"
+   payxp:
+      description: Pay XP to another player
+      permission-message: "§cYou don't have permissions to do that!"
+      usage: "§cUsage: /<command> <player> <amount>"
    simpletools:
       description: Main command
       aliases:
@@ -91,6 +95,9 @@ permissions:
    SimpleTools.lobby:
       description: Allows you to use /lobby command
       default: op
+   SimpleTools.payxp:
+      description: Allows you to use /payxp command
+      default: op
    SimpleTools.*:
       description: This gives you all the perms
       default: op
@@ -108,3 +115,4 @@ permissions:
          SimpleTools.adminstick: true
          SimpleTools.worldblock: true
          SimpleTools.lobby: true
+         SimpleTools.payxp: true

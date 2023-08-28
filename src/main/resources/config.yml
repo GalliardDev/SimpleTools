@@ -48,4 +48,6 @@ language:
   worldIsBlocked: "&cEste mundo está bloqueado"
   worldBlocked: "&cSe ha bloqueado el mundo"
   worldUnblocked: "&aSe ha desbloqueado el mundo"
+  # XP PAY
+  youGotPaidXP: "&e%player% &7te ha dado &e%cantidad% &7niveles de &aXP"
 version: REWRITTEN
