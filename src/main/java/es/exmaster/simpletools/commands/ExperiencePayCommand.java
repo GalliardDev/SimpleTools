@@ -29,7 +29,7 @@ public class ExperiencePayCommand implements CommandExecutor {
 						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.tooManyArguments")));
 			}
 			player.setLevel(player.getLevel()-cantidad);
-			victim.setExp(victim.getLevel()+cantidad);
+			victim.setLevel(victim.getLevel()+cantidad);
 			victim.sendMessage(Utils.placeholderParser(Main.PREFIX + " " + 
 						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.youGotPaidXP")),
 						List.of("%player%","%cantidad%"),
