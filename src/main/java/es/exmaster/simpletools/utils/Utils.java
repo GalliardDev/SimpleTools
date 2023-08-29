@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemStack;
 
 public class Utils {
 	public static String placeholderParser(String message, List<String> placeholders, List<String> values) {
@@ -63,4 +66,29 @@ public class Utils {
         return dias+";"+horas+";"+minutos+";"+segundos;
 	}
 		
+	public static void refillItem(Player player, Material material, EquipmentSlot hand) {
+		ItemStack[] items = player.getInventory().getStorageContents();
+
+		for (int i = 0; i < 36; ++i) {
+			if (items[i] != null && isValidSlot(i, player) && items[i].getType().equals(material)) {
+				if (hand.equals(EquipmentSlot.HAND)) {
+					player.getInventory().setItemInMainHand(items[i]);
+					player.getInventory().setItem(i, (ItemStack) null);
+					break;
+				}
+
+				if (hand.equals(EquipmentSlot.OFF_HAND)) {
+					player.getInventory().setItemInOffHand(items[i]);
+					player.getInventory().setItem(i, (ItemStack) null);
+					break;
+				}
+			}
+		}
+
+	}
+
+	public static boolean isValidSlot(int i, Player player) {
+		return i != player.getInventory().getHeldItemSlot() && i != 40;
+	}
+	
 }
