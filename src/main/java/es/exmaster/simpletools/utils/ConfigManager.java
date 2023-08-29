@@ -1,13 +1,11 @@
 package es.exmaster.simpletools.utils;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import es.exmaster.simpletools.Main;
-
-import java.io.File;
-import java.io.IOException;
 
 public class ConfigManager {
 
@@ -16,9 +14,9 @@ public class ConfigManager {
     private FileConfiguration config;
 
     public ConfigManager(JavaPlugin plugin, String fileName) {
-        this.plugin = plugin;
-        this.configFile = new File(Main.plugin.getDataFolder() + "\\" + fileName);
-        this.config = YamlConfiguration.loadConfiguration(configFile);
+    	this.plugin = plugin;
+        this.configFile = new File(plugin.getDataFolder(), fileName);
+        this.config = YamlConfiguration.loadConfiguration(this.configFile);
     }
 
     public FileConfiguration getConfig() {
