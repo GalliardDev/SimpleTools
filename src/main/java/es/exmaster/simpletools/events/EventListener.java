@@ -353,12 +353,13 @@ public class EventListener {
 
 			@EventHandler
 			public void onBlockPlace(BlockPlaceEvent event) {
-				ItemStack item = event.getItemInHand();
-				Material material = event.getBlockPlaced().getType();
-
-				if (item.getAmount() == 1
-						&& event.getPlayer().getInventory().getItem(event.getHand()).getType().equals(material)) {
-					Utils.refillItem(event.getPlayer(), material, event.getHand());
+				if(Main.plugin.getConfig().getBoolean("autoItemRefill") == true) {
+					ItemStack item = event.getItemInHand();
+					Material material = event.getBlockPlaced().getType();
+					if (item.getAmount() == 1
+							&& event.getPlayer().getInventory().getItem(event.getHand()).getType().equals(material)) {
+						Utils.refillItem(event.getPlayer(), material, event.getHand());
+					}
 				}
 			}
 

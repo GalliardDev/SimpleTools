@@ -32,7 +32,7 @@ public class ExperiencePayCommand implements CommandExecutor {
 			victim.setLevel(victim.getLevel()+cantidad);
 			victim.sendMessage(Utils.placeholderParser(Main.PREFIX + " " + 
 						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.youGotPaidXP")),
-						List.of("%player%","%cantidad%"),
+						List.of("%player%","%amount%"),
 						List.of(player.getName(),cantidad.toString())));
 			player.playSound(player, Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
 			victim.playSound(victim, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);

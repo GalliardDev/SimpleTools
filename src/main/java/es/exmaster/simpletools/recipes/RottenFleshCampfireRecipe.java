@@ -15,7 +15,7 @@ public class RottenFleshCampfireRecipe {
         		rottenRecipeKey, 
         		new ItemStack(Material.BEEF), 
         		Material.ROTTEN_FLESH, 
-        		0, 200);
+        		0, 12000);
         return rottenRecipe;
     }
 
