@@ -16,7 +16,6 @@ import es.exmaster.simpletools.utils.Utils;
 public class WorldBlockerCommand implements CommandExecutor {
     private ConfigManager worldBlockerConfigManager = new ConfigManager(Main.plugin,"blockedWorlds.yml");
     private String overworld = Bukkit.getServer().getWorlds().get(0).getName();
-    private ConfigManager configManager = new ConfigManager(Main.plugin,"config.yml");
     public WorldBlockerCommand() {
         worldBlockerConfigManager.saveDefaultConfig();
     }
@@ -27,7 +26,7 @@ public class WorldBlockerCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length != 1) {
             sender.sendMessage(Main.PREFIX + " " +
-                    Utils.colorCodeParser(configManager.getConfig().getString("language.invalidArguments")));
+                    Utils.colorCodeParser(Main.plugin.getConfig().getString("language.invalidArguments")));
             return false;
         }
 
@@ -37,14 +36,14 @@ public class WorldBlockerCommand implements CommandExecutor {
             try {
             	world = args[0];
     		} catch(Exception e) {
-    			sender.sendMessage(Utils.colorCodeParser(configManager.getConfig().getString("language.prefix")) + " " + 
-    					Utils.colorCodeParser(configManager.getConfig().getString("language.invalidArgument")));
+    			sender.sendMessage(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.prefix")) + " " + 
+    					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.invalidArgument")));
     		}
                        
             if (blockedWorlds.contains(world)) {
                 blockedWorlds.remove(world);
                 sender.sendMessage(Main.PREFIX + " " +
-                        Utils.colorCodeParser(configManager.getConfig().getString("language.worldUnblocked")));
+                        Utils.colorCodeParser(Main.plugin.getConfig().getString("language.worldUnblocked")));
             } else {
                 blockedWorlds.add(world);
                 List<Player> playersInWorld = Bukkit.getWorld(world).getPlayers();
@@ -57,14 +56,14 @@ public class WorldBlockerCommand implements CommandExecutor {
                 	}
                 }
                 sender.sendMessage(Main.PREFIX + " " +
-                        Utils.colorCodeParser(configManager.getConfig().getString("language.worldBlocked")));
+                        Utils.colorCodeParser(Main.plugin.getConfig().getString("language.worldBlocked")));
             }
 
             worldBlockerConfigManager.getConfig().set("blockedWorlds", blockedWorlds);
             worldBlockerConfigManager.saveConfig();
         } else {
             sender.sendMessage(Main.PREFIX + " " +
-                    Utils.colorCodeParser(configManager.getConfig().getString("language.noPermission")));
+                    Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
         }
         return true;
     }

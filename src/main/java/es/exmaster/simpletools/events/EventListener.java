@@ -49,7 +49,6 @@ import es.exmaster.simpletools.utils.Utils;
 
 public class EventListener {
 	private static String overworld = Bukkit.getServer().getWorlds().get(0).getName();
-	private static ConfigManager configManager = new ConfigManager(Main.plugin,"config.yml");
 	
 	public static void registerEvents() {
 		Bukkit.getPluginManager().registerEvents(new Listener() {
@@ -69,13 +68,13 @@ public class EventListener {
 
 			@EventHandler
 			public void onPlayerDeath(PlayerDeathEvent event) {
-				if (configManager.getConfig().getBoolean("config.deathTitle") == true) {
+				if (Main.plugin.getConfig().getBoolean("config.deathTitle") == true) {
 					Player player = event.getEntity();
 					Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
 					for (Player p : players) {
 						p.playSound(p.getLocation(), Sound.ENTITY_WITHER_DEATH, 1, 1);
 						p.sendTitle(Utils.colorCodeParser(
-								Utils.placeholderParser(configManager.getConfig().getString("language.deathTitleMsg"),
+								Utils.placeholderParser(Main.plugin.getConfig().getString("language.deathTitleMsg"),
 										List.of("%player%"), List.of(player.getName()))),
 								"", 30, 30, 30);
 					}
@@ -84,14 +83,14 @@ public class EventListener {
 
 			@EventHandler
 			public void onPlayerJoin(PlayerJoinEvent event) {
-				if (configManager.getConfig().getBoolean("config.joinTitle") == true) {
+				if (Main.plugin.getConfig().getBoolean("config.joinTitle") == true) {
 					Player player = event.getPlayer();
 					Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
 					for (Player p : players) {
 						p.sendTitle(
-								Utils.colorCodeParser(configManager.getConfig().getString("language.joinLeaveNameFormat"))
+								Utils.colorCodeParser(Main.plugin.getConfig().getString("language.joinLeaveNameFormat"))
 								+ player.getName(),
-								Utils.colorCodeParser(configManager.getConfig().getString("language.joinTitleMsg")), 30,
+								Utils.colorCodeParser(Main.plugin.getConfig().getString("language.joinTitleMsg")), 30,
 								30, 30);
 					}
 				}
@@ -99,14 +98,14 @@ public class EventListener {
 
 			@EventHandler
 			public void onPlayerLeave(PlayerQuitEvent event) {
-				if (configManager.getConfig().getBoolean("config.leaveTitle") == true) {
+				if (Main.plugin.getConfig().getBoolean("config.leaveTitle") == true) {
 					Player player = event.getPlayer();
 					Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
 					for (Player p : players) {
 						p.sendTitle(
-								Utils.colorCodeParser(configManager.getConfig().getString("language.joinLeaveNameFormat"))
+								Utils.colorCodeParser(Main.plugin.getConfig().getString("language.joinLeaveNameFormat"))
 								+ player.getName(),
-								Utils.colorCodeParser(configManager.getConfig().getString("language.leaveTitleMsg")), 30,
+								Utils.colorCodeParser(Main.plugin.getConfig().getString("language.leaveTitleMsg")), 30,
 								30, 30);
 					}
 				}
@@ -114,7 +113,7 @@ public class EventListener {
 
 			@EventHandler
 			public void onRightClick(PlayerInteractEvent event) {
-				if (configManager.getConfig().getBoolean("config.harvestOnRightClick") == true) {
+				if (Main.plugin.getConfig().getBoolean("config.harvestOnRightClick") == true) {
 					Block b = event.getClickedBlock();
 					Player p = event.getPlayer();
 					if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType().equals(Material.WHEAT)) {
@@ -336,7 +335,7 @@ public class EventListener {
 					player.teleport(loc);
 
 					player.sendMessage(Utils.colorCodeParser(
-							Main.PREFIX + " " + configManager.getConfig().getString("language.worldIsBlocked")));
+							Main.PREFIX + " " + Main.plugin.getConfig().getString("language.worldIsBlocked")));
 				}
 			}
 
@@ -354,7 +353,7 @@ public class EventListener {
 
 			@EventHandler
 			public void onBlockPlace(BlockPlaceEvent event) {
-				if(configManager.getConfig().getBoolean("config.autoItemRefill") == true) {
+				if(Main.plugin.getConfig().getBoolean("config.autoItemRefill") == true) {
 					ItemStack item = event.getItemInHand();
 					Material material = event.getBlockPlaced().getType();
 					if (item.getAmount() == 1

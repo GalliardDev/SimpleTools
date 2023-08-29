@@ -6,16 +6,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import es.exmaster.simpletools.Main;
-import es.exmaster.simpletools.utils.ConfigManager;
 import es.exmaster.simpletools.utils.Utils;
 
 public class ReloadCommand implements CommandExecutor {
-	private ConfigManager configManager = new ConfigManager(Main.plugin,"config.yml");
     @Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
             sender.sendMessage(Main.PREFIX + " " + 
-            		Utils.colorCodeParser(configManager.getConfig().getString("language.onlyPlayerCommand")));
+            		Utils.colorCodeParser(Main.plugin.getConfig().getString("language.onlyPlayerCommand")));
             return false;
         }
         if (sender.hasPermission("SimpleTools.simpletools")) {
@@ -26,19 +24,18 @@ public class ReloadCommand implements CommandExecutor {
                     		"Desarrollado por ExceptionMaster");
                 } else if (args[0].equalsIgnoreCase("reload") && sender.hasPermission("SimpleTools.simpletools.reload")) {
                 	
-                	configManager.loadConfig();
-                	configManager.saveConfig();
+                	Main.plugin.saveConfig();
                 	
                     player.sendMessage(Main.PREFIX + " " + 
-                    		Utils.colorCodeParser(configManager.getConfig().getString("language.configReloaded")));
+                    		Utils.colorCodeParser(Main.plugin.getConfig().getString("language.configReloaded")));
                 } else if (args[0].equalsIgnoreCase("reload") && !(sender.hasPermission("SimpleTools.simpletools.reload"))) {
                 	sender.sendMessage(Main.PREFIX + " " + 
-                			Utils.colorCodeParser(configManager.getConfig().getString("language.noPermission")));
+                			Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
                 }
             }
         } else {
 			sender.sendMessage(Main.PREFIX + " " + 
-					Utils.colorCodeParser(configManager.getConfig().getString("language.noPermission")));
+					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
 		}
         
         return true;

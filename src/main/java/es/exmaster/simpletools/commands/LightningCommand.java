@@ -7,17 +7,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import es.exmaster.simpletools.Main;
-import es.exmaster.simpletools.utils.ConfigManager;
 import es.exmaster.simpletools.utils.Utils;
 
 public class LightningCommand implements CommandExecutor {
-	private ConfigManager configManager = new ConfigManager(Main.plugin,"config.yml");
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		Player player = (Player) sender;
 		if (args.length > 2) {
 			sender.sendMessage(Main.PREFIX + " " + 
-					Utils.colorCodeParser(configManager.getConfig().getString("language.tooManyArguments")));
+					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.tooManyArguments")));
 			return false;
 		}
 		if (player.hasPermission("SimpleTools.thunder")) {
@@ -34,12 +32,12 @@ public class LightningCommand implements CommandExecutor {
 				}
 			} else if(args.length == 0){
 				sender.sendMessage(Main.PREFIX + " " + 
-						Utils.colorCodeParser(configManager.getConfig().getString("language.playerRequired")));
+						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.playerRequired")));
 				return false;
 			}
 		} else {
 			sender.sendMessage(Main.PREFIX + " " + 
-					Utils.colorCodeParser(configManager.getConfig().getString("language.noPermission")));
+					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
 		}
 		return true;
 	}
