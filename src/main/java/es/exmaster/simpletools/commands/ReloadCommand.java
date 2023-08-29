@@ -1,28 +1,21 @@
 package es.exmaster.simpletools.commands;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import es.exmaster.simpletools.Main;
+import es.exmaster.simpletools.utils.ConfigManager;
 import es.exmaster.simpletools.utils.Utils;
 
-public class ReloadCommand
-implements CommandExecutor {
-	private File configFile = new File("./SimpleTools","config.yml");
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+public class ReloadCommand implements CommandExecutor {
+	private ConfigManager configManager = new ConfigManager(Main.plugin,"config.yml");
+    @Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
             sender.sendMessage(Main.PREFIX + " " + 
-            		Utils.colorCodeParser(Main.plugin.getConfig().getString("language.onlyPlayerCommand")));
+            		Utils.colorCodeParser(configManager.getConfig().getString("language.onlyPlayerCommand")));
             return false;
         }
         if (sender.hasPermission("SimpleTools.simpletools")) {
@@ -33,26 +26,19 @@ implements CommandExecutor {
                     		"Desarrollado por ExceptionMaster");
                 } else if (args[0].equalsIgnoreCase("reload") && sender.hasPermission("SimpleTools.simpletools.reload")) {
                 	
-                	System.out.println(Main.plugin.getDataFolder().toString());
-                	List<String> aux = new ArrayList<>();
-                	try {
-						aux = Files.readAllLines(Path.of("./SimpleTool/config.yml"), StandardCharsets.UTF_8);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-                	System.out.println(aux);
+                	configManager.loadConfig();
+                	configManager.saveConfig();
                 	
                     player.sendMessage(Main.PREFIX + " " + 
-                    		Utils.colorCodeParser(Main.plugin.getConfig().getString("language.configReloaded")));
+                    		Utils.colorCodeParser(configManager.getConfig().getString("language.configReloaded")));
                 } else if (args[0].equalsIgnoreCase("reload") && !(sender.hasPermission("SimpleTools.simpletools.reload"))) {
                 	sender.sendMessage(Main.PREFIX + " " + 
-                			Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
+                			Utils.colorCodeParser(configManager.getConfig().getString("language.noPermission")));
                 }
             }
         } else {
 			sender.sendMessage(Main.PREFIX + " " + 
-					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
+					Utils.colorCodeParser(configManager.getConfig().getString("language.noPermission")));
 		}
         
         return true;

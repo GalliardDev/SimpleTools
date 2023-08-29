@@ -4,6 +4,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import es.exmaster.simpletools.Main;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -15,9 +17,8 @@ public class ConfigManager {
 
     public ConfigManager(JavaPlugin plugin, String fileName) {
         this.plugin = plugin;
-        this.configFile = new File(plugin.getDataFolder(), fileName);
-        //this.config = YamlConfiguration.loadConfiguration(configFile);
-        this.config = plugin.getConfig();
+        this.configFile = new File(Main.plugin.getDataFolder() + "\\" + fileName);
+        this.config = YamlConfiguration.loadConfiguration(configFile);
     }
 
     public FileConfiguration getConfig() {

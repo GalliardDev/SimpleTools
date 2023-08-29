@@ -13,14 +13,16 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import es.exmaster.simpletools.Main;
+import es.exmaster.simpletools.utils.ConfigManager;
 import es.exmaster.simpletools.utils.Utils;
 
 public class AdminStickCommand implements CommandExecutor {
+	private ConfigManager configManager = new ConfigManager(Main.plugin,"config.yml");
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (args.length > 0) {
 			sender.sendMessage(Main.PREFIX + " " + 
-					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.tooManyArguments")));
+					Utils.colorCodeParser(configManager.getConfig().getString("language.tooManyArguments")));
 			return false;
 		}
 		Player player = (Player) sender;
@@ -28,7 +30,7 @@ public class AdminStickCommand implements CommandExecutor {
 			player.getInventory().addItem(getPalo());
 			} else {
 			sender.sendMessage(Main.PREFIX + " " + 
-					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
+					Utils.colorCodeParser(configManager.getConfig().getString("language.noPermission")));
 		}
 		
 
@@ -40,8 +42,8 @@ public class AdminStickCommand implements CommandExecutor {
         ItemMeta meta = palo.getItemMeta();
 
         // Configurar el nombre y el lore
-        meta.setDisplayName(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.adminStickName")));
-        meta.setLore(Collections.singletonList(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.adminStickLore"))));
+        meta.setDisplayName(Utils.colorCodeParser(configManager.getConfig().getString("language.adminStickName")));
+        meta.setLore(Collections.singletonList(Utils.colorCodeParser(configManager.getConfig().getString("language.adminStickLore"))));
 
         // Agregar un falso encantamiento para el efecto de brillo
         meta.addEnchant(Enchantment.DAMAGE_ALL, 18000, true);

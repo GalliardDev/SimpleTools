@@ -10,13 +10,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import es.exmaster.simpletools.Main;
+import es.exmaster.simpletools.utils.ConfigManager;
 import es.exmaster.simpletools.utils.Utils;
 
 public class SpawnCommand implements CommandExecutor {
-
+	private ConfigManager configManager = new ConfigManager(Main.plugin,"config.yml");
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.onlyPlayerCommand")));
+			sender.sendMessage(Utils.colorCodeParser(configManager.getConfig().getString("language.onlyPlayerCommand")));
 			return false;
 		}
 
@@ -30,7 +31,7 @@ public class SpawnCommand implements CommandExecutor {
 				Location spawnCoords = new Location(player.getWorld(), xSpawn, ySpawn, zSpawn);
 				player.teleport(spawnCoords);
 				sender.sendMessage(Main.PREFIX + " " + 
-						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.spawnSelf")));
+						Utils.colorCodeParser(configManager.getConfig().getString("language.spawnSelf")));
 			} else if (args.length >= 1) {
 				if (player.hasPermission("SimpleTools.spawn.others")) {
 					Player victim = Bukkit.getServer().getPlayer(args[0]);
@@ -38,23 +39,23 @@ public class SpawnCommand implements CommandExecutor {
 					victim.teleport(spawnCoords);
 					sender.sendMessage(Main.PREFIX + " " + 
 							Utils.placeholderParser(
-									Utils.colorCodeParser(Main.plugin.getConfig().getString("language.spawnYouOthers")),
+									Utils.colorCodeParser(configManager.getConfig().getString("language.spawnYouOthers")),
 									List.of("%victim%"),
 									List.of(victim.getName())));
 
 					victim.sendMessage(Main.PREFIX + " " + 
 							Utils.placeholderParser(
-									Utils.colorCodeParser(Main.plugin.getConfig().getString("language.spawnOthersYou")),
+									Utils.colorCodeParser(configManager.getConfig().getString("language.spawnOthersYou")),
 									List.of("%sender%"),
 									List.of(sender.getName())));
 				} else {
 					sender.sendMessage(Main.PREFIX + " " + 
-							Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
+							Utils.colorCodeParser(configManager.getConfig().getString("language.noPermission")));
 				}
 			} 
 		} else {
 			sender.sendMessage(Main.PREFIX + " " + 
-					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
+					Utils.colorCodeParser(configManager.getConfig().getString("language.noPermission")));
 		}
 		return true;
 	}

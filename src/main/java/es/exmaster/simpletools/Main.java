@@ -7,14 +7,12 @@ import es.exmaster.simpletools.commands.CommandManager;
 import es.exmaster.simpletools.common.GlobalChest;
 import es.exmaster.simpletools.events.EventListener;
 import es.exmaster.simpletools.recipes.RecipeManager;
-import es.exmaster.simpletools.utils.ConfigManager;
 import es.exmaster.simpletools.utils.UpdateChecker;
 import es.exmaster.simpletools.utils.Utils;
 
 public class Main extends JavaPlugin implements Listener {
     
     public static Main plugin;
-    private ConfigManager mainConfigManager = new ConfigManager(this, "config.yml");
     private final Integer ID = 108067;
     private final String SPIGOT_LINK = "https://www.spigotmc.org/resources/simpletools.108067/";
     public static String PREFIX;
@@ -23,7 +21,7 @@ public class Main extends JavaPlugin implements Listener {
 	public void onEnable() {
         super.onEnable();
         plugin = this;
-        mainConfigManager.saveDefaultConfig();       
+        Main.plugin.saveDefaultConfig();       
         PREFIX = Utils.colorCodeParser(Main.plugin.getConfig().getString("language.prefix"));
         EventListener.registerEvents();
         CommandManager.registerCommands();
