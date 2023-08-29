@@ -20,23 +20,33 @@ public class ExperiencePayCommand implements CommandExecutor {
 		}
 
 		Player player = (Player) sender;
-		Player victim = Bukkit.getPlayer(args[0]);
+		Player victim = null;
 		Integer cantidad = Integer.valueOf(args[1]);
-
+		
 		if (player.hasPermission("SimpleTools.payxp")) {
 			if(args.length > 2) {
 				sender.sendMessage(Main.PREFIX + " " + 
 						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.tooManyArguments")));
 			}
-			player.setLevel(player.getLevel()-cantidad);
-			victim.setLevel(victim.getLevel()+cantidad);
-			victim.sendMessage(Utils.placeholderParser(Main.PREFIX + " " + 
-						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.youGotPaidXP")),
-						List.of("%player%","%amount%"),
-						List.of(player.getName(),cantidad.toString())));
-			player.playSound(player, Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
-			victim.playSound(victim, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
-			
+			if(player.getLevel()>0) {
+				try {
+					victim = Bukkit.getPlayer(args[0]);
+				} catch(Exception e) {
+					sender.sendMessage(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.prefix")) + " " + 
+							Utils.colorCodeParser(Main.plugin.getConfig().getString("language.playerRequired")));
+				}
+				player.setLevel(player.getLevel()-cantidad);
+				victim.setLevel(victim.getLevel()+cantidad);
+				victim.sendMessage(Utils.placeholderParser(Main.PREFIX + " " + 
+							Utils.colorCodeParser(Main.plugin.getConfig().getString("language.youGotPaidXP")),
+							List.of("%player%","%amount%"),
+							List.of(player.getName(),cantidad.toString())));
+				player.playSound(player, Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
+				victim.playSound(victim, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
+			} else {
+				sender.sendMessage(Main.PREFIX + " " + 
+						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.notEnoughLevels")));
+			}
 		} else {
 			sender.sendMessage(Main.PREFIX + " " + 
 					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));

@@ -116,7 +116,8 @@ language:
   worldBlocked: "&cSe ha bloqueado el mundo"
   worldUnblocked: "&aSe ha desbloqueado el mundo"
   # COMANDO DE PAGAR/ENVIAR XP
-  youGotPaidXP: "&e%player% &7te ha dado &e%cantidad% &7niveles de &aXP"
+  youGotPaidXP: "&e%player% &7te ha dado &e%amount% &7niveles de &aXP"
+  notEnoughLevels: "&cNo tienes suficientes niveles para esto!"
   # ==================================================================================================================
   
   # en_US ============================================================================================================
@@ -163,6 +164,7 @@ language:
   #worldUnblocked: "&aThe world has been unblocked"
   # XP PAY
   #youGotPaidXP: "&e%player% &7sent you &e%amount% &aXP &7levels"
+  #notEnoughLevels: "&cYou don't have enough levels for this!"
   # ==================================================================================================================
 
 version: 2.0.0

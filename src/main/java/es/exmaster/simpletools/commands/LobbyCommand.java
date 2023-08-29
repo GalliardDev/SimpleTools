@@ -54,7 +54,8 @@ public class LobbyCommand implements CommandExecutor {
 					}
 				}
 			} else {
-				player.sendMessage(Main.plugin.getConfig().getString("language.noLobby"));
+				sender.sendMessage(Main.PREFIX + " " + 
+						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noLobby")));
 			}
 			 
 		} else {

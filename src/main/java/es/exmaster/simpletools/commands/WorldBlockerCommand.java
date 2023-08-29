@@ -32,7 +32,14 @@ public class WorldBlockerCommand implements CommandExecutor {
         }
 
         if (sender.hasPermission("SimpleTools.worldblocker")) {
-            String world = args[0];
+            String world = null;
+            
+            try {
+            	world = args[0];
+    		} catch(Exception e) {
+    			sender.sendMessage(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.prefix")) + " " + 
+    					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.invalidArgument")));
+    		}
                        
             if (blockedWorlds.contains(world)) {
                 blockedWorlds.remove(world);

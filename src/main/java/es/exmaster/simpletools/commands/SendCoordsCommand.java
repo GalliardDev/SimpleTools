@@ -22,7 +22,13 @@ public class SendCoordsCommand implements CommandExecutor {
 					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.tooManyArguments")));
 			return false;
 		}
-		Player player = Bukkit.getPlayer(args[0]);
+		Player player = null;
+		try {
+			player = Bukkit.getPlayer(args[0]);
+		} catch(Exception e) {
+			sender.sendMessage(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.prefix")) + " " + 
+					Utils.colorCodeParser(Main.plugin.getConfig().getString("language.playerRequired")));
+		}
 		if(player.hasPermission("SimpleTools.sendcoords")) {
 			Location loc = ((Player) sender).getLocation();
 			List<String> coords = List.of(String.valueOf(loc.getBlockX()),String.valueOf(loc.getBlockY()),String.valueOf(loc.getBlockZ()));

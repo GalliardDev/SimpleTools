@@ -2,11 +2,15 @@ package es.exmaster.simpletools.commands;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import es.exmaster.simpletools.Main;
@@ -28,14 +32,17 @@ implements CommandExecutor {
                     player.sendMessage(Main.PREFIX + " " + 
                     		"Desarrollado por ExceptionMaster");
                 } else if (args[0].equalsIgnoreCase("reload") && sender.hasPermission("SimpleTools.simpletools.reload")) {
-                	Main.plugin.getLogger().info("\nreload subcommand requested\n");
+                	
+                	System.out.println(Main.plugin.getDataFolder().toString());
+                	List<String> aux = new ArrayList<>();
                 	try {
-                		YamlConfiguration.loadConfiguration(configFile);
-                		YamlConfiguration.loadConfiguration(configFile).save(configFile);
+						aux = Files.readAllLines(Path.of("./SimpleTool/config.yml"), StandardCharsets.UTF_8);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+                	System.out.println(aux);
+                	
                     player.sendMessage(Main.PREFIX + " " + 
                     		Utils.colorCodeParser(Main.plugin.getConfig().getString("language.configReloaded")));
                 } else if (args[0].equalsIgnoreCase("reload") && !(sender.hasPermission("SimpleTools.simpletools.reload"))) {
