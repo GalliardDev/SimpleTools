@@ -353,7 +353,7 @@ public class EventListener {
 
 			@EventHandler
 			public void onBlockPlace(BlockPlaceEvent event) {
-				if(Main.plugin.getConfig().getBoolean("autoItemRefill") == true) {
+				if(Main.plugin.getConfig().getBoolean("config.autoItemRefill") == true) {
 					ItemStack item = event.getItemInHand();
 					Material material = event.getBlockPlaced().getType();
 					if (item.getAmount() == 1
