@@ -1,9 +1,12 @@
 *.jar
-builds
-lib
-bin
-.classpath
-.project
+/builds/
+/lib/
+/bin/
+/.settings/
+/.vscode/
 /target/
 /copy_to_srv.bat
 /copiar.bat
+/dependency-reduced-pom.xml
+/.classpath
+/.project
