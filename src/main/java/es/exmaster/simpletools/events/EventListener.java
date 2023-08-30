@@ -38,12 +38,14 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import es.exmaster.simpletools.Main;
 import es.exmaster.simpletools.common.EmojiMap;
 import es.exmaster.simpletools.common.GlobalChest;
+import es.exmaster.simpletools.common.MinepacksAccessor;
 import es.exmaster.simpletools.utils.ConfigManager;
 import es.exmaster.simpletools.utils.Utils;
 
@@ -352,16 +354,32 @@ public class EventListener {
 			}
 
 			@EventHandler
-			public void onBlockPlace(BlockPlaceEvent event) {
-				if(Main.plugin.getConfig().getBoolean("config.autoItemRefill") == true) {
-					ItemStack item = event.getItemInHand();
-					Material material = event.getBlockPlaced().getType();
-					if (item.getAmount() == 1
-							&& event.getPlayer().getInventory().getItem(event.getHand()).getType().equals(material)) {
-						Utils.refillItem(event.getPlayer(), material, event.getHand());
-					}
-				}
-			}
+		    public void onBlockPlace(BlockPlaceEvent event) {
+		        if (Main.plugin.getConfig().getBoolean("config.autoItemRefill")) {
+		            ItemStack item = event.getItemInHand();
+		            Material material = event.getBlockPlaced().getType();
+		            Inventory playerInventory = event.getPlayer().getInventory();
+		            Inventory backpack = MinepacksAccessor.getPlayerBackpackInventory(event.getPlayer());
+
+		            if (item.getAmount() == 1) {
+		                // Verifica si hay más en el inventario del jugador
+		                int itemCountInInventory = Utils.getItemCount(playerInventory, material);
+
+		                if (itemCountInInventory > 1) {
+		                    Utils.refillItem(event.getPlayer(), material, event.getHand());
+		                } else if (!backpack.isEmpty()) {
+		                    for (ItemStack i : backpack.getContents()) {
+		                        if (i != null && i.getType().equals(material)) {
+		                        	Main.plugin.getLogger().info("HAY EN MOCHILA");
+		                            Utils.refillItemFromMinepack(event.getPlayer(), material, event.getHand());
+		                            Main.plugin.getLogger().info("RELLENADO");
+		                            break;
+		                        }
+		                    }
+		                }
+		            }
+		        }
+		    }
 
 		}, Main.plugin);
 	}

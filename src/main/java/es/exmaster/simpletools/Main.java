@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import es.exmaster.simpletools.commands.CommandManager;
 import es.exmaster.simpletools.common.GlobalChest;
+import es.exmaster.simpletools.common.MinepacksAccessor;
 import es.exmaster.simpletools.events.EventListener;
 import es.exmaster.simpletools.recipes.RecipeManager;
 import es.exmaster.simpletools.utils.UpdateChecker;
@@ -28,6 +29,7 @@ public class Main extends JavaPlugin implements Listener {
         RecipeManager.registerRecipes();
         GlobalChest.loadConfig();
         GlobalChest.loadChest();
+        this.getLogger().info(MinepacksAccessor.getMinepacks().toString());
         new UpdateChecker(this, ID).getLatestVersion(version -> {
             String currentVersion = plugin.getConfig().getString("version");
             if (version.equals(currentVersion)) {
