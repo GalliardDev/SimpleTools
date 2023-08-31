@@ -50,6 +50,9 @@ permissions:
    simpletools.payxp:
       description: Allows you to use /payxp command
       default: op
+   simpletools.mentions:
+      description: Allows you to use mentions
+      default: op
    simpletools.*:
       description: This gives you all the perms
       default: op
@@ -68,3 +71,4 @@ permissions:
          simpletools.lobby: true
          simpletools.payxp: true
          simpletools.adminchat: true
+         simpletools.mentions: true
