@@ -29,9 +29,6 @@ permissions:
    simpletools.globalchest.others:
       description: Allows you to use the /globalchest <player> command
       default: op
-   simpletools.simpletools:
-      description: Allows you to use /simpletools command
-      default: op
    simpletools.simpletools.reload:
       description: Allows you to use /simpletools reload command
       default: op
@@ -44,7 +41,7 @@ permissions:
    simpletools.adminchat:
       description: Allows you to use the adminchat
       default: op
-   simpletools.worldblock:
+   simpletools.worldblocker:
       description: Allows you to use /worldblock <world> <blocked> command
       default: op
    simpletools.lobby:
@@ -64,11 +61,10 @@ permissions:
          simpletools.freefall: true
          simpletools.globalchest: true
          simpletools.globalchest.others: true
-         simpletools.simpletools: true
-         simpletools.simpletools.reload: true
+         simpletools.reload: true
          simpletools.sendcoords: true
          simpletools.adminstick: true
-         simpletools.worldblock: true
+         simpletools.worldblocker: true
          simpletools.lobby: true
          simpletools.payxp: true
          simpletools.adminchat: true

@@ -329,7 +329,7 @@ public class EventListener {
 
 				if (blockedWorlds.contains(world)) {
 					Location loc = LocationTracker.getPlayerLocation(player);
-					player.teleport(loc);
+					player.teleport(new Location(loc.getWorld(), loc.getX()-3, loc.getY(), loc.getZ()-3));
 
 					player.sendMessage(Utils.colorCodeParser(
 							Main.PREFIX + " " + Main.plugin.getConfig().getString("language.worldIsBlocked")));
