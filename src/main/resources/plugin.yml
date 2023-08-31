@@ -8,63 +8,67 @@ website: www.exmaster.es
 prefix: SimpleTools
 
 permissions:
-   SimpleTools.spawn:
+   simpletools.spawn:
       description: Allows you to use the /spawn command
       default: op
-   SimpleTools.spawn.others:
+   simpletools.spawn.others:
       description: Allows you to use the /spawn <player> command
       default: op
-   SimpleTools.discord:
+   simpletools.discord:
       description: Allows you to use the /discord command
       default: op
-   SimpleTools.thunder:
+   simpletools.thunder:
       description: Allows you to use the /thunder <player> <times> command
       default: op
-   SimpleTools.freefall:
+   simpletools.freefall:
       description: Allows you to use the /freefall <player> command
       default: op
-   SimpleTools.globalchest:
+   simpletools.globalchest:
       description: Allows you to use the /globalchest command
       default: op
-   SimpleTools.globalchest.others:
+   simpletools.globalchest.others:
       description: Allows you to use the /globalchest <player> command
       default: op
-   SimpleTools.simpletools:
+   simpletools.simpletools:
       description: Allows you to use /simpletools command
       default: op
-   SimpleTools.simpletools.reload:
+   simpletools.simpletools.reload:
       description: Allows you to use /simpletools reload command
       default: op
-   SimpleTools.sendcoords:
+   simpletools.sendcoords:
       description: Allows you to use /sendcoords <player> command
       default: op
-   SimpleTools.adminstick:
+   simpletools.adminstick:
       description: Allows you to use /astick command
       default: op
-   SimpleTools.worldblock:
+   simpletools.adminchat:
+      description: Allows you to use the adminchat
+      default: op
+   simpletools.worldblock:
       description: Allows you to use /worldblock <world> <blocked> command
       default: op
-   SimpleTools.lobby:
+   simpletools.lobby:
       description: Allows you to use /lobby command
       default: op
-   SimpleTools.payxp:
+   simpletools.payxp:
       description: Allows you to use /payxp command
       default: op
-   SimpleTools.*:
+   simpletools.*:
       description: This gives you all the perms
       default: op
       children:
-         SimpleTools.spawn: true
-         SimpleTools.spawn.others: true
-         SimpleTools.discord: true
-         SimpleTools.thunder: true
-         SimpleTools.freefall: true
-         SimpleTools.globalchest: true
-         SimpleTools.globalchest.others: true
-         SimpleTools.simpletools: true
-         SimpleTools.simpletools.reload: true
-         SimpleTools.sendcoords: true
-         SimpleTools.adminstick: true
-         SimpleTools.worldblock: true
-         SimpleTools.lobby: true
-         SimpleTools.payxp: true
+         simpletools.spawn: true
+         simpletools.spawn.others: true
+         simpletools.discord: true
+         simpletools.thunder: true
+         simpletools.freefall: true
+         simpletools.globalchest: true
+         simpletools.globalchest.others: true
+         simpletools.simpletools: true
+         simpletools.simpletools.reload: true
+         simpletools.sendcoords: true
+         simpletools.adminstick: true
+         simpletools.worldblock: true
+         simpletools.lobby: true
+         simpletools.payxp: true
+         simpletools.adminchat: true

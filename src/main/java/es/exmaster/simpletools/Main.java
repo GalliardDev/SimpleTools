@@ -46,7 +46,7 @@ public class Main extends JavaPlugin implements Listener {
     
 	@Override
     public void onLoad() {
-        CommandAPI.onLoad(new CommandAPIBukkitConfig(this).verboseOutput(false)); // Load with verbose output
+        CommandAPI.onLoad(new CommandAPIBukkitConfig(this).verboseOutput(true)); // Load with verbose output
         
     }
 	

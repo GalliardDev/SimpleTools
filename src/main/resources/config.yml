@@ -22,6 +22,7 @@ language:
   # COSAS DEL PLUGIN                 #
   #----------------------------------#
   prefix: "&6[&9SimpleTools&6]"
+  adminchatPrefix: "&8[&cAdminChat&8]&r"
   configReloaded: "&aSe ha recargado la configuración!"
 
   #----------------------------------#

@@ -49,6 +49,7 @@ import es.exmaster.simpletools.common.MinepacksAccessor;
 import es.exmaster.simpletools.tasks.LocationTracker;
 import es.exmaster.simpletools.utils.ConfigManager;
 import es.exmaster.simpletools.utils.Utils;
+import net.md_5.bungee.api.ChatColor;
 
 public class EventListener {	
 	public static void registerEvents() {
@@ -345,6 +346,22 @@ public class EventListener {
 					}
 				}
 				event.setMessage(msg);
+			}
+			
+			@EventHandler
+			public void onAdminMessage(AsyncPlayerChatEvent event) {
+				if(event.getMessage().startsWith("#") && event.getPlayer().hasPermission("simpletools.adminchat")) {
+					String msg = event.getMessage().replace("#",
+							Utils.colorCodeParser(Main.plugin.getConfig().getString("language.adminchatPrefix"))+" "+
+								ChatColor.GRAY+event.getPlayer().getName()+ChatColor.AQUA+":"+ChatColor.RESET+" ")
+									.replace("  ", " ");
+					event.setCancelled(true);
+					event.getPlayer().sendRawMessage(msg);
+				} else if(event.getMessage().startsWith("#") && !event.getPlayer().hasPermission("simpletools.adminchat")) {
+					event.setCancelled(true);
+					event.getPlayer().sendMessage(Main.PREFIX + " " +
+		                    Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
+				}
 			}
 
 			@EventHandler

@@ -40,14 +40,14 @@ public class CommandManager {
 		// ASTICK COMMAND
 		new CommandAPICommand("astick")
 		.withFullDescription(Main.plugin.getConfig().getString("language.astickDescription"))
-		.withPermission("SimpleTools.astick")
+		.withPermission("simpletools.astick")
 		.withShortDescription(Main.plugin.getConfig().getString("language.astickDescription"))
 		.executesPlayer((sender, args) -> {
 			if (args.count() > 0) {
 				sender.sendMessage(Main.PREFIX + " " + 
 						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.tooManyArguments")));
 			}
-			if(sender.hasPermission("SimpleTools.adminstick")) {
+			if(sender.hasPermission("simpletools.adminstick")) {
 				sender.getInventory().addItem(Utils.getPalo());
 				} else {
 				sender.sendMessage(Main.PREFIX + " " + 
@@ -59,7 +59,7 @@ public class CommandManager {
 		// DISCORD COMMAND
 		new CommandAPICommand("discord")
 		.withFullDescription(Main.plugin.getConfig().getString("language.discordDescription"))
-		.withPermission("SimpleTools.discord")
+		.withPermission("simpletools.discord")
 		.withShortDescription(Main.plugin.getConfig().getString("language.discordDescription"))
 		.executesPlayer((sender, args) -> {
 			if (args.count() > 0) {
@@ -67,7 +67,7 @@ public class CommandManager {
 						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.tooManyArguments")));
 			}
 			Player player = (Player) sender;
-			if(player.hasPermission("SimpleTools.discord")) {
+			if(player.hasPermission("simpletools.discord")) {
 				sender.sendMessage(Main.PREFIX + " " + Utils.placeholderParser(
 						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.discordMsg")),
 						List.of("%sender%"),
@@ -83,7 +83,7 @@ public class CommandManager {
 		new CommandAPICommand("payxp")
 		.withArguments(players, levels)
 		.withFullDescription(Main.plugin.getConfig().getString("language.payxpDescription"))
-		.withPermission("SimpleTools.payxp")
+		.withPermission("simpletools.payxp")
 		.withShortDescription(Main.plugin.getConfig().getString("language.payxpDescription"))
 		.executesPlayer((sender, args) -> {
 			if (!(sender instanceof Player)) {
@@ -94,7 +94,7 @@ public class CommandManager {
 			Player victim = null;
 			Integer cantidad = Integer.valueOf(args.getRaw(1));
 			
-			if (player.hasPermission("SimpleTools.payxp")) {
+			if (player.hasPermission("simpletools.payxp")) {
 				if(args.count() > 2) {
 					sender.sendMessage(Main.PREFIX + " " + 
 							Utils.colorCodeParser(Main.plugin.getConfig().getString("language.tooManyArguments")));
@@ -129,14 +129,14 @@ public class CommandManager {
 		new CommandAPICommand("freefall")
 		.withArguments(players)
 		.withFullDescription(Main.plugin.getConfig().getString("language.freefallDescription"))
-		.withPermission("SimpleTools.freefall")
+		.withPermission("simpletools.freefall")
 		.withShortDescription(Main.plugin.getConfig().getString("language.freefallDescription"))
 		.executesPlayer((sender, args) -> {
 			if (args.count() > 1) {
 				sender.sendMessage(Main.PREFIX + " " + 
 						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.tooManyArguments")));
 			}
-			if (sender.hasPermission("SimpleTools.freefall")) {
+			if (sender.hasPermission("simpletools.freefall")) {
 				if (args.count() == 0) {
 					sender.sendMessage(Main.PREFIX + " " +
 							Utils.colorCodeParser(Main.plugin.getConfig().getString("language.playerRequired")));
@@ -157,9 +157,9 @@ public class CommandManager {
 		
 		//GLOBALCHEST COMMAND
 		new CommandAPICommand("globalchest")
-		.withOptionalArguments(playersOptional)
+		.withOptionalArguments(playersOptional.withPermission("simpletools.globalchest.others"))
 		.withFullDescription(Main.plugin.getConfig().getString("language.globalchestDescription"))
-		.withPermission("SimpleTools.globalchest")
+		.withPermission("simpletools.globalchest")
 		.withShortDescription(Main.plugin.getConfig().getString("language.globalchestDescription"))
 		.executesPlayer((sender, args) -> {
 			if (!(sender instanceof Player)) {
@@ -169,11 +169,11 @@ public class CommandManager {
 				sender.sendMessage(Main.PREFIX + " " + 
 						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.tooManyArguments")));
 			}
-			if (sender instanceof Player && sender.hasPermission("SimpleTools.globalchest")) {
+			if (sender instanceof Player && sender.hasPermission("simpletools.globalchest")) {
 				if (args.count() == 0) {
 					Player player = (Player) sender;
 					player.openInventory(Utils.getInv());
-				} else if (args.count() == 1 && sender.hasPermission("SimpleTools.globalChest.others")) {
+				} else if (args.count() == 1 && sender.hasPermission("simpletools.globalChest.others")) {
 					Player player = Bukkit.getServer().getPlayer(args.getRaw(0));
 					player.openInventory(Utils.getInv());
 				}
@@ -188,14 +188,14 @@ public class CommandManager {
 		new CommandAPICommand("thunder")
 		.withArguments(players, times)
 		.withFullDescription(Main.plugin.getConfig().getString("language.thunderDescription"))
-		.withPermission("SimpleTools.thunder")
+		.withPermission("simpletools.thunder")
 		.withShortDescription(Main.plugin.getConfig().getString("language.thunderDescription"))
 		.executesPlayer((sender, args) -> {
 			if (args.count() > 2) {
 				sender.sendMessage(Main.PREFIX + " " + 
 						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.tooManyArguments")));
 			}
-			if (sender.hasPermission("SimpleTools.thunder")) {
+			if (sender.hasPermission("simpletools.thunder")) {
 				if (args.count() == 2) {
 					Player victim = Bukkit.getServer().getPlayer(args.getRaw(0));
 					Integer lightningTimes = Integer.valueOf(args.getRaw(1));
@@ -221,9 +221,9 @@ public class CommandManager {
 		
 		//LOBBY COMMAND
 		new CommandAPICommand("lobby")
-		.withOptionalArguments(playersOptional)
+		.withOptionalArguments(playersOptional.withPermission("simpletools.lobby.others"))
 		.withFullDescription(Main.plugin.getConfig().getString("language.lobbyDescription"))
-		.withPermission("SimpleTools.lobby")
+		.withPermission("simpletools.lobby")
 		.withShortDescription(Main.plugin.getConfig().getString("language.lobbyDescription"))
 		.executesPlayer((sender, args) -> {
 			if (!(sender instanceof Player)) {
@@ -231,7 +231,7 @@ public class CommandManager {
 			}
 
 			Player player = (Player) sender;
-			if (player.hasPermission("SimpleTools.lobby")) {
+			if (player.hasPermission("simpletools.lobby")) {
 				if(Bukkit.getServer().getWorld(Main.plugin.getConfig().getString("config.lobby"))!=null) {
 					World lobby = Bukkit.getWorld(Main.plugin.getConfig().getString("config.lobby"));
 					double xSpawn = lobby.getSpawnLocation().getBlockX() + 0.500;
@@ -243,7 +243,7 @@ public class CommandManager {
 						sender.sendMessage(Main.PREFIX + " " + 
 								Utils.colorCodeParser(Main.plugin.getConfig().getString("language.lobbySelf")));
 					} else if (args.count() >= 1) {
-						if (player.hasPermission("SimpleTools.spawn.others")) {
+						if (player.hasPermission("simpletools.spawn.others")) {
 							Player victim = Bukkit.getServer().getPlayer(args.getRaw(0));
 							Location spawnCoords = new Location(lobby, xSpawn, ySpawn, zSpawn);
 							victim.teleport(spawnCoords);
@@ -277,9 +277,9 @@ public class CommandManager {
 		
 		//SPAWN COMMAND
 		new CommandAPICommand("spawn")
-		.withOptionalArguments(playersOptional)
+		.withOptionalArguments(playersOptional.withPermission("simpletools.spawn.others"))
 		.withFullDescription(Main.plugin.getConfig().getString("language.spawnDescription"))
-		.withPermission("SimpleTools.spawn")
+		.withPermission("simpletools.spawn")
 		.withShortDescription(Main.plugin.getConfig().getString("language.spawnDescription"))
 		.executesPlayer((sender, args) -> {
 			if (!(sender instanceof Player)) {
@@ -291,14 +291,14 @@ public class CommandManager {
 			double ySpawn = player.getWorld().getSpawnLocation().getBlockY();
 			double zSpawn = player.getWorld().getSpawnLocation().getBlockZ() + 0.500;
 
-			if (player.hasPermission("SimpleTools.spawn")) {
+			if (player.hasPermission("simpletools.spawn")) {
 				if (args.count() == 0) {
 					Location spawnCoords = new Location(player.getWorld(), xSpawn, ySpawn, zSpawn);
 					player.teleport(spawnCoords);
 					sender.sendMessage(Main.PREFIX + " " + 
 							Utils.colorCodeParser(Main.plugin.getConfig().getString("language.spawnSelf")));
 				} else if (args.count() >= 1) {
-					if (player.hasPermission("SimpleTools.spawn.others")) {
+					if (player.hasPermission("simpletools.spawn.others")) {
 						Player victim = Bukkit.getServer().getPlayer(args.getRaw(0));
 						Location spawnCoords = new Location(victim.getWorld(), xSpawn, ySpawn, zSpawn);
 						victim.teleport(spawnCoords);
@@ -328,16 +328,16 @@ public class CommandManager {
 		//RELOAD COMMAND
 		new CommandAPICommand("streload")
 		.withFullDescription(Main.plugin.getConfig().getString("language.reloadDescription"))
-		.withPermission("SimpleTools.reload")
+		.withPermission("simpletools.reload")
 		.withShortDescription(Main.plugin.getConfig().getString("language.reloadDescription"))
 		.executesPlayer((sender, args) -> {
-			if (sender.hasPermission("SimpleTools.simpletools.reload")) {
+			if (sender.hasPermission("simpletools.simpletools.reload")) {
             	
             	Main.plugin.saveConfig();
             	
                 sender.sendMessage(Main.PREFIX + " " + 
                 		Utils.colorCodeParser(Main.plugin.getConfig().getString("language.configReloaded")));
-            } else if (!(sender.hasPermission("SimpleTools.simpletools.reload"))) {
+            } else if (!(sender.hasPermission("simpletools.simpletools.reload"))) {
             	sender.sendMessage(Main.PREFIX + " " + 
             			Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
             }
@@ -348,7 +348,7 @@ public class CommandManager {
 		new CommandAPICommand("sendcoords")
 		.withArguments(players)
 		.withFullDescription(Main.plugin.getConfig().getString("language.sendcoordsDescription"))
-		.withPermission("SimpleTools.sendcoords")
+		.withPermission("simpletools.sendcoords")
 		.withShortDescription(Main.plugin.getConfig().getString("language.sendcoordsDescription"))
 		.executesPlayer((sender, args) -> {
 			if (args.count() > 1) {
@@ -362,7 +362,7 @@ public class CommandManager {
 				sender.sendMessage(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.prefix")) + " " + 
 						Utils.colorCodeParser(Main.plugin.getConfig().getString("language.playerRequired")));
 			}
-			if(player.hasPermission("SimpleTools.sendcoords")) {
+			if(player.hasPermission("simpletools.sendcoords")) {
 				Location loc = ((Player) sender).getLocation();
 				List<String> coords = List.of(String.valueOf(loc.getBlockX()),String.valueOf(loc.getBlockY()),String.valueOf(loc.getBlockZ()));
 				player.sendMessage(Utils.colorCodeParser(
@@ -383,7 +383,7 @@ public class CommandManager {
 		new CommandAPICommand("wblock")
 		.withArguments(worlds)
 		.withFullDescription(Main.plugin.getConfig().getString("language.blockworldDescription"))
-		.withPermission("SimpleTools.worldblocker")
+		.withPermission("simpletools.worldblocker")
 		.withShortDescription(Main.plugin.getConfig().getString("language.blockworldDescription"))
 		.executesPlayer((sender, args) -> {
 			 if (args.count() != 1) {
@@ -391,7 +391,7 @@ public class CommandManager {
 		                    Utils.colorCodeParser(Main.plugin.getConfig().getString("language.invalidArguments")));
 		        }
 
-		        if (sender.hasPermission("SimpleTools.worldblocker")) {
+		        if (sender.hasPermission("simpletools.worldblocker")) {
 		            String world = null;
 		            
 		            try {
@@ -425,6 +425,5 @@ public class CommandManager {
 		        }
 		})
 		.register();
-	    
 	}
 }
