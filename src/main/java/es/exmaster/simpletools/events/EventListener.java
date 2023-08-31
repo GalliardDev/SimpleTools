@@ -367,6 +367,32 @@ public class EventListener {
 		                    Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
 				}
 			}
+			
+			@EventHandler
+			public void onMention(AsyncPlayerChatEvent event) {
+				if(event.getMessage().startsWith("@") && event.getPlayer().hasPermission("simpletools.mentions")) {
+					Player victim = null;
+					try {
+						victim = Bukkit.getPlayer(event.getMessage().split(" ")[0].replace("@", ""));
+					} catch(Exception e) {
+						event.getPlayer().sendMessage(Main.PREFIX + " " +
+		                    Utils.colorCodeParser(Main.plugin.getConfig().getString("language.invalidArgument")));
+					}
+					String mention = event.getMessage().split(" ")[0];
+					String formattedMention = Utils.colorCodeParser(Main.plugin.getConfig().getString("language.mentionFormat")+mention)+ChatColor.RESET;
+					if(victim.isOnline() && victim != null) {
+						event.setMessage(event.getMessage().replace(mention, formattedMention));
+						victim.sendMessage(Main.PREFIX + " " +
+		                    Utils.placeholderParser(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.youWasMentioned")),
+		                    		List.of("%player%"),
+		                    		List.of(event.getPlayer().getName())));
+						victim.playSound(victim, Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
+					} else {
+						event.getPlayer().sendMessage(Main.PREFIX + " " +
+		                    Utils.colorCodeParser(Main.plugin.getConfig().getString("language.notOnlineOrConnected")));
+					}
+				}
+			}
 
 			@EventHandler
 		    public void onBlockPlace(BlockPlaceEvent event) {

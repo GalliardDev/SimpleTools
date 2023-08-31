@@ -34,6 +34,7 @@ language:
   playerRequired: "&cDebes especificar un jugador!"
   invalidArgument: "&cArgumento no válido!"
   temporarilyDisabled: "&cEste comando está temporalmente desactivado"
+  notOnlineOrConnected: "&cEl jugador no existe o no está conectado!"
 
   #----------------------------------#
   # ARGUMENTOS DE LOS COMANDOS       #
@@ -62,6 +63,8 @@ language:
   worldUnblocked: "&aSe ha desbloqueado el mundo"
   youGotPaidXP: "&e%player% &7te ha dado &e%amount% &7niveles de &aXP"
   notEnoughLevels: "&cNo tienes suficientes niveles para esto!"
+  youWasMentioned: "&e%player% &7te ha mencionado!"
+  mentionFormat: "&a&l"
 
   #----------------------------------#
   # DESCRIPCIONES DE COMANDOS        #
@@ -119,6 +122,7 @@ version: 2.2.1
   #playerRequired: "&cYou must specify a player!"
   #invalidArgument: "&cInvalid argument!"
   #temporarilyDisabled: "&cThis command is temporarily disabled"
+  #notOnlineOrConnected: "&cPlayer does not exist or is not online!"
 
   #----------------------------------#
   # COMMAND ARGUMENTS                #
@@ -147,6 +151,8 @@ version: 2.2.1
   #worldUnblocked: "&aThe world has been unblocked"
   #youGotPaidXP: "&e%player% &7has given you &e%amount% &7levels of &aXP"
   #notEnoughLevels: "&cYou don't have enough levels for this!"
+  #youWasMentioned: "&e%player% &7has mentioned you!"
+  #mentionFormat: "&a&l"
 
   #----------------------------------#
   # COMMAND DESCRIPTIONS             #
