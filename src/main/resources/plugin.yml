@@ -8,14 +8,47 @@ website: www.exmaster.es
 prefix: SimpleTools
 
 permissions:
+   SimpleTools.spawn:
+      description: Allows you to use the /spawn command
+      default: op
    SimpleTools.spawn.others:
       description: Allows you to use the /spawn <player> command
       default: op
-   SimpleTools.lobby.others:
-      description: Allows you to use the /lobby <player> command
+   SimpleTools.discord:
+      description: Allows you to use the /discord command
+      default: op
+   SimpleTools.thunder:
+      description: Allows you to use the /thunder <player> <times> command
+      default: op
+   SimpleTools.freefall:
+      description: Allows you to use the /freefall <player> command
+      default: op
+   SimpleTools.globalchest:
+      description: Allows you to use the /globalchest command
       default: op
    SimpleTools.globalchest.others:
       description: Allows you to use the /globalchest <player> command
+      default: op
+   SimpleTools.simpletools:
+      description: Allows you to use /simpletools command
+      default: op
+   SimpleTools.simpletools.reload:
+      description: Allows you to use /simpletools reload command
+      default: op
+   SimpleTools.sendcoords:
+      description: Allows you to use /sendcoords <player> command
+      default: op
+   SimpleTools.adminstick:
+      description: Allows you to use /astick command
+      default: op
+   SimpleTools.worldblock:
+      description: Allows you to use /worldblock <world> <blocked> command
+      default: op
+   SimpleTools.lobby:
+      description: Allows you to use /lobby command
+      default: op
+   SimpleTools.payxp:
+      description: Allows you to use /payxp command
       default: op
    SimpleTools.*:
       description: This gives you all the perms
