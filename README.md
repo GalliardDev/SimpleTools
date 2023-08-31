@@ -17,21 +17,22 @@
 > **/simpletools [reload] -** Shows basic info of the plugin. If reload argument is provided, it'll reload the config.<br>
 
 # Permissions
-> **SimpleTools.&#42; -** This gives you all the perms (not recommended)<br>
-> **SimpleTools.reload -** Allows you to reload the plugin config (WIP) <br>
-> **SimpleTools.spawn -** Allows you to use /spawn command<br>
-> **SimpleTools.spawn.others -** Allows you to use /spawn &lt;player&gt; command<br>
-> **SimpleTools.freefall -** Allows you to use /freefall &lt;player&gt; command<br>
-> **SimpleTools.discord -** Allows you to use /discord command<br>
-> **SimpleTools.globalchest -** Allows you to use /globalchest command<br>
-> **SimpleTools.globalchest.others -** Allows you to use /globalchest &lt;player&gt; command<br>
-> **SimpleTools.thunder -** Allows you to use /thunder &lt;player&gt; &lt;times&gt; command<br>
-> **SimpleTools.sendcoords -** Allows you to use /sendcoords &lt;player&gt; command<br>
-> **SimpleTools.astick -** Allows you to use /astick command<br>
-> **SimpleTools.worldblock -** Allows you to use /worldblock &lt;world&gt; command<br>
-> **SimpleTools.lobby -** Allows you to use /lobby command<br>
-> **SimpleTools.lobby.others -** Allows you to use /lobby &lt;player&gt; command<br>
-> **SimpleTools.payxp -** Allows you to use /payxp &lt;player&gt; &lt;amount&gt; command<br>
+> **simpletools.&#42; -** This gives you all the perms (not recommended)<br>
+> **simpletools.reload -** Allows you to reload the plugin config (WIP) <br>
+> **simpletools.spawn -** Allows you to use /spawn command<br>
+> **simpletools.spawn.others -** Allows you to use /spawn &lt;player&gt; command<br>
+> **simpletools.freefall -** Allows you to use /freefall &lt;player&gt; command<br>
+> **simpletools.discord -** Allows you to use /discord command<br>
+> **simpletools.globalchest -** Allows you to use /globalchest command<br>
+> **simpletools.globalchest.others -** Allows you to use /globalchest &lt;player&gt; command<br>
+> **simpletools.thunder -** Allows you to use /thunder &lt;player&gt; &lt;times&gt; command<br>
+> **simpletools.sendcoords -** Allows you to use /sendcoords &lt;player&gt; command<br>
+> **simpletools.astick -** Allows you to use /astick command<br>
+> **simpletools.worldblock -** Allows you to use /worldblock &lt;world&gt; command<br>
+> **simpletools.lobby -** Allows you to use /lobby command<br>
+> **simpletools.lobby.others -** Allows you to use /lobby &lt;player&gt; command<br>
+> **simpletools.payxp -** Allows you to use /payxp &lt;player&gt; &lt;amount&gt; command<br>
+> **simpletools.adminchat -** Allows you to use the adminchat
 
 # [NEW!] Recipes
 
