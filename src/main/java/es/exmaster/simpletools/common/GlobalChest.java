@@ -11,7 +11,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import es.exmaster.simpletools.Main;
-import es.exmaster.simpletools.commands.GlobalChestCommand;
+import es.exmaster.simpletools.utils.Utils;
 
 public class GlobalChest {
 	private static File itemsFile;
@@ -52,6 +52,6 @@ public class GlobalChest {
 	public static void loadConfig() {
         itemsFile = new File(Main.plugin.getDataFolder(), "items.yml");
         items = YamlConfiguration.loadConfiguration(itemsFile);
-        globalChestInventory = GlobalChestCommand.getInv();
+        globalChestInventory = Utils.getInv();
     }
 }

@@ -6,98 +6,16 @@ api-version: '1.20'
 author: ExceptionMaster
 website: www.exmaster.es
 prefix: SimpleTools
-depend: [CommandAPI]
-
-commands:
-   spawn:
-      description: Teleports you to spawn
-      permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUsage: /<command> [player]"
-   discord:
-      description: Get this server's discord link
-      permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUsage: /<command>"
-   thunder:
-      description: Feel the gods' wrath
-      permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUsage: /<command> <player>"
-   freefall:
-      description: U brought a parachute... right?
-      permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUsage: /<command> <player>"
-   globalchest:
-      description: Open a global chest anyone can deposit or take items
-      permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUsage: /<command>"
-   sendcoords:
-      description: Broadcast your actual coordinates to all online players
-      permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUsage: /<command> <player>"
-   astick:
-      description: Gives yourself the admin stick
-      permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUsage: /<command>"
-   worldblock:
-      description: Allows you to block a world
-      permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUsage: /<command> <world> <blocked>"
-   lobby:
-      description: Teleports you to lobby
-      permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUsage: /<command> [player]"
-   payxp:
-      description: Pay XP to another player
-      permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUsage: /<command> <player> <amount>"
-   simpletools:
-      description: Main command
-      aliases:
-      - st
-      permission-message: "§cYou don't have permissions to do that!"
-      usage: "§cUsage: /<command> [reload]"
 
 permissions:
-   SimpleTools.spawn:
-      description: Allows you to use the /spawn command
-      default: op
    SimpleTools.spawn.others:
       description: Allows you to use the /spawn <player> command
       default: op
-   SimpleTools.discord:
-      description: Allows you to use the /discord command
-      default: op
-   SimpleTools.thunder:
-      description: Allows you to use the /thunder <player> <times> command
-      default: op
-   SimpleTools.freefall:
-      description: Allows you to use the /freefall <player> command
-      default: op
-   SimpleTools.globalchest:
-      description: Allows you to use the /globalchest command
+   SimpleTools.lobby.others:
+      description: Allows you to use the /lobby <player> command
       default: op
    SimpleTools.globalchest.others:
       description: Allows you to use the /globalchest <player> command
-      default: op
-   SimpleTools.simpletools:
-      description: Allows you to use /simpletools command
-      default: op
-   SimpleTools.simpletools.reload:
-      description: Allows you to use /simpletools reload command
-      default: op
-   SimpleTools.sendcoords:
-      description: Allows you to use /sendcoords <player> command
-      default: op
-   SimpleTools.adminstick:
-      description: Allows you to use /astick command
-      default: op
-   SimpleTools.worldblock:
-      description: Allows you to use /worldblock <world> <blocked> command
-      default: op
-   SimpleTools.lobby:
-      description: Allows you to use /lobby command
-      default: op
-   SimpleTools.payxp:
-      description: Allows you to use /payxp command
       default: op
    SimpleTools.*:
       description: This gives you all the perms

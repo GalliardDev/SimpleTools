@@ -3,18 +3,27 @@ package es.exmaster.simpletools.utils;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
+import es.exmaster.simpletools.Main;
 import es.exmaster.simpletools.common.MinepacksAccessor;
 
 public class Utils {
+	private final static Inventory inv = Bukkit.createInventory(null, 54,
+			Utils.colorCodeParser(Main.plugin.getConfig().getString("language.globalChestTitle")));
+	
 	public static String placeholderParser(String message, List<String> placeholders, List<String> values) {
         int i = 0;
         message = message.replace('&', '§');
@@ -126,5 +135,27 @@ public class Utils {
         }
         return count;
     }
+	
+	public static ItemStack getPalo() {
+    	ItemStack palo = new ItemStack(Material.STICK);
+        ItemMeta meta = palo.getItemMeta();
+
+        // Configurar el nombre y el lore
+        meta.setDisplayName(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.adminStickName")));
+        meta.setLore(Collections.singletonList(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.adminStickLore"))));
+
+        // Agregar un falso encantamiento para el efecto de brillo
+        meta.addEnchant(Enchantment.DAMAGE_ALL, 18000, true);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                
+        // Aplicar los cambios al ItemStack
+        palo.setItemMeta(meta);
+
+        return palo;
+    }
+	
+	public static Inventory getInv() {
+		return inv;
+	}
 	
 }

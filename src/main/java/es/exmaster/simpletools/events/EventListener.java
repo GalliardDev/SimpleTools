@@ -46,12 +46,11 @@ import es.exmaster.simpletools.Main;
 import es.exmaster.simpletools.common.EmojiMap;
 import es.exmaster.simpletools.common.GlobalChest;
 import es.exmaster.simpletools.common.MinepacksAccessor;
+import es.exmaster.simpletools.tasks.LocationTracker;
 import es.exmaster.simpletools.utils.ConfigManager;
 import es.exmaster.simpletools.utils.Utils;
 
-public class EventListener {
-	private static String overworld = Bukkit.getServer().getWorlds().get(0).getName();
-	
+public class EventListener {	
 	public static void registerEvents() {
 		Bukkit.getPluginManager().registerEvents(new Listener() {
 			@EventHandler
@@ -316,7 +315,7 @@ public class EventListener {
 					}
 				}
 			}
-
+			
 			@EventHandler
 			public void onBlockedWorldEnter(PlayerChangedWorldEvent event) {
 				Player player = event.getPlayer();
@@ -328,12 +327,7 @@ public class EventListener {
 				List<String> blockedWorlds = worldBlockerConfigManager.getConfig().getStringList("blockedWorlds");
 
 				if (blockedWorlds.contains(world)) {
-					Location spawnLoc = Bukkit.getWorld(overworld).getSpawnLocation();
-					double xSpawn = spawnLoc.getBlockX() + 0.5;
-					double ySpawn = spawnLoc.getBlockY();
-					double zSpawn = spawnLoc.getBlockZ() + 0.5;
-
-					Location loc = new Location(Bukkit.getWorld(overworld), xSpawn, ySpawn, zSpawn);
+					Location loc = LocationTracker.getPlayerLocation(player);
 					player.teleport(loc);
 
 					player.sendMessage(Utils.colorCodeParser(
