@@ -370,17 +370,15 @@ public class EventListener {
 			
 			@EventHandler
 			public void onMention(AsyncPlayerChatEvent event) {
+				List<String> players = Bukkit.getServer().getOnlinePlayers().stream().map(x->x.getName()).toList();
 				if(event.getMessage().startsWith("@") && event.getPlayer().hasPermission("simpletools.mentions")) {
 					Player victim = null;
-					try {
-						victim = Bukkit.getPlayer(event.getMessage().split(" ")[0].replace("@", ""));
-					} catch(Exception e) {
-						event.getPlayer().sendMessage(Main.PREFIX + " " +
-		                    Utils.colorCodeParser(Main.plugin.getConfig().getString("language.invalidArgument")));
+					if(players.contains(event.getMessage().split(" ")[0].replace("@", ""))) {
+						victim = Bukkit.getServer().getPlayer(event.getMessage().split(" ")[0].replace("@", ""));
 					}
 					String mention = event.getMessage().split(" ")[0];
 					String formattedMention = Utils.colorCodeParser(Main.plugin.getConfig().getString("language.mentionFormat")+mention)+ChatColor.RESET;
-					if(victim.isOnline() && victim != null) {
+					if(victim != null) {
 						event.setMessage(event.getMessage().replace(mention, formattedMention));
 						victim.sendMessage(Main.PREFIX + " " +
 		                    Utils.placeholderParser(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.youWasMentioned")),
@@ -388,6 +386,7 @@ public class EventListener {
 		                    		List.of(event.getPlayer().getName())));
 						victim.playSound(victim, Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
 					} else {
+						event.setCancelled(true);
 						event.getPlayer().sendMessage(Main.PREFIX + " " +
 		                    Utils.colorCodeParser(Main.plugin.getConfig().getString("language.notOnlineOrConnected")));
 					}
