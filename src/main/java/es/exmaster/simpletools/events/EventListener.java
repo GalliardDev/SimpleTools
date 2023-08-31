@@ -356,7 +356,11 @@ public class EventListener {
 								ChatColor.GRAY+event.getPlayer().getName()+ChatColor.AQUA+":"+ChatColor.RESET+" ")
 									.replace("  ", " ");
 					event.setCancelled(true);
-					event.getPlayer().sendRawMessage(msg);
+					for(Player p:Bukkit.getOnlinePlayers()) {
+						if(p.hasPermission("simpletools.adminchat")) {
+							p.sendRawMessage(msg);
+						}
+					}
 				} else if(event.getMessage().startsWith("#") && !event.getPlayer().hasPermission("simpletools.adminchat")) {
 					event.setCancelled(true);
 					event.getPlayer().sendMessage(Main.PREFIX + " " +

@@ -19,7 +19,6 @@ public class Main extends JavaPlugin implements Listener {
     private final Integer ID = 108067;
     private final String SPIGOT_LINK = "https://www.spigotmc.org/resources/simpletools.108067/";
     public static String PREFIX;
-    public static String BDD;
 
 	public void onEnable() {
         super.onEnable();
