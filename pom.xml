@@ -1,59 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>es.exmaster</groupId>
-    <artifactId>simpletools</artifactId>
-    <version>2.1.0</version>
-    
-    <build>
+	<groupId>es.exmaster</groupId>
+	<artifactId>simpletools</artifactId>
+	<version>2.1.0</version>
+
+	<build>
 		<plugins>
 			<plugin>
-            	<groupId>org.apache.maven.plugins</groupId>
-            	<artifactId>maven-jar-plugin</artifactId>
-            	<version>3.2.0</version>
-            	<configuration>
-                	<finalName>SimpleTools-${project.version}</finalName>
-            	</configuration>
-        	</plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<finalName>SimpleTools-${project.version}</finalName>
+				</configuration>
+			</plugin>
 		</plugins>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <excludes>
-                	<exclude>**/*.java</exclude> <!-- Excluye archivos .java -->
-            	</excludes>
-            </resource>
-        </resources>
-    </build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/*.java</exclude> <!-- Excluye archivos .java -->
+				</excludes>
+			</resource>
+		</resources>
+	</build>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+	<properties>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
-    <dependencies>
+	<dependencies>
 		<dependency>
-    		<groupId>org.spigotmc</groupId>
-    		<artifactId>spigot-api</artifactId>
-    		<version>1.20.1-R0.1-SNAPSHOT</version>
+			<groupId>org.spigotmc</groupId>
+			<artifactId>spigot-api</artifactId>
+			<version>1.20.1-R0.1-SNAPSHOT</version>
 		</dependency>
-		
+
 		<dependency>
-  			<groupId>at.pcgamingfreaks</groupId>
-  			<artifactId>Minepacks-API</artifactId>
-  			<version>2.4.22</version>
+			<groupId>at.pcgamingfreaks</groupId>
+			<artifactId>Minepacks-API</artifactId>
+			<version>2.4.22</version>
 		</dependency>
-    </dependencies>
-    
-    <repositories>
+
+		<dependency>
+			<groupId>dev.jorel</groupId>
+			<artifactId>commandapi-core</artifactId>
+			<version>9.1.0</version>
+		</dependency>
+	</dependencies>
+
+	<repositories>
 		<repository>
 			<id>pcgf-repo</id>
 			<url>https://repo.pcgamingfreaks.at/repository/maven-everything</url>
+		</repository>
+		<repository>
+			<id>mccommandapi</id>
+			<url>
+				https://raw.githubusercontent.com/JorelAli/1.13-Command-API/mvn-repo/1.13CommandAPI/</url>
 		</repository>
 	</repositories>
 
