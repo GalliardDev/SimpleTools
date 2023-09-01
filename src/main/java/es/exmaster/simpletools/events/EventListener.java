@@ -43,6 +43,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import es.exmaster.simpletools.Main;
+import es.exmaster.simpletools.commands.CommandManager;
 import es.exmaster.simpletools.common.EmojiMap;
 import es.exmaster.simpletools.common.GlobalChest;
 import es.exmaster.simpletools.common.MinepacksAccessor;
@@ -51,7 +52,8 @@ import es.exmaster.simpletools.utils.ConfigManager;
 import es.exmaster.simpletools.utils.Utils;
 import net.md_5.bungee.api.ChatColor;
 
-public class EventListener {	
+public class EventListener {
+	private static ConfigManager simpleConfig = new ConfigManager(Main.plugin, "config.yml");
 	public static void registerEvents() {
 		Bukkit.getPluginManager().registerEvents(new Listener() {
 			@EventHandler
@@ -70,13 +72,13 @@ public class EventListener {
 
 			@EventHandler
 			public void onPlayerDeath(PlayerDeathEvent event) {
-				if (Main.plugin.getConfig().getBoolean("config.deathTitle") == true) {
+				if (simpleConfig.getConfig().getBoolean("config.deathTitle") == true) {
 					Player player = event.getEntity();
 					Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
 					for (Player p : players) {
 						p.playSound(p.getLocation(), Sound.ENTITY_WITHER_DEATH, 1, 1);
 						p.sendTitle(Utils.colorCodeParser(
-								Utils.placeholderParser(Main.plugin.getConfig().getString("language.deathTitleMsg"),
+								Utils.placeholderParser(simpleConfig.getConfig().getString("language.deathTitleMsg"),
 										List.of("%player%"), List.of(player.getName()))),
 								"", 30, 30, 30);
 					}
@@ -85,14 +87,14 @@ public class EventListener {
 
 			@EventHandler
 			public void onPlayerJoin(PlayerJoinEvent event) {
-				if (Main.plugin.getConfig().getBoolean("config.joinTitle") == true) {
+				if (simpleConfig.getConfig().getBoolean("config.joinTitle") == true) {
 					Player player = event.getPlayer();
 					Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
 					for (Player p : players) {
 						p.sendTitle(
-								Utils.colorCodeParser(Main.plugin.getConfig().getString("language.joinLeaveNameFormat"))
+								Utils.colorCodeParser(simpleConfig.getConfig().getString("language.joinLeaveNameFormat"))
 								+ player.getName(),
-								Utils.colorCodeParser(Main.plugin.getConfig().getString("language.joinTitleMsg")), 30,
+								Utils.colorCodeParser(simpleConfig.getConfig().getString("language.joinTitleMsg")), 30,
 								30, 30);
 					}
 				}
@@ -100,14 +102,14 @@ public class EventListener {
 
 			@EventHandler
 			public void onPlayerLeave(PlayerQuitEvent event) {
-				if (Main.plugin.getConfig().getBoolean("config.leaveTitle") == true) {
+				if (simpleConfig.getConfig().getBoolean("config.leaveTitle") == true) {
 					Player player = event.getPlayer();
 					Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
 					for (Player p : players) {
 						p.sendTitle(
-								Utils.colorCodeParser(Main.plugin.getConfig().getString("language.joinLeaveNameFormat"))
+								Utils.colorCodeParser(simpleConfig.getConfig().getString("language.joinLeaveNameFormat"))
 								+ player.getName(),
-								Utils.colorCodeParser(Main.plugin.getConfig().getString("language.leaveTitleMsg")), 30,
+								Utils.colorCodeParser(simpleConfig.getConfig().getString("language.leaveTitleMsg")), 30,
 								30, 30);
 					}
 				}
@@ -115,7 +117,7 @@ public class EventListener {
 
 			@EventHandler
 			public void onRightClick(PlayerInteractEvent event) {
-				if (Main.plugin.getConfig().getBoolean("config.harvestOnRightClick") == true) {
+				if (simpleConfig.getConfig().getBoolean("config.harvestOnRightClick") == true) {
 					Block b = event.getClickedBlock();
 					Player p = event.getPlayer();
 					if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && b.getType().equals(Material.WHEAT)) {
@@ -329,10 +331,10 @@ public class EventListener {
 
 				if (blockedWorlds.contains(world)) {
 					Location loc = LocationTracker.getPlayerLocation(player);
-					player.teleport(new Location(loc.getWorld(), loc.getX()-3, loc.getY(), loc.getZ()-3));
+					player.teleport(new Location(loc.getWorld(), loc.getX()-2, loc.getY(), loc.getZ()-2));
 
 					player.sendMessage(Utils.colorCodeParser(
-							Main.PREFIX + " " + Main.plugin.getConfig().getString("language.worldIsBlocked")));
+							CommandManager.PREFIX + " " + simpleConfig.getConfig().getString("language.worldIsBlocked")));
 				}
 			}
 
@@ -352,7 +354,7 @@ public class EventListener {
 			public void onAdminMessage(AsyncPlayerChatEvent event) {
 				if(event.getMessage().startsWith("#") && event.getPlayer().hasPermission("simpletools.adminchat")) {
 					String msg = event.getMessage().replace("#",
-							Utils.colorCodeParser(Main.plugin.getConfig().getString("language.adminchatPrefix"))+" "+
+							Utils.colorCodeParser(simpleConfig.getConfig().getString("language.adminchatPrefix"))+" "+
 								ChatColor.GRAY+event.getPlayer().getName()+ChatColor.AQUA+":"+ChatColor.RESET+" ")
 									.replace("  ", " ");
 					event.setCancelled(true);
@@ -363,8 +365,8 @@ public class EventListener {
 					}
 				} else if(event.getMessage().startsWith("#") && !event.getPlayer().hasPermission("simpletools.adminchat")) {
 					event.setCancelled(true);
-					event.getPlayer().sendMessage(Main.PREFIX + " " +
-		                    Utils.colorCodeParser(Main.plugin.getConfig().getString("language.noPermission")));
+					event.getPlayer().sendMessage(CommandManager.PREFIX + " " +
+		                    Utils.colorCodeParser(simpleConfig.getConfig().getString("language.noPermission")));
 				}
 			}
 			
@@ -377,25 +379,25 @@ public class EventListener {
 						victim = Bukkit.getServer().getPlayer(event.getMessage().split(" ")[0].replace("@", ""));
 					}
 					String mention = event.getMessage().split(" ")[0];
-					String formattedMention = Utils.colorCodeParser(Main.plugin.getConfig().getString("language.mentionFormat")+mention)+ChatColor.RESET;
+					String formattedMention = Utils.colorCodeParser(simpleConfig.getConfig().getString("language.mentionFormat")+mention)+ChatColor.RESET;
 					if(victim != null) {
 						event.setMessage(event.getMessage().replace(mention, formattedMention));
-						victim.sendMessage(Main.PREFIX + " " +
-		                    Utils.placeholderParser(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.youWasMentioned")),
+						victim.sendMessage(CommandManager.PREFIX + " " +
+		                    Utils.placeholderParser(Utils.colorCodeParser(simpleConfig.getConfig().getString("language.youWasMentioned")),
 		                    		List.of("%player%"),
 		                    		List.of(event.getPlayer().getName())));
 						victim.playSound(victim, Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
 					} else {
 						event.setCancelled(true);
-						event.getPlayer().sendMessage(Main.PREFIX + " " +
-		                    Utils.colorCodeParser(Main.plugin.getConfig().getString("language.notOnlineOrConnected")));
+						event.getPlayer().sendMessage(CommandManager.PREFIX + " " +
+		                    Utils.colorCodeParser(simpleConfig.getConfig().getString("language.notOnlineOrConnected")));
 					}
 				}
 			}
 
 			@EventHandler
 		    public void onBlockPlace(BlockPlaceEvent event) {
-		        if (Main.plugin.getConfig().getBoolean("config.autoItemRefill")) {
+		        if (simpleConfig.getConfig().getBoolean("config.autoItemRefill")) {
 		            ItemStack item = event.getItemInHand();
 		            Material material = event.getBlockPlaced().getType();
 		            Inventory playerInventory = event.getPlayer().getInventory();

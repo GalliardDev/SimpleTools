@@ -11,20 +11,17 @@ import es.exmaster.simpletools.events.EventListener;
 import es.exmaster.simpletools.recipes.RecipeManager;
 import es.exmaster.simpletools.tasks.LocationTracker;
 import es.exmaster.simpletools.utils.UpdateChecker;
-import es.exmaster.simpletools.utils.Utils;
 
 public class Main extends JavaPlugin implements Listener {
     
     public static Main plugin;
     private final Integer ID = 108067;
     private final String SPIGOT_LINK = "https://www.spigotmc.org/resources/simpletools.108067/";
-    public static String PREFIX;
 
 	public void onEnable() {
         super.onEnable();
         plugin = this;
-        Main.plugin.saveDefaultConfig();       
-        PREFIX = Utils.colorCodeParser(Main.plugin.getConfig().getString("language.prefix"));
+        plugin.saveDefaultConfig();       
         CommandAPI.onEnable();
         CommandManager.registerCommands();
         EventListener.registerEvents();

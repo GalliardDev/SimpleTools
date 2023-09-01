@@ -21,8 +21,8 @@ language:
   #----------------------------------#
   # COSAS DEL PLUGIN                 #
   #----------------------------------#
-  prefix: "&6[&9SimpleTools&6]"
-  adminchatPrefix: "&8[&cAdminChat&8]&r"
+  prefix: "&6[&9SimpleTools&6]" # /!\ requiere reinicio
+  adminchatPrefix: "&8[&cAdminChat&8]&r" # /!\ requiere reinicio
   configReloaded: "&aSe ha recargado la configuración!"
 
   #----------------------------------#
@@ -99,7 +99,7 @@ language:
   
 # ==================================================================================================================
 
-version: 2.3.0
+version: 2.3.1
 
 #---------------------------------#
 # ADDITIONAL LANGUAGES            #
@@ -111,7 +111,8 @@ version: 2.3.0
   # PLUGIN STUFF                     #
   #----------------------------------#
   #prefix: "&6[&9SimpleTools&6]"
-  #configReloaded: "&aConfig reloaded!"
+  #adminchatPrefix: "&8[&cAdminChat&8]&r" # /!\ requires restarting
+  #configReloaded: "&aConfig reloaded!" # /!\ requires restarting
 
   #----------------------------------#
   # ERRORS                           #
