@@ -1,7 +1,9 @@
+# [ R ] = restart required
+
 config:
 
   #----------------------------------#
-  # COSAS DEL PLUGIN                 #
+  # COSAS DEL PLUGIN [ R ]           #
   #----------------------------------#
   joinTitle: true
   leaveTitle: true 
@@ -10,7 +12,7 @@ config:
   autoItemRefill: true
   
   #----------------------------------#
-  # MUNDO DEL LOBBY                  #
+  # MUNDO DEL LOBBY [ R ]            #
   #----------------------------------#
   lobby: "lobby"
 
@@ -21,12 +23,12 @@ language:
   #----------------------------------#
   # COSAS DEL PLUGIN                 #
   #----------------------------------#
-  prefix: "&6[&9SimpleTools&6]" # /!\ requiere reinicio
-  adminchatPrefix: "&8[&cAdminChat&8]&r" # /!\ requiere reinicio
+  prefix: "&6[&9SimpleTools&6]" # [ R ]
+  adminchatPrefix: "&8[&cAdminChat&8]&r" # [ R ]
   configReloaded: "&aSe ha recargado la configuración!"
 
   #----------------------------------#
-  # ERRORES                          #
+  # ERRORES [ R ]                    #
   #----------------------------------#
   onlyPlayerCommand: "&cEste comando sólo lo puede ejecutar un jugador"
   noPermission: "&cNo tienes permisos para eso!"
@@ -37,7 +39,7 @@ language:
   notOnlineOrConnected: "&cEl jugador no existe o no está conectado!"
 
   #----------------------------------#
-  # ARGUMENTOS DE LOS COMANDOS       #
+  # ARGUMENTOS DE LOS COMANDOS [ R ] #
   #----------------------------------#
   player: "jugador"
   levels: "niveles"
@@ -47,7 +49,7 @@ language:
   #----------------------------------#
   # MENSAJES DE COMANDOS             #
   #----------------------------------#
-  globalChestTitle: "&8Cofre global"
+  globalChestTitle: "&8Cofre global" # [ R ]
   spawnSelf: "&7Has sido teletransportado al spawn"
   spawnYouOthers: "&7Has teletransportado a &a%victim% &7al spawn"
   spawnOthersYou: "&7Has sido teletransportado al spawn por &a%sender%"
@@ -64,10 +66,10 @@ language:
   youGotPaidXP: "&e%player% &7te ha dado &e%amount% &7niveles de &aXP"
   notEnoughLevels: "&cNo tienes suficientes niveles para esto!"
   youWasMentioned: "&e%player% &7te ha mencionado!"
-  mentionFormat: "&a&l"
+  mentionFormat: "&a&l" # [ R ]
 
   #----------------------------------#
-  # DESCRIPCIONES DE COMANDOS        #
+  # DESCRIPCIONES DE COMANDOS [ R ]  #
   #----------------------------------#
   spawnDescription: "Teletransporta al jugador al spawn"
   lobbyDescription: "Teletransporta al jugador al lobby"
@@ -82,7 +84,7 @@ language:
   globalchestDescription: "Abre el cofre global"
 
   #----------------------------------#
-  # MENSAJES DE TíTULOS              #
+  # MENSAJES DE TíTULOS [ R ]        #
   #----------------------------------#
   deathTitleMsg: "&c&l%player% ha muerto"
   joinTitleMsg: "&aHa entrado al servidor!"
@@ -90,7 +92,7 @@ language:
   joinLeaveNameFormat: "&e"
 
   #----------------------------------#
-  # ITEMS CUSTOM                     #
+  # ITEMS CUSTOM [ R ]               #
   #----------------------------------#
   scissorsName: "&e&lTijeras"
   scissorsLore: "&7Vacas, cerdos, zombies"
@@ -110,12 +112,12 @@ version: 2.3.1
   #----------------------------------#
   # PLUGIN STUFF                     #
   #----------------------------------#
-  #prefix: "&6[&9SimpleTools&6]"
-  #adminchatPrefix: "&8[&cAdminChat&8]&r" # /!\ requires restarting
-  #configReloaded: "&aConfig reloaded!" # /!\ requires restarting
+  #prefix: "&6[&9SimpleTools&6]" # [ R ]
+  #adminchatPrefix: "&8[&cAdminChat&8]&r" # [ R ]
+  #configReloaded: "&aConfig reloaded!"
 
   #----------------------------------#
-  # ERRORS                           #
+  # ERRORS [ R ]                     #
   #----------------------------------#
   #onlyPlayerCommand: "&cThis command can only be executed by a player"
   #noPermission: "&cYou don't have permission for that!"
@@ -126,7 +128,7 @@ version: 2.3.1
   #notOnlineOrConnected: "&cPlayer does not exist or is not online!"
 
   #----------------------------------#
-  # COMMAND ARGUMENTS                #
+  # COMMAND ARGUMENTS [ R ]          #
   #----------------------------------#
   #player: "player"
   #levels: "levels"
@@ -136,7 +138,7 @@ version: 2.3.1
   #----------------------------------#
   # COMMAND MESSAGES                 #
   #----------------------------------#
-  #globalChestTitle: "&8Global Chest"
+  #globalChestTitle: "&8Global Chest" # [ R ]
   #spawnSelf: "&7You have been teleported to spawn"
   #spawnYouOthers: "&7You have teleported &a%victim% &7to spawn"
   #spawnOthersYou: "&7You have been teleported to spawn by &a%sender%"
@@ -153,10 +155,10 @@ version: 2.3.1
   #youGotPaidXP: "&e%player% &7has given you &e%amount% &7levels of &aXP"
   #notEnoughLevels: "&cYou don't have enough levels for this!"
   #youWasMentioned: "&e%player% &7has mentioned you!"
-  #mentionFormat: "&a&l"
+  #mentionFormat: "&a&l" # [ R ]
 
   #----------------------------------#
-  # COMMAND DESCRIPTIONS             #
+  # COMMAND DESCRIPTIONS [ R ]       #
   #----------------------------------#
   #spawnDescription: "Teleports the player to spawn"
   #lobbyDescription: "Teleports the player to the lobby"
@@ -171,7 +173,7 @@ version: 2.3.1
   #globalchestDescription: "Opens the global chest"
 
   #----------------------------------#
-  # TITLE MESSAGES                   #
+  # TITLE MESSAGES [ R ]             #
   #----------------------------------#
   #deathTitleMsg: "&c&l%player% has died"
   #joinTitleMsg: "&aHas joined the server!"
@@ -179,7 +181,7 @@ version: 2.3.1
   #joinLeaveNameFormat: "&e"
 
   #----------------------------------#
-  # CUSTOM ITEMS                     #
+  # CUSTOM ITEMS [ R ]               #
   #----------------------------------#
   #scissorsName: "&e&lScissors"
   #scissorsLore: "&7Try cutting off Cows, pigs, zombies and creepers"
