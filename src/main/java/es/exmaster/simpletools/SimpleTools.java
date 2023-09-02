@@ -11,7 +11,6 @@ import es.exmaster.simpletools.recipes.RecipeManager;
 import es.exmaster.simpletools.tasks.LocationTracker;
 import es.exmaster.simpletools.utils.ConfigWrapper;
 import es.exmaster.simpletools.utils.ConsoleColors;
-import es.exmaster.simpletools.utils.CustomConfigManager;
 import es.exmaster.simpletools.utils.GlobalChest;
 import es.exmaster.simpletools.utils.UpdateChecker;
 
