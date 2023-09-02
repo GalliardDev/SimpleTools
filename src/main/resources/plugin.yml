@@ -1,4 +1,4 @@
-main: es.exmaster.simpletools.Main
+main: es.exmaster.simpletools.SimpleTools
 name: SimpleTools
 version: 2.3.1
 description: Useful commands for trolling and server managing.
