@@ -11,6 +11,7 @@ import es.exmaster.simpletools.recipes.RecipeManager;
 import es.exmaster.simpletools.tasks.LocationTracker;
 import es.exmaster.simpletools.utils.ConfigWrapper;
 import es.exmaster.simpletools.utils.ConsoleColors;
+import es.exmaster.simpletools.utils.CustomConfigManager;
 import es.exmaster.simpletools.utils.GlobalChest;
 import es.exmaster.simpletools.utils.UpdateChecker;
 
@@ -25,6 +26,7 @@ public class SimpleTools extends JavaPlugin implements Listener {
     									  ConsoleColors.BOLD_YELLOW + "] " + 
     									  ConsoleColors.RESET;
     private static ConfigWrapper config = new ConfigWrapper();
+    private static CustomConfigManager langs = new CustomConfigManager(plugin, "languages.yml");
     
     public static ConfigWrapper getConf() {
     	return config;
@@ -34,6 +36,7 @@ public class SimpleTools extends JavaPlugin implements Listener {
         super.onEnable();
         plugin = this;
         config.onEnable();
+        langs.saveDefaultConfig();
         CommandAPI.onEnable();
         CommandManager.registerCommands();
         EventListener.registerEvents();
