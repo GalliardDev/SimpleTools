@@ -1,12 +1,12 @@
 package es.exmaster.simpletools.common;
 
-import es.exmaster.simpletools.Main;
+import es.exmaster.simpletools.SimpleTools;
 
 public class SimpleLogger {
-	private Main main;
+	private SimpleTools main;
 	
 	public SimpleLogger() {
-		this.main = Main.plugin;
+		this.main = SimpleTools.plugin;
 	}
 	
 	public void error(String msg) {

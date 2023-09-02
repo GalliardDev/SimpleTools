@@ -17,12 +17,14 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import es.exmaster.simpletools.Main;
+import es.exmaster.simpletools.SimpleTools;
 import es.exmaster.simpletools.common.MinepacksAccessor;
 
 public class Utils {
+	private static ConfigManager simpleConfig = new ConfigManager(SimpleTools.plugin, "config.yml");
+	
 	private final static Inventory inv = Bukkit.createInventory(null, 54,
-			Utils.colorCodeParser(Main.plugin.getConfig().getString("language.globalChestTitle")));
+			Utils.colorCodeParser(simpleConfig.getConfig().getString("language.globalChestTitle")));
 	
 	public static String placeholderParser(String message, List<String> placeholders, List<String> values) {
         int i = 0;
@@ -141,8 +143,8 @@ public class Utils {
         ItemMeta meta = palo.getItemMeta();
 
         // Configurar el nombre y el lore
-        meta.setDisplayName(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.adminStickName")));
-        meta.setLore(Collections.singletonList(Utils.colorCodeParser(Main.plugin.getConfig().getString("language.adminStickLore"))));
+        meta.setDisplayName(Utils.colorCodeParser(simpleConfig.getConfig().getString("language.adminStickName")));
+        meta.setLore(Collections.singletonList(Utils.colorCodeParser(simpleConfig.getConfig().getString("language.adminStickLore"))));
 
         // Agregar un falso encantamiento para el efecto de brillo
         meta.addEnchant(Enchantment.DAMAGE_ALL, 18000, true);

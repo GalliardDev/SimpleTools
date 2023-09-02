@@ -8,7 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import es.exmaster.simpletools.Main;
+import es.exmaster.simpletools.SimpleTools;
 
 public class LocationTracker {
     private final static Map<Player, Location> LOCATIONS = new HashMap<>();
@@ -24,7 +24,7 @@ public class LocationTracker {
                 	}
                 }
             }
-        }.runTaskTimer(Main.plugin, 0, 20);
+        }.runTaskTimer(SimpleTools.plugin, 0, 20);
     }
 
     public static Location getPlayerLocation(Player player) {

@@ -42,7 +42,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import es.exmaster.simpletools.Main;
+import es.exmaster.simpletools.SimpleTools;
 import es.exmaster.simpletools.commands.CommandManager;
 import es.exmaster.simpletools.common.EmojiMap;
 import es.exmaster.simpletools.common.GlobalChest;
@@ -53,7 +53,7 @@ import es.exmaster.simpletools.utils.Utils;
 import net.md_5.bungee.api.ChatColor;
 
 public class EventListener {
-	private static ConfigManager simpleConfig = new ConfigManager(Main.plugin, "config.yml");
+	private static ConfigManager simpleConfig = new ConfigManager(SimpleTools.plugin, "config.yml");
 	public static void registerEvents() {
 		Bukkit.getPluginManager().registerEvents(new Listener() {
 			@EventHandler
@@ -324,7 +324,7 @@ public class EventListener {
 				Player player = event.getPlayer();
 				String world = player.getWorld().getName();
 
-				ConfigManager worldBlockerConfigManager = new ConfigManager(Main.plugin, "blockedWorlds.yml");
+				ConfigManager worldBlockerConfigManager = new ConfigManager(SimpleTools.plugin, "blockedWorlds.yml");
 				worldBlockerConfigManager.reloadConfig();
 
 				List<String> blockedWorlds = worldBlockerConfigManager.getConfig().getStringList("blockedWorlds");
@@ -412,9 +412,9 @@ public class EventListener {
 		                } else if (!backpack.isEmpty()) {
 		                    for (ItemStack i : backpack.getContents()) {
 		                        if (i != null && i.getType().equals(material)) {
-		                        	Main.plugin.getLogger().info("HAY EN MOCHILA");
+		                        	SimpleTools.plugin.getLogger().info("HAY EN MOCHILA");
 		                            Utils.refillItemFromMinepack(event.getPlayer(), material, event.getHand());
-		                            Main.plugin.getLogger().info("RELLENADO");
+		                            SimpleTools.plugin.getLogger().info("RELLENADO");
 		                            break;
 		                        }
 		                    }
@@ -423,7 +423,7 @@ public class EventListener {
 		        }
 		    }
 
-		}, Main.plugin);
+		}, SimpleTools.plugin);
 	}
 
 	

@@ -14,13 +14,13 @@ import dev.jorel.commandapi.arguments.ArgumentSuggestions;
 import dev.jorel.commandapi.arguments.IntegerArgument;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import dev.jorel.commandapi.arguments.StringArgument;
-import es.exmaster.simpletools.Main;
+import es.exmaster.simpletools.SimpleTools;
 import es.exmaster.simpletools.tasks.LocationTracker;
 import es.exmaster.simpletools.utils.ConfigManager;
 import es.exmaster.simpletools.utils.Utils;
 
 public class CommandManager {
-	private static ConfigManager simpleConfig = new ConfigManager(Main.plugin, "config.yml");
+	private static ConfigManager simpleConfig = new ConfigManager(SimpleTools.plugin, "config.yml");
 	
 	public static String PREFIX = Utils.colorCodeParser(simpleConfig.getConfig().getString("language.prefix"));
 	
@@ -382,7 +382,7 @@ public class CommandManager {
 		.register();
 		
 		//WBLOCK COMMAND
-		ConfigManager worldBlockerConfigManager = new ConfigManager(Main.plugin,"blockedWorlds.yml");
+		ConfigManager worldBlockerConfigManager = new ConfigManager(SimpleTools.plugin,"blockedWorlds.yml");
 		List<String> blockedWorlds = worldBlockerConfigManager.getConfig().getStringList("blockedWorlds");
 		new CommandAPICommand("wblock")
 		.withArguments(worlds)

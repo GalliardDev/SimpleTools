@@ -7,13 +7,13 @@ import org.bukkit.plugin.Plugin;
 
 import at.pcgamingfreaks.Minepacks.Bukkit.API.Backpack;
 import at.pcgamingfreaks.Minepacks.Bukkit.API.MinepacksPlugin;
-import es.exmaster.simpletools.Main;
+import es.exmaster.simpletools.SimpleTools;
 
 public class MinepacksAccessor {
 	public static MinepacksPlugin getMinepacks() {
 	    Plugin bukkitPlugin = Bukkit.getPluginManager().getPlugin("Minepacks");
 	    if(!(bukkitPlugin instanceof MinepacksPlugin)) {
-	    	Main.plugin.getLogger().severe("Error trying to hook Minepacks, it's not available or installed!");
+	    	SimpleTools.plugin.getLogger().severe("Error trying to hook Minepacks, it's not available or installed!");
 	        return null;
 	    }
 	    return (MinepacksPlugin) bukkitPlugin;

@@ -9,13 +9,13 @@ import java.util.function.Consumer;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
-import es.exmaster.simpletools.Main;
+import es.exmaster.simpletools.SimpleTools;
 
 public class UpdateChecker {
-    private Main plugin;
+    private SimpleTools plugin;
     private int resourceId;
 
-    public UpdateChecker(Main plugin, int resourceId) {
+    public UpdateChecker(SimpleTools plugin, int resourceId) {
         this.plugin = plugin;
         this.resourceId = resourceId;
     }

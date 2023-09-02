@@ -12,9 +12,9 @@ import es.exmaster.simpletools.recipes.RecipeManager;
 import es.exmaster.simpletools.tasks.LocationTracker;
 import es.exmaster.simpletools.utils.UpdateChecker;
 
-public class Main extends JavaPlugin implements Listener {
+public class SimpleTools extends JavaPlugin implements Listener {
     
-    public static Main plugin;
+    public static SimpleTools plugin;
     private final Integer ID = 108067;
     private final String SPIGOT_LINK = "https://www.spigotmc.org/resources/simpletools.108067/";
 

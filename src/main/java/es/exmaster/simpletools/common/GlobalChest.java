@@ -10,7 +10,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import es.exmaster.simpletools.Main;
+import es.exmaster.simpletools.SimpleTools;
 import es.exmaster.simpletools.utils.Utils;
 
 public class GlobalChest {
@@ -50,7 +50,7 @@ public class GlobalChest {
     }
 	
 	public static void loadConfig() {
-        itemsFile = new File(Main.plugin.getDataFolder(), "items.yml");
+        itemsFile = new File(SimpleTools.plugin.getDataFolder(), "items.yml");
         items = YamlConfiguration.loadConfiguration(itemsFile);
         globalChestInventory = Utils.getInv();
     }
