@@ -26,7 +26,6 @@ public class SimpleTools extends JavaPlugin implements Listener {
     									  ConsoleColors.BOLD_YELLOW + "] " + 
     									  ConsoleColors.RESET;
     private static ConfigWrapper config = new ConfigWrapper();
-    private static CustomConfigManager langs = new CustomConfigManager(plugin, "languages.yml");
     
     public static ConfigWrapper getConf() {
     	return config;
@@ -36,7 +35,6 @@ public class SimpleTools extends JavaPlugin implements Listener {
         super.onEnable();
         plugin = this;
         config.onEnable();
-        langs.saveDefaultConfig();
         CommandAPI.onEnable();
         CommandManager.registerCommands();
         EventListener.registerEvents();
