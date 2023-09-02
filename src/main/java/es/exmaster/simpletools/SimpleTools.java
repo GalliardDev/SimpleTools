@@ -6,10 +6,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPIBukkitConfig;
 import es.exmaster.simpletools.commands.CommandManager;
-import es.exmaster.simpletools.common.GlobalChest;
 import es.exmaster.simpletools.events.EventListener;
 import es.exmaster.simpletools.recipes.RecipeManager;
 import es.exmaster.simpletools.tasks.LocationTracker;
+import es.exmaster.simpletools.utils.ConsoleColors;
+import es.exmaster.simpletools.utils.GlobalChest;
 import es.exmaster.simpletools.utils.UpdateChecker;
 
 public class SimpleTools extends JavaPlugin implements Listener {
@@ -17,6 +18,10 @@ public class SimpleTools extends JavaPlugin implements Listener {
     public static SimpleTools plugin;
     private final Integer ID = 108067;
     private final String SPIGOT_LINK = "https://www.spigotmc.org/resources/simpletools.108067/";
+    private final String CONSOLE_PREFIX = ConsoleColors.BOLD_WHITE + "[" +
+    									  ConsoleColors.BOLD_BLUE + "SimpleTools" +
+    									  ConsoleColors.BOLD_YELLOW + "] " + 
+    									  ConsoleColors.RESET;
 
 	public void onEnable() {
         super.onEnable();
@@ -32,12 +37,12 @@ public class SimpleTools extends JavaPlugin implements Listener {
         new UpdateChecker(this, ID).getLatestVersion(version -> {
             String currentVersion = plugin.getConfig().getString("version");
             if (version.equals(currentVersion)) {
-                this.getLogger().info("SimpleTools is up to date!");
+                this.getLogger().info(CONSOLE_PREFIX + "I'm up to date!");
             } else {
-                this.getLogger().severe("SimpleTools is not up to date! You can download the last version from " + SPIGOT_LINK);
+                this.getLogger().severe(CONSOLE_PREFIX + "I'm not up to date! You can download my last version from " + SPIGOT_LINK);
             }
         });
-        this.getLogger().info("SimpleTools has been enabled!");
+        this.getLogger().info(CONSOLE_PREFIX + "I've been enabled! :)");
     }
     
 	@Override
@@ -49,6 +54,6 @@ public class SimpleTools extends JavaPlugin implements Listener {
     public void onDisable() {
         super.onDisable();
         GlobalChest.saveChest();
-        this.getLogger().info("SimpleTools has been disabled!");
+        this.getLogger().info(CONSOLE_PREFIX + "I've been disabled! :(");
     }
 }

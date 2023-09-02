@@ -17,6 +17,7 @@ import dev.jorel.commandapi.arguments.StringArgument;
 import es.exmaster.simpletools.SimpleTools;
 import es.exmaster.simpletools.tasks.LocationTracker;
 import es.exmaster.simpletools.utils.ConfigManager;
+import es.exmaster.simpletools.utils.GlobalChest;
 import es.exmaster.simpletools.utils.Utils;
 
 public class CommandManager {
@@ -176,10 +177,10 @@ public class CommandManager {
 			if (sender instanceof Player && sender.hasPermission("simpletools.globalchest")) {
 				if (args.count() == 0) {
 					Player player = (Player) sender;
-					player.openInventory(Utils.getInv());
+					player.openInventory(GlobalChest.getInv());
 				} else if (args.count() == 1 && sender.hasPermission("simpletools.globalChest.others")) {
 					Player player = Bukkit.getServer().getPlayer(args.getRaw(0));
-					player.openInventory(Utils.getInv());
+					player.openInventory(GlobalChest.getInv());
 				}
 			} else {
 				sender.sendMessage(PREFIX + " " + 

@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -18,14 +17,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import es.exmaster.simpletools.SimpleTools;
-import es.exmaster.simpletools.common.MinepacksAccessor;
 
 public class Utils {
 	private static ConfigManager simpleConfig = new ConfigManager(SimpleTools.plugin, "config.yml");
-	
-	private final static Inventory inv = Bukkit.createInventory(null, 54,
-			Utils.colorCodeParser(simpleConfig.getConfig().getString("language.globalChestTitle")));
-	
+
 	public static String placeholderParser(String message, List<String> placeholders, List<String> values) {
         int i = 0;
         message = message.replace('&', '§');
@@ -154,10 +149,5 @@ public class Utils {
         palo.setItemMeta(meta);
 
         return palo;
-    }
-	
-	public static Inventory getInv() {
-		return inv;
-	}
-	
+    }	
 }

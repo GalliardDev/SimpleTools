@@ -44,11 +44,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import es.exmaster.simpletools.SimpleTools;
 import es.exmaster.simpletools.commands.CommandManager;
-import es.exmaster.simpletools.common.EmojiMap;
-import es.exmaster.simpletools.common.GlobalChest;
-import es.exmaster.simpletools.common.MinepacksAccessor;
 import es.exmaster.simpletools.tasks.LocationTracker;
 import es.exmaster.simpletools.utils.ConfigManager;
+import es.exmaster.simpletools.utils.EmojiMap;
+import es.exmaster.simpletools.utils.GlobalChest;
+import es.exmaster.simpletools.utils.MinepacksAccessor;
 import es.exmaster.simpletools.utils.Utils;
 import net.md_5.bungee.api.ChatColor;
 

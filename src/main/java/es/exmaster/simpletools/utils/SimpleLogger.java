@@ -1,4 +1,4 @@
-package es.exmaster.simpletools.common;
+package es.exmaster.simpletools.utils;
 
 import es.exmaster.simpletools.SimpleTools;
 
