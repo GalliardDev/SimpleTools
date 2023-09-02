@@ -7,13 +7,13 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class ConfigManager {
+public class CustomConfigManager {
 
     private final JavaPlugin plugin;
     private final File configFile;
     private FileConfiguration config;
 
-    public ConfigManager(JavaPlugin plugin, String fileName) {
+    public CustomConfigManager(JavaPlugin plugin, String fileName) {
     	this.plugin = plugin;
         this.configFile = new File(plugin.getDataFolder(), fileName);
         this.config = YamlConfiguration.loadConfiguration(this.configFile);

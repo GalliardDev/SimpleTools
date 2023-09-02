@@ -1,0 +1,84 @@
+######## ##    ##         ##     ##  ######  
+##       ###   ##         ##     ## ##    ## 
+##       ####  ##         ##     ## ##       
+######   ## ## ##         ##     ##  ######  
+##       ##  ####         ##     ##       ## 
+##       ##   ###         ##     ## ##    ## 
+######## ##    ## #######  #######   ###### 
+
+  #----------------------------------#
+  # PLUGIN STUFF                     #
+  #----------------------------------#
+  prefix: "&6[&9SimpleTools&6]"
+  adminchatPrefix: "&8[&cAdminChat&8]&r"
+  configReloaded: "&aConfig reloaded!"
+  
+  #----------------------------------#
+  # ERRORS                           #
+  #----------------------------------#
+  onlyPlayerCommand: "&cThis command can only be executed by a player"
+  noPermission: "&cYou don't have permission for that!"
+  tooManyArguments: "&cToo many arguments!"
+  playerRequired: "&cYou must specify a player!"
+  invalidArgument: "&cInvalid argument!"
+  temporarilyDisabled: "&cThis command is temporarily disabled"
+  notOnlineOrConnected: "&cPlayer does not exist or is not online!"
+  
+  #----------------------------------#
+  # COMMAND MESSAGES                 #
+  #----------------------------------#
+  globalChestTitle: "&8Global Chest"
+  spawnSelf: "&7You have been teleported to spawn"
+  spawnYouOthers: "&7You have teleported &a%victim% &7to spawn"
+  spawnOthersYou: "&7You have been teleported to spawn by &a%sender%"
+  lobbySelf: "&7You have been teleported to the lobby"
+  lobbyYouOthers: "&7You have teleported &a%victim% &7to the lobby"
+  lobbyOthersYou: "&7You have been teleported to the lobby by &a%sender%"
+  noLobby: "&cThe lobby is not defined!"
+  discordMsg: "&7Here is our Discord, &a%sender% &7:\n&9&nhttps://discord.gg/HHtQ8wU2TK"
+  freefallMsg: "&d&lYou have been teleported up here by nuv"
+  coordsMsg: "&8[&c%sender%&8 -> &cYou&8] &7My coordinates are:\n&aX: &7%x%\n&aY: &7%y%\n&aZ: &7%z%"
+  worldIsBlocked: "&cThis world is blocked"
+  worldBlocked: "&cThe world has been blocked"
+  worldUnblocked: "&aThe world has been unblocked"
+  youGotPaidXP: "&e%player% &7has given you &e%amount% &7levels of &aXP"
+  notEnoughLevels: "&cYou don't have enough levels for this!"
+  youWasMentioned: "&e%player% &7has mentioned you!"
+  mentionFormat: "&a&l"
+  deathTitleMsg: "&c&l%player% has died"
+  joinTitleMsg: "&aHas joined the server!"
+  leaveTitleMsg: "&cHas left the server!"
+  joinLeaveNameFormat: "&e"
+  
+  # BELOW THIS LINE REQUIRES SERVER RESTART
+  
+  #----------------------------------#
+  # COMMAND DESCRIPTIONS             #
+  #----------------------------------#
+  spawnDescription: "Teleports the player to spawn"
+  lobbyDescription: "Teleports the player to the lobby"
+  discordDescription: "Shows the server's Discord"
+  freefallDescription: "Teleports the player to the sky height"
+  sendcoordsDescription: "Sends your coordinates to another player"
+  blockworldDescription: "Blocks a world"
+  payxpDescription: "Pays XP levels to another player"
+  astickDescription: "Gives you the Admin Stick"
+  reloadDescription: "Reloads the plugin configuration"
+  thunderDescription: "Summons a lightning bolt at the player's position"
+  globalchestDescription: "Opens the global chest"
+  
+  #----------------------------------#
+  # COMMAND ARGUMENTS                #
+  #----------------------------------#
+  player: "player"
+  levels: "levels"
+  times: "times"
+  world: "world"
+  
+  #----------------------------------#
+  # CUSTOM ITEMS                     #
+  #----------------------------------#
+  scissorsName: "&e&lScissors"
+  scissorsLore: "&7Try cutting off Cows, pigs, zombies and creepers"
+  adminStickName: "&c&lADMIN STICK"
+  adminStickLore: "&dA stick to rule them all!"

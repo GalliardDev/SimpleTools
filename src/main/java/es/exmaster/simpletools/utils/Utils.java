@@ -19,8 +19,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import es.exmaster.simpletools.SimpleTools;
 
 public class Utils {
-	private static ConfigManager simpleConfig = new ConfigManager(SimpleTools.plugin, "config.yml");
-
+	private static ConfigWrapper config = SimpleTools.getConf();
+	
 	public static String placeholderParser(String message, List<String> placeholders, List<String> values) {
         int i = 0;
         message = message.replace('&', '§');
@@ -138,8 +138,8 @@ public class Utils {
         ItemMeta meta = palo.getItemMeta();
 
         // Configurar el nombre y el lore
-        meta.setDisplayName(Utils.colorCodeParser(simpleConfig.getConfig().getString("language.adminStickName")));
-        meta.setLore(Collections.singletonList(Utils.colorCodeParser(simpleConfig.getConfig().getString("language.adminStickLore"))));
+        meta.setDisplayName(Utils.colorCodeParser(config.getString("language.adminStickName")));
+        meta.setLore(Collections.singletonList(Utils.colorCodeParser(config.getString("language.adminStickLore"))));
 
         // Agregar un falso encantamiento para el efecto de brillo
         meta.addEnchant(Enchantment.DAMAGE_ALL, 18000, true);

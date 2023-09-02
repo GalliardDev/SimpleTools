@@ -16,10 +16,10 @@ import es.exmaster.simpletools.SimpleTools;
 public class GlobalChest {
 	private static File itemsFile;
 	private static FileConfiguration items;
-	private static ConfigManager simpleConfig = new ConfigManager(SimpleTools.plugin, "config.yml");
+	private static ConfigWrapper config = SimpleTools.getConf();
 	private static Inventory globalChestInventory;
 	private static Inventory inv = Bukkit.createInventory(null, 54,
-			Utils.colorCodeParser(simpleConfig.getConfig().getString("language.globalChestTitle")));
+			Utils.colorCodeParser(config.getString("language.globalChestTitle")));
 
 	public static File getItemsFile() {
 		return itemsFile;
