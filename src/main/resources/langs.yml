@@ -1,9 +1,97 @@
+# ███████╗░██████╗░░░░░░███████╗░██████╗
+# ██╔════╝██╔════╝░░░░░░██╔════╝██╔════╝
+# █████╗░░╚█████╗░█████╗█████╗░░╚█████╗░
+# ██╔══╝░░░╚═══██╗╚════╝██╔══╝░░░╚═══██╗
+# ███████╗██████╔╝░░░░░░███████╗██████╔╝
+# ╚══════╝╚═════╝░░░░░░░╚══════╝╚═════╝░
+# by ExceptionMaster
+
+language:
+  
+  #----------------------------------#
+  # COSAS DEL PLUGIN                 #
+  #----------------------------------#
+  prefix: "&6[&9SimpleTools&6]"
+  adminchatPrefix: "&8[&cAdminChat&8]&r"
+  configReloaded: "&aSe ha recargado la configuración!"
+
+  #----------------------------------#
+  # ERRORES                          #
+  #----------------------------------#
+  onlyPlayerCommand: "&cEste comando sólo lo puede ejecutar un jugador"
+  noPermission: "&cNo tienes permisos para eso!"
+  tooManyArguments: "&cDemasiados argumentos!"
+  playerRequired: "&cDebes especificar un jugador!"
+  invalidArgument: "&cArgumento no válido!"
+  temporarilyDisabled: "&cEste comando está temporalmente desactivado"
+  notOnlineOrConnected: "&cEl jugador no existe o no está conectado!"
+
+  #----------------------------------#
+  # MENSAJES                         #
+  #----------------------------------#
+  globalChestTitle: "&8Cofre global"
+  spawnSelf: "&7Has sido teletransportado al spawn"
+  spawnYouOthers: "&7Has teletransportado a &a%victim% &7al spawn"
+  spawnOthersYou: "&7Has sido teletransportado al spawn por &a%sender%"
+  lobbySelf: "&7Has sido teletransportado al lobby"
+  lobbyYouOthers: "&7Has teletransportado a &a%victim% &7al lobby"
+  lobbyOthersYou: "&7Has sido teletransportado al lobby por &a%sender%"
+  noLobby: "&cEl lobby no está definido!"
+  discordMsg: "&7Aquí tienes nuestro discord, &a%sender% &7:\n&9&nhttps://discord.gg/HHtQ8wU2TK"
+  freefallMsg: "&d&lHas sido teletransportado aquí arriba por nuv"
+  coordsMsg: "&8[&c%sender%&8 -> &cTú&8] &7Mis coordenadas son:\n&aX: &7%x%\n&aY: &7%y%\n&aZ: &7%z%"
+  worldIsBlocked: "&cEste mundo está bloqueado"
+  worldBlocked: "&cSe ha bloqueado el mundo"
+  worldUnblocked: "&aSe ha desbloqueado el mundo"
+  youGotPaidXP: "&e%player% &7te ha dado &e%amount% &7niveles de &aXP"
+  notEnoughLevels: "&cNo tienes suficientes niveles para esto!"
+  youWasMentioned: "&e%player% &7te ha mencionado!"
+  mentionFormat: "&a&l"
+  deathTitleMsg: "&c&l%player% ha muerto"
+  joinTitleMsg: "&aHa entrado al servidor!"
+  leaveTitleMsg: "&cSe ha ido del servidor!"
+  joinLeaveNameFormat: "&e"
+
+  # POR DEBAJO DE ESTA LÍNEA REQUIERE REINICIO DEL SERVIDOR
+
+  #----------------------------------#
+  # ARGUMENTOS DE LOS COMANDOS       #
+  #----------------------------------#
+  player: "jugador"
+  levels: "niveles"
+  times: "veces"
+  world: "mundo"
+
+  #----------------------------------#
+  # DESCRIPCIONES DE COMANDOS        #
+  #----------------------------------#
+  spawnDescription: "Teletransporta al jugador al spawn"
+  lobbyDescription: "Teletransporta al jugador al lobby"
+  discordDescription: "Muestra el discord del servidor"
+  freefallDescription: "Teletransporta al jugador a la altura del cielo"
+  sendcoordsDescription: "Manda tus coordenadas a otro jugador"
+  blockworldDescription: "Bloquea un mundo"
+  payxpDescription: "Paga niveles de XP a otro jugador"
+  astickDescription: "Te da el Admin Stick"
+  reloadDescription: "Recarga la configuración del plugin"
+  thunderDescription: "Invoca un rayo en la posición del jugador"
+  globalchestDescription: "Abre el cofre global" 
+
+  #----------------------------------#
+  # ITEMS CUSTOM                     #
+  #----------------------------------#
+  scissorsName: "&e&lTijeras"
+  scissorsLore: "&7Vacas, cerdos, zombies"
+  adminStickName: "&c&lADMIN STICK"
+  adminStickLore: "&dUn palo para dominarlos a todos!"
+
 # ███████╗███╗░░██╗░░░░░░██╗░░░██╗░██████╗
 # ██╔════╝████╗░██║░░░░░░██║░░░██║██╔════╝
 # █████╗░░██╔██╗██║█████╗██║░░░██║╚█████╗░
 # ██╔══╝░░██║╚████║╚════╝██║░░░██║░╚═══██╗
 # ███████╗██║░╚███║░░░░░░╚██████╔╝██████╔╝
 # ╚══════╝╚═╝░░╚══╝░░░░░░░╚═════╝░╚═════╝░
+# by ExceptionMaster
 
 language:
   
@@ -75,3 +163,323 @@ language:
   scissorsLore: "&7Cows, pigs, zombies"
   adminStickName: "&c&lADMIN STICK"
   adminStickLore: "&dA stick to rule them all!"
+
+# -------------------------------------------------------------------------- #
+# 🛑 ​​​​​🇦​​​​​🇱​​​​​🇱​​​​​ 🇹​​​​​🇭​​​​​🇪​​​​​ 🇹​​​​​🇷​​​​​🇦​​​​​🇳​​​​​🇸​​​​​🇱​​​​​🇦​​​​​🇹​​​​​🇮​​​​​🇴​​​​​🇳​​​​​🇸​​​​​ 🇧​​​​​🇪​​​​​🇱​​​​​🇴​​​​​🇼​​​​​ 🇦​​​​​🇷​​​​​🇪​​​​​ 🇨​​​​​🇭​​​​​🇦​​​​​🇹​​​​​🇬​​​​​🇵​​​​​🇹​​​​​-🇹​​​​​🇷​​​​​🇦​​​​​🇳​​​​​🇸​​​​​🇱​​​​​🇦​​​​​🇹​​​​​🇪​​​​​🇩​​​​​. 🇸​​​​​🇴​​​​​🇷​​​​​🇷​​​​​🇾​​​​​, 🇮​​​​​'🇲​​​​​ 🇳​​​​​🇴​​​​​🇹​​​​​ 🇦​​​​​ 🇵​​​​​🇴​​​​​🇱​​​​​🇾​​​​​🇬​​​​​🇱​​​​​🇴​​​​​🇹​​​​​! 🛑
+#       🇮​​​​​🇫​​​​​ 🇾​​​​​🇴​​​​​🇺​​​​​ 🇼​​​​​🇦​​​​​🇳​​​​​🇹​​​​​ 🇹​​​​​🇴​​​​​ 🇹​​​​​🇷​​​​​🇦​​​​​🇳​​​​​🇸​​​​​🇱​​​​​🇦​​​​​🇹​​​​​🇪​​​​​ 🇦​​​​​🇳​​​​​🇩​​​​​ 🇸​​​​​🇭​​​​​🇦​​​​​🇷​​​​​🇪​​​​​ 🇮​​​​​🇹​​​​​, 🇾​​​​​🇴​​​​​🇺​​​​​ 🇨​​​​​🇦​​​​​🇳​​​​​ 🇩​​​​​🇴​​​​​ 🇮​​​​​🇹​​​​​ 🇮​​​​​🇳​​​​​ 🇲​​​​​🇾​​​​​ 🇩​​​​​🇮​​​​​🇸​​​​​🇨​​​​​🇴​​​​​🇷​​​​​🇩​​​​​!
+# -------------------------------------------------------------------------- #
+
+# ██╗████████╗░░░░░░██╗████████╗
+# ██║╚══██╔══╝░░░░░░██║╚══██╔══╝
+# ██║░░░██║░░░█████╗██║░░░██║░░░
+# ██║░░░██║░░░╚════╝██║░░░██║░░░
+# ██║░░░██║░░░░░░░░░██║░░░██║░░░
+# ╚═╝░░░╚═╝░░░░░░░░░╚═╝░░░╚═╝░░░
+# by ChatGPT
+
+language:
+  
+  #----------------------------------#
+  # PLUGIN STUFF                     #
+  #----------------------------------#
+  prefix: "&6[&9SimpleTools&6]"
+  adminchatPrefix: "&8[&cAdminChat&8]&r"
+  configReloaded: "&aConfigurazione ricaricata!"
+
+  #----------------------------------#
+  # ERRORS                           #
+  #----------------------------------#
+  onlyPlayerCommand: "&cQuesto comando può essere eseguito solo da un giocatore"
+  noPermission: "&cNon hai il permesso per questo!"
+  tooManyArguments: "&cTroppi argomenti!"
+  playerRequired: "&cDevi specificare un giocatore!"
+  invalidArgument: "&cArgomento non valido!"
+  temporarilyDisabled: "&cQuesto comando è temporaneamente disabilitato"
+  notOnlineOrConnected: "&cIl giocatore non esiste o non è connesso!"
+
+  #----------------------------------#
+  # MESSAGES                         #
+  #----------------------------------#
+  globalChestTitle: "&8Cassa globale"
+  spawnSelf: "&7Sei stato teletrasportato allo spawn"
+  spawnYouOthers: "&7Hai teletrasportato &a%victim% &7allo spawn"
+  spawnOthersYou: "&7Sei stato teletrasportato allo spawn da &a%sender%"
+  lobbySelf: "&7Sei stato teletrasportato alla lobby"
+  lobbyYouOthers: "&7Hai teletrasportato &a%victim% &7alla lobby"
+  lobbyOthersYou: "&7Sei stato teletrasportato alla lobby da &a%sender%"
+  noLobby: "&cLa lobby non è definita!"
+  discordMsg: "&7Ecco il nostro discord, &a%sender% &7:\n&9&nhttps://discord.gg/HHtQ8wU2TK"
+  freefallMsg: "&d&lSei stato teletrasportato fino a qui, niubbo"
+  coordsMsg: "&8[&c%sender%&8 -> &cTu&8] &7Le mie coordinate sono:\n&aX: &7%x%\n&aY: &7%y%\n&aZ: &7%z%"
+  worldIsBlocked: "&cQuesto mondo è bloccato"
+  worldBlocked: "&cIl mondo è stato bloccato"
+  worldUnblocked: "&aIl mondo è stato sbloccato"
+  youGotPaidXP: "&e%player% &7ti ha dato &e%amount% &7livelli di esperienza"
+  notEnoughLevels: "&cNon hai abbastanza livelli per questo!"
+  youWasMentioned: "&e%player% &7ti ha menzionato!"
+  mentionFormat: "&a&l"
+  deathTitleMsg: "&c&l%player% è morto"
+  joinTitleMsg: "&aÈ entrato nel server!"
+  leaveTitleMsg: "&cÈ uscito dal server!"
+  joinLeaveNameFormat: "&e"
+
+  # BELOW THIS LINE REQUIRES SERVER RESTART
+
+  #----------------------------------#
+  # COMMAND DESCRIPTIONS             #
+  #----------------------------------#
+  spawnDescription: "Teletrasporta il giocatore allo spawn"
+  lobbyDescription: "Teletrasporta il giocatore alla lobby"
+  discordDescription: "Mostra il discord del server"
+  freefallDescription: "Teletrasporta il giocatore alla quota massima del cielo"
+  sendcoordsDescription: "Invia le tue coordinate a un altro giocatore"
+  blockworldDescription: "Blocca un mondo"
+  payxpDescription: "Dona livelli di esperienza a un altro giocatore"
+  astickDescription: "Ti dà il Bastone dell'Amministratore"
+  reloadDescription: "Ricarica la configurazione del plugin"
+  thunderDescription: "Evoca un fulmine nella posizione del giocatore"
+  globalchestDescription: "Apre la cassa globale"
+
+  #----------------------------------#
+  # CUSTOM ITEMS                     #
+  #----------------------------------#
+  scissorsName: "&e&lForbici"
+  scissorsLore: "&7Mucche, maiali, zombie"
+  adminStickName: "&c&lBASTONE DELL'AMMINISTRATORE"
+  adminStickLore: "&dUn bastone per comandarli tutti!"
+
+# ███████╗██████╗░░░░░░░███████╗██████╗░
+# ██╔════╝██╔══██╗░░░░░░██╔════╝██╔══██╗
+# █████╗░░██████╔╝█████╗█████╗░░██████╔╝
+# ██╔══╝░░██╔══██╗╚════╝██╔══╝░░██╔══██╗
+# ██║░░░░░██║░░██║░░░░░░██║░░░░░██║░░██║
+# ╚═╝░░░░░╚═╝░░╚═╝░░░░░░╚═╝░░░░░╚═╝░░╚═╝
+# by ChatGPT
+
+language:
+  
+  #----------------------------------#
+  # PLUGIN STUFF                     #
+  #----------------------------------#
+  prefix: "&6[&9OutilsSimples&6]"
+  adminchatPrefix: "&8[&cAdminChat&8]&r"
+  configReloaded: "&aConfiguration rechargée !"
+
+  #----------------------------------#
+  # ERRORS                           #
+  #----------------------------------#
+  onlyPlayerCommand: "&cCette commande ne peut être exécutée que par un joueur"
+  noPermission: "&cVous n'avez pas la permission pour cela !"
+  tooManyArguments: "&cTrop d'arguments !"
+  playerRequired: "&cVous devez spécifier un joueur !"
+  invalidArgument: "&cArgument invalide !"
+  temporarilyDisabled: "&cCette commande est temporairement désactivée"
+  notOnlineOrConnected: "&cLe joueur n'existe pas ou n'est pas connecté !"
+
+  #----------------------------------#
+  # MESSAGES                         #
+  #----------------------------------#
+  globalChestTitle: "&8Coffre global"
+  spawnSelf: "&7Vous avez été téléporté à l'apparition"
+  spawnYouOthers: "&7Vous avez téléporté &a%victim% &7à l'apparition"
+  spawnOthersYou: "&7Vous avez été téléporté à l'apparition par &a%sender%"
+  lobbySelf: "&7Vous avez été téléporté au lobby"
+  lobbyYouOthers: "&7Vous avez téléporté &a%victim% &7au lobby"
+  lobbyOthersYou: "&7Vous avez été téléporté au lobby par &a%sender%"
+  noLobby: "&cLe lobby n'est pas défini !"
+  discordMsg: "&7Voici notre discord, &a%sender% &7:\n&9&nhttps://discord.gg/HHtQ8wU2TK"
+  freefallMsg: "&d&lVous avez été téléporté ici, débutant"
+  coordsMsg: "&8[&c%sender%&8 -> &cVous&8] &7Mes coordonnées sont :\n&aX : &7%x%\n&aY : &7%y%\n&aZ : &7%z%"
+  worldIsBlocked: "&cCe monde est bloqué"
+  worldBlocked: "&cLe monde a été bloqué"
+  worldUnblocked: "&aLe monde a été débloqué"
+  youGotPaidXP: "&e%player% &7vous a donné &e%amount% &7niveaux d'XP"
+  notEnoughLevels: "&cVous n'avez pas assez de niveaux pour cela !"
+  youWasMentioned: "&e%player% &7vous a mentionné !"
+  mentionFormat: "&a&l"
+  deathTitleMsg: "&c&l%player% est mort"
+  joinTitleMsg: "&aA rejoint le serveur !"
+  leaveTitleMsg: "&cA quitté le serveur !"
+  joinLeaveNameFormat: "&e"
+
+  # BELOW THIS LINE REQUIRES SERVER RESTART
+
+  #----------------------------------#
+  # COMMAND DESCRIPTIONS             #
+  #----------------------------------#
+  spawnDescription: "Téléporte le joueur à l'apparition"
+  lobbyDescription: "Téléporte le joueur au lobby"
+  discordDescription: "Affiche le discord du serveur"
+  freefallDescription: "Téléporte le joueur à la hauteur du ciel"
+  sendcoordsDescription: "Envoie vos coordonnées à un autre joueur"
+  blockworldDescription: "Bloque un monde"
+  payxpDescription: "Paye des niveaux d'XP à un autre joueur"
+  astickDescription: "Vous donne le Bâton d'Admin"
+  reloadDescription: "Recharge la configuration du plugin"
+  thunderDescription: "Invoque un éclair à la position du joueur"
+  globalchestDescription: "Ouvre le coffre global"
+
+  #----------------------------------#
+  # CUSTOM ITEMS                     #
+  #----------------------------------#
+  scissorsName: "&e&lCiseaux"
+  scissorsLore: "&7Vaches, cochons, zombies"
+  adminStickName: "&c&lBÂTON D'ADMIN"
+  adminStickLore: "&dUn bâton pour les gouverner tous !"
+
+# ██████╗░███████╗░░░░░░██████╗░███████╗
+# ██╔══██╗██╔════╝░░░░░░██╔══██╗██╔════╝
+# ██║░░██║█████╗░░█████╗██║░░██║█████╗░░
+# ██║░░██║██╔══╝░░╚════╝██║░░██║██╔══╝░░
+# ██████╔╝███████╗░░░░░░██████╔╝███████╗
+# ╚═════╝░╚══════╝░░░░░░╚═════╝░╚══════╝
+# by ChatGPT
+
+language:
+  
+  #----------------------------------#
+  # PLUGIN STUFF                     #
+  #----------------------------------#
+  prefix: "&6[&9EinfacheWerkzeuge&6]"
+  adminchatPrefix: "&8[&cAdminChat&8]&r"
+  configReloaded: "&aKonfiguration neu geladen!"
+
+  #----------------------------------#
+  # ERRORS                           #
+  #----------------------------------#
+  onlyPlayerCommand: "&cDieser Befehl kann nur von einem Spieler ausgeführt werden"
+  noPermission: "&cDu hast keine Berechtigung dafür!"
+  tooManyArguments: "&cZu viele Argumente!"
+  playerRequired: "&cDu musst einen Spieler angeben!"
+  invalidArgument: "&cUngültiges Argument!"
+  temporarilyDisabled: "&cDieser Befehl ist vorübergehend deaktiviert"
+  notOnlineOrConnected: "&cDer Spieler existiert nicht oder ist nicht verbunden!"
+
+  #----------------------------------#
+  # MESSAGES                         #
+  #----------------------------------#
+  globalChestTitle: "&8Globale Truhe"
+  spawnSelf: "&7Du wurdest zum Spawn teleportiert"
+  spawnYouOthers: "&7Du hast &a%victim% &7zum Spawn teleportiert"
+  spawnOthersYou: "&7Du wurdest vom Spieler &a%sender% &7zum Spawn teleportiert"
+  lobbySelf: "&7Du wurdest zur Lobby teleportiert"
+  lobbyYouOthers: "&7Du hast &a%victim% &7zur Lobby teleportiert"
+  lobbyOthersYou: "&7Du wurdest von &a%sender% &7zur Lobby teleportiert"
+  noLobby: "&cDie Lobby ist nicht definiert!"
+  discordMsg: "&7Hier ist unser Discord, &a%sender% &7:\n&9&nhttps://discord.gg/HHtQ8wU2TK"
+  freefallMsg: "&d&lDu wurdest hier hoch teleportiert, Anfänger"
+  coordsMsg: "&8[&c%sender%&8 -> &cDu&8] &7Meine Koordinaten sind:\n&aX: &7%x%\n&aY: &7%y%\n&aZ: &7%z%"
+  worldIsBlocked: "&cDiese Welt ist gesperrt"
+  worldBlocked: "&cDie Welt wurde gesperrt"
+  worldUnblocked: "&aDie Welt wurde freigeschaltet"
+  youGotPaidXP: "&e%player% &7hat dir &e%amount% &7Erfahrungslevel gegeben"
+  notEnoughLevels: "&cDu hast nicht genügend Erfahrungslevel dafür!"
+  youWasMentioned: "&e%player% &7hat dich erwähnt!"
+  mentionFormat: "&a&l"
+  deathTitleMsg: "&c&l%player% ist gestorben"
+  joinTitleMsg: "&aIst dem Server beigetreten!"
+  leaveTitleMsg: "&cHat den Server verlassen!"
+  joinLeaveNameFormat: "&e"
+
+  # BELOW THIS LINE REQUIRES SERVER RESTART
+
+  #----------------------------------#
+  # COMMAND DESCRIPTIONS             #
+  #----------------------------------#
+  spawnDescription: "Teleportiert den Spieler zum Spawn"
+  lobbyDescription: "Teleportiert den Spieler zur Lobby"
+  discordDescription: "Zeigt den Discord-Server"
+  freefallDescription: "Teleportiert den Spieler in die Höhe des Himmels"
+  sendcoordsDescription: "Sendet deine Koordinaten an einen anderen Spieler"
+  blockworldDescription: "Sperrt eine Welt"
+  payxpDescription: "Zahlt Erfahrungslevel an einen anderen Spieler"
+  astickDescription: "Gibt dir den Admin-Stick"
+  reloadDescription: "Lädt die Konfiguration des Plugins neu"
+  thunderDescription: "Ruft einen Blitz an der Position des Spielers herbei"
+  globalchestDescription: "Öffnet die globale Truhe"
+
+  #----------------------------------#
+  # CUSTOM ITEMS                     #
+  #----------------------------------#
+  scissorsName: "&e&lSchere"
+  scissorsLore: "&7Kühe, Schweine, Zombies"
+  adminStickName: "&c&lADMIN-STAB"
+  adminStickLore: "&dEin Stab, um sie alle zu beherrschen!"
+
+# ██████╗░██╗░░░██╗░░░░░░██████╗░██╗░░░██╗
+# ██╔══██╗██║░░░██║░░░░░░██╔══██╗██║░░░██║
+# ██████╔╝██║░░░██║█████╗██████╔╝██║░░░██║
+# ██╔══██╗██║░░░██║╚════╝██╔══██╗██║░░░██║
+# ██║░░██║╚██████╔╝░░░░░░██║░░██║╚██████╔╝
+# ╚═╝░░╚═╝░╚═════╝░░░░░░░╚═╝░░╚═╝░╚═════╝░
+# by ChatGPT
+
+language:
+  
+  #----------------------------------#
+  # PLUGIN STUFF                     #
+  #----------------------------------#
+  prefix: "&6[&9Простые Инструменты&6]"
+  adminchatPrefix: "&8[&cАдминЧат&8]&r"
+  configReloaded: "&aКонфигурация перезагружена!"
+
+  #----------------------------------#
+  # ERRORS                           #
+  #----------------------------------#
+  onlyPlayerCommand: "&cЭта команда может быть выполнена только игроком"
+  noPermission: "&cУ вас нет разрешения на это!"
+  tooManyArguments: "&cСлишком много аргументов!"
+  playerRequired: "&cВы должны указать игрока!"
+  invalidArgument: "&cНедопустимый аргумент!"
+  temporarilyDisabled: "&cЭта команда временно отключена"
+  notOnlineOrConnected: "&cИгрок не существует или не подключен!"
+
+  #----------------------------------#
+  # MESSAGES                         #
+  #----------------------------------#
+  globalChestTitle: "&8Глобальный сундук"
+  spawnSelf: "&7Вы были телепортированы на спавн"
+  spawnYouOthers: "&7Вы телепортировали &a%victim% &7на спавн"
+  spawnOthersYou: "&7Вас телепортировал на спавн &a%sender%"
+  lobbySelf: "&7Вы были телепортированы в лобби"
+  lobbyYouOthers: "&7Вы телепортировали &a%victim% &7в лобби"
+  lobbyOthersYou: "&7Вас телепортировал в лобби &a%sender%"
+  noLobby: "&cЛобби не определено!"
+  discordMsg: "&7Вот наш Discord, &a%sender% &7:\n&9&nhttps://discord.gg/HHtQ8wU2TK"
+  freefallMsg: "&d&lВас телепортировали вверх, новичок"
+  coordsMsg: "&8[&c%sender%&8 -> &cВы&8] &7Мои координаты:\n&aX: &7%x%\n&aY: &7%y%\n&aZ: &7%z%"
+  worldIsBlocked: "&cЭтот мир заблокирован"
+  worldBlocked: "&cМир был заблокирован"
+  worldUnblocked: "&aМир разблокирован"
+  youGotPaidXP: "&e%player% &7передал вам &e%amount% &7уровней опыта"
+  notEnoughLevels: "&cУ вас недостаточно уровней для этого!"
+  youWasMentioned: "&e%player% &7упомянул вас!"
+  mentionFormat: "&a&l"
+  deathTitleMsg: "&c&l%player% умер"
+  joinTitleMsg: "&aПрисоединился к серверу!"
+  leaveTitleMsg: "&cПокинул сервер!"
+
+  # BELOW THIS LINE REQUIRES SERVER RESTART
+
+  #----------------------------------#
+  # COMMAND DESCRIPTIONS             #
+  #----------------------------------#
+  spawnDescription: "Телепортирует игрока на спавн"
+  lobbyDescription: "Телепортирует игрока в лобби"
+  discordDescription: "Показывает Discord сервера"
+  freefallDescription: "Телепортирует игрока на максимальную высоту"
+  sendcoordsDescription: "Отправляет ваши координаты другому игроку"
+  blockworldDescription: "Блокирует мир"
+  payxpDescription: "Платит уровни опыта другому игроку"
+  astickDescription: "Выдает вам Админ-палку"
+  reloadDescription: "Перезагружает конфигурацию плагина"
+  thunderDescription: "Призывает молнию в позиции игрока"
+  globalchestDescription: "Открывает глобальный сундук"
+
+  #----------------------------------#
+  # CUSTOM ITEMS                     #
+  #----------------------------------#
+  scissorsName: "&e&lНожницы"
+  scissorsLore: "&7Коровы, свиньи, зомби"
+  adminStickName: "&c&lАДМИН-ПАЛКА"
+  adminStickLore: "&dПалка, чтобы управлять ими всеми!"

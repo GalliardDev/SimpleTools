@@ -1,7 +1,7 @@
 config:
 
   #----------------------------------#
-  # COSAS DEL PLUGIN                 #
+  # MODULES                          #
   #----------------------------------#
   joinTitle: true
   leaveTitle: true 
@@ -10,21 +10,21 @@ config:
   autoItemRefill: true
   
   #----------------------------------#
-  # MUNDO DEL LOBBY                  #
+  # LOBBY WORLD DEFINITION           #
   #----------------------------------#
   lobby: "lobby"
 
 language:
   
   #----------------------------------#
-  # COSAS DEL PLUGIN                 #
+  # PLUGIN STUFF                     #
   #----------------------------------#
   prefix: "&6[&9SimpleTools&6]"
   adminchatPrefix: "&8[&cAdminChat&8]&r"
   configReloaded: "&aSe ha recargado la configuración!"
 
   #----------------------------------#
-  # ERRORES                          #
+  # ERRORS                          #
   #----------------------------------#
   onlyPlayerCommand: "&cEste comando sólo lo puede ejecutar un jugador"
   noPermission: "&cNo tienes permisos para eso!"
@@ -35,7 +35,7 @@ language:
   notOnlineOrConnected: "&cEl jugador no existe o no está conectado!"
 
   #----------------------------------#
-  # MENSAJES                         #
+  # MESSAGES                         #
   #----------------------------------#
   globalChestTitle: "&8Cofre global"
   spawnSelf: "&7Has sido teletransportado al spawn"
@@ -60,10 +60,10 @@ language:
   leaveTitleMsg: "&cSe ha ido del servidor!"
   joinLeaveNameFormat: "&e"
 
-  # POR DEBAJO DE ESTA LÍNEA REQUIERE REINICIO DEL SERVIDOR
+  # BELOW THIS LINE REQUIRES SERVER RESTART
 
   #----------------------------------#
-  # ARGUMENTOS DE LOS COMANDOS       #
+  # COMMAND ARGUMENTS                #
   #----------------------------------#
   player: "jugador"
   levels: "niveles"
@@ -71,7 +71,7 @@ language:
   world: "mundo"
 
   #----------------------------------#
-  # DESCRIPCIONES DE COMANDOS        #
+  # COMMAND DESCRIPTIONS             #
   #----------------------------------#
   spawnDescription: "Teletransporta al jugador al spawn"
   lobbyDescription: "Teletransporta al jugador al lobby"
@@ -86,7 +86,7 @@ language:
   globalchestDescription: "Abre el cofre global" 
 
   #----------------------------------#
-  # ITEMS CUSTOM                     #
+  # CUSTOM ITEMS                     #
   #----------------------------------#
   scissorsName: "&e&lTijeras"
   scissorsLore: "&7Vacas, cerdos, zombies"
