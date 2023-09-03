@@ -27,7 +27,6 @@ public class Utils {
 	
 	public static String placeholderParser(String message, List<String> placeholders, List<String> values) {
         int i = 0;
-        message = message.replace('&', '§');
     	for(String p:placeholders) {
     		if(message.contains(p)) {
         	    message = message.replace(p, values.get(i));
@@ -38,9 +37,24 @@ public class Utils {
     }
 	
 	public static String colorCodeParser(String message) {
-		message = message.replace('&', '§');
+		message = MojangHEXParser(message).replace('&', '§');
 		return message;
 	}
+	
+	public static String MojangHEXParser(String input) {
+		String res = null;
+        if(input.startsWith("&#")) {
+        	StringBuilder parsedString = new StringBuilder();
+            String code = input.substring(0,8);
+            for (char c : code.toCharArray()) {
+                parsedString.append('&').append(c);
+            }
+            res = parsedString.toString().replace("&&&#", "&x")+input.substring(8,input.length());
+        } else {
+        	res = input;
+        }
+        return res;
+    }
 	
 	public static Material getMaterialWithProb() {
     	double n = Math.random();

@@ -341,9 +341,16 @@ public class EventListener {
 							CommandManager.PREFIX + " " + config.getString("language.worldIsBlocked")));
 				}
 			}
-
+			
 			@EventHandler
 			public void onChatMessage(AsyncPlayerChatEvent event) {
+				if(event.getPlayer().hasPermission("simpletools.chatformat")) {
+					event.setMessage(Utils.colorCodeParser(event.getMessage()));
+				}
+			}
+			
+			@EventHandler
+			public void onEmojiMessage(AsyncPlayerChatEvent event) {
 				EmojiMap<String, String> emojisByName = new EmojiMap<>();
 				String msg = event.getMessage();
 				for (String s : emojisByName.keySet()) {
