@@ -1,5 +1,9 @@
 package es.exmaster.simpletools.utils;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -150,4 +154,28 @@ public class Utils {
 
         return palo;
     }	
+	
+	public static void copyResourceToFile(String resourceName, String destinationPath) throws IOException {
+        ClassLoader classLoader = Utils.class.getClassLoader();
+        try (InputStream inputStream = classLoader.getResourceAsStream(resourceName);
+             FileOutputStream outputStream = new FileOutputStream(destinationPath)) {
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, length);
+            }
+        }
+    }
+	
+	public static void createLangs() {
+		try {
+			File langs = new File(SimpleTools.plugin.getDataFolder(), "langs.yml");
+			langs.createNewFile();
+			copyResourceToFile("langs.yml", new File(SimpleTools.plugin.getDataFolder(), "langs.yml").getAbsolutePath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

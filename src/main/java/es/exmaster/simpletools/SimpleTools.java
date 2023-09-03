@@ -13,6 +13,7 @@ import es.exmaster.simpletools.utils.ConfigWrapper;
 import es.exmaster.simpletools.utils.ConsoleColors;
 import es.exmaster.simpletools.utils.GlobalChest;
 import es.exmaster.simpletools.utils.UpdateChecker;
+import es.exmaster.simpletools.utils.Utils;
 
 public class SimpleTools extends JavaPlugin implements Listener {
     
@@ -34,6 +35,7 @@ public class SimpleTools extends JavaPlugin implements Listener {
         super.onEnable();
         plugin = this;
         config.onEnable();
+        Utils.createLangs();
         CommandAPI.onEnable();
         CommandManager.registerCommands();
         EventListener.registerEvents();
