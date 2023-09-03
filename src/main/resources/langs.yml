@@ -11,8 +11,8 @@ language:
   #----------------------------------#
   # COSAS DEL PLUGIN                 #
   #----------------------------------#
-  prefix: "&6[&9SimpleTools&6]"
-  adminchatPrefix: "&8[&cAdminChat&8]&r"
+  prefix: '&#ff3f1f&lSimpleTools &e&l»'
+  adminchatPrefix: '&#ff3f1f&lAdminChat &e&l»&r'
   configReloaded: "&aSe ha recargado la configuración!"
 
   #----------------------------------#
@@ -98,8 +98,8 @@ language:
   #----------------------------------#
   # PLUGIN STUFF                     #
   #----------------------------------#
-  prefix: "&6[&9SimpleTools&6]"
-  adminchatPrefix: "&8[&cAdminChat&8]&r"
+  prefix: '&#ff3f1f&lSimpleTools &e&l»'
+  adminchatPrefix: '&#ff3f1f&lAdminChat &e&l»&r'
   configReloaded: "&aConfig reloaded!"
 
   #----------------------------------#
@@ -190,8 +190,8 @@ language:
   #----------------------------------#
   # PLUGIN STUFF                     #
   #----------------------------------#
-  prefix: "&6[&9SimpleTools&6]"
-  adminchatPrefix: "&8[&cAdminChat&8]&r"
+  prefix: '&#ff3f1f&lSimpleTools &e&l»'
+  adminchatPrefix: '&#ff3f1f&lAdminChat &e&l»&r'
   configReloaded: "&aConfigurazione ricaricata!"
 
   #----------------------------------#
@@ -277,8 +277,8 @@ language:
   #----------------------------------#
   # PLUGIN STUFF                     #
   #----------------------------------#
-  prefix: "&6[&9OutilsSimples&6]"
-  adminchatPrefix: "&8[&cAdminChat&8]&r"
+  prefix: '&#ff3f1f&lSimpleTools &e&l»'
+  adminchatPrefix: '&#ff3f1f&lAdminChat &e&l»&r'
   configReloaded: "&aConfiguration rechargée !"
 
   #----------------------------------#
@@ -364,8 +364,8 @@ language:
   #----------------------------------#
   # PLUGIN STUFF                     #
   #----------------------------------#
-  prefix: "&6[&9EinfacheWerkzeuge&6]"
-  adminchatPrefix: "&8[&cAdminChat&8]&r"
+  prefix: '&#ff3f1f&lSimpleTools &e&l»'
+  adminchatPrefix: '&#ff3f1f&lAdminChat &e&l»&r'
   configReloaded: "&aKonfiguration neu geladen!"
 
   #----------------------------------#
@@ -451,8 +451,8 @@ language:
   #----------------------------------#
   # PLUGIN STUFF                     #
   #----------------------------------#
-  prefix: "&6[&9Простые Инструменты&6]"
-  adminchatPrefix: "&8[&cАдминЧат&8]&r"
+  prefix: '&#ff3f1f&lSimpleTools &e&l»'
+  adminchatPrefix: '&#ff3f1f&lAdminChat &e&l»&r'
   configReloaded: "&aКонфигурация перезагружена!"
 
   #----------------------------------#

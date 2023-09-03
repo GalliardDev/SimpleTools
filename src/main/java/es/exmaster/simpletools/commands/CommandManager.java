@@ -50,7 +50,7 @@ public class CommandManager {
 		.withShortDescription("Base/Info command")
 		.executesPlayer((sender, args) -> {
 					sender.sendMessage(Utils.colorCodeParser(config.getString("language.prefix")) + " "
-							+ "Developed with <3 by ExceptionMaster");
+							+ "§7Developed with §x§e§2§0§0§3§f❤ §7by §x§f§f§3§f§1§fExceptionMaster");
 		})
 		.register();
 		
