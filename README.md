@@ -4,6 +4,7 @@
 > [ ] - optional arguments<br>
 > < > - required arguments<br>
 
+> **/simpletools -** Base/Info command<br>
 > **/spawn [player] -** Teleports you or another player to the spawn<br>
 > **/freefall <player> -** Makes a player fall from their Y coordinate plus 200 blocks<br>
 > **/discord -** Gives you your discord invitation link if set in config<br>
@@ -14,7 +15,7 @@
 > **/worldblock <world> -** Blocks a world for players to not enter<br>
 > **/lobby [player] -** Teleports you or another player to the lobby world if set in config<br>
 > **/payxp <player> <amount> -** Pays a player a specified amount of XP levels<br>
-> **/simpletools [reload] -** Shows basic info of the plugin. If reload argument is provided, it'll reload the config.<br>
+> **/streload -** Reloads the config.<br>
 
 # Permissions
 > **simpletools.&#42; -** This gives you all the perms (not recommended)<br>
@@ -32,7 +33,8 @@
 > **simpletools.lobby -** Allows you to use /lobby command<br>
 > **simpletools.lobby.others -** Allows you to use /lobby &lt;player&gt; command<br>
 > **simpletools.payxp -** Allows you to use /payxp &lt;player&gt; &lt;amount&gt; command<br>
-> **simpletools.adminchat -** Allows you to use the adminchat
+> **simpletools.adminchat -** Allows you to use the adminchat<br>
+> **simpletools.chatformat -** Allows you to use format in the chat
 
 # [NEW!] Recipes
 
