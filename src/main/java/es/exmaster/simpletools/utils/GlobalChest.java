@@ -17,7 +17,6 @@ public class GlobalChest {
 	private static File itemsFile;
 	private static FileConfiguration items;
 	private static ConfigWrapper config = SimpleTools.getConf();
-	private static Inventory globalChestInventory;
 	private static Inventory inv = Bukkit.createInventory(null, 54,
 			Utils.colorCodeParser(config.getString("language.globalChestTitle")));
 
@@ -28,10 +27,6 @@ public class GlobalChest {
 	public static FileConfiguration getItems() {
 		return items;
 	}
-
-	public static Inventory getGlobalChestInventory() {
-		return globalChestInventory;
-	}
 	
 	public static Inventory getInv() {
 		return inv;
@@ -40,14 +35,14 @@ public class GlobalChest {
 	@SuppressWarnings("unchecked")
 	public static void loadChest() {
 		ConfigurationSection inventorySection = items.getConfigurationSection("inventory");
-		if (inventorySection != null) {
-			globalChestInventory.setContents(((List<ItemStack>) inventorySection.getList("items")).toArray(ItemStack[]::new));
+		if (inventorySection != null && inventorySection.getList("items") != null) {
+			inv.setContents(((List<ItemStack>) inventorySection.getList("items")).toArray(ItemStack[]::new));
 		}
 	}
 
 	public static void saveChest() {
 		ConfigurationSection inventorySection = items.createSection("inventory");
-		inventorySection.set("items", globalChestInventory.getContents());
+		inventorySection.set("items", inv.getContents());
 
 		try {
 			items.save(itemsFile);
@@ -59,6 +54,5 @@ public class GlobalChest {
 	public static void loadConfig() {
 		itemsFile = new File(SimpleTools.plugin.getDataFolder(), "items.yml");
 		items = YamlConfiguration.loadConfiguration(itemsFile);
-		globalChestInventory = inv;
 	}
 }

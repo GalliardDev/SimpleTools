@@ -45,8 +45,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import es.exmaster.simpletools.SimpleTools;
 import es.exmaster.simpletools.commands.CommandManager;
 import es.exmaster.simpletools.tasks.LocationTracker;
-import es.exmaster.simpletools.utils.CustomConfigManager;
 import es.exmaster.simpletools.utils.ConfigWrapper;
+import es.exmaster.simpletools.utils.CustomConfigManager;
 import es.exmaster.simpletools.utils.EmojiMap;
 import es.exmaster.simpletools.utils.GlobalChest;
 import es.exmaster.simpletools.utils.MinepacksAccessor;
@@ -61,14 +61,14 @@ public class EventListener {
 		Bukkit.getPluginManager().registerEvents(new Listener() {
 			@EventHandler
 			public void onInventoryOpen(InventoryOpenEvent event) {
-				if (event.getInventory().equals(GlobalChest.getGlobalChestInventory())) {
+				if (event.getInventory().equals(GlobalChest.getInv())) {
 					GlobalChest.loadChest();
 				}
 			}
 
 			@EventHandler
 			public void onInventoryClose(InventoryCloseEvent event) {
-				if (event.getInventory().equals(GlobalChest.getGlobalChestInventory())) {
+				if (event.getInventory().equals(GlobalChest.getInv())) {
 					GlobalChest.saveChest();
 				}
 			}
