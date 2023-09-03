@@ -66,109 +66,100 @@
 # config.yml
 ```YAML
 config:
-  # TITLES
+
+  #----------------------------------#
+  # MODULES                          #
+  #----------------------------------#
   joinTitle: true
   leaveTitle: true 
   deathTitle: true
   harvestOnRightClick: true
   autoItemRefill: true
-  # LOBBY
+  
+  #----------------------------------#
+  # LOBBY WORLD DEFINITION           #
+  #----------------------------------#
   lobby: "lobby"
 
 language:
-  # es_ES ============================================================================================================
-  # COSAS DEL PLUGIN
-  prefix: "&6[&9SimpleTools&6]"
+  
+  #----------------------------------#
+  # PLUGIN STUFF                     #
+  #----------------------------------#
+  prefix: '&#ff3f1f&lSimpleTools &e&l»'
+  adminchatPrefix: '&#ff3f1f&lAdminChat &e&l»&r'
   configReloaded: "&aSe ha recargado la configuración!"
-  # ERRORES
+
+  #----------------------------------#
+  # ERRORS                          #
+  #----------------------------------#
   onlyPlayerCommand: "&cEste comando sólo lo puede ejecutar un jugador"
   noPermission: "&cNo tienes permisos para eso!"
   tooManyArguments: "&cDemasiados argumentos!"
   playerRequired: "&cDebes especificar un jugador!"
   invalidArgument: "&cArgumento no válido!"
   temporarilyDisabled: "&cEste comando está temporalmente desactivado"
-  # COMANDO GLOBAL CHEST
+  notOnlineOrConnected: "&cEl jugador no existe o no está conectado!"
+
+  #----------------------------------#
+  # MESSAGES                         #
+  #----------------------------------#
   globalChestTitle: "&8Cofre global"
-  # COMANDO DEL SPAWN
   spawnSelf: "&7Has sido teletransportado al spawn"
   spawnYouOthers: "&7Has teletransportado a &a%victim% &7al spawn"
   spawnOthersYou: "&7Has sido teletransportado al spawn por &a%sender%"
-  # COMANDO DEL LOBBY
   lobbySelf: "&7Has sido teletransportado al lobby"
   lobbyYouOthers: "&7Has teletransportado a &a%victim% &7al lobby"
   lobbyOthersYou: "&7Has sido teletransportado al lobby por &a%sender%"
   noLobby: "&cEl lobby no está definido!"
-  # COMANDO DEL LINK DE DISCORD
   discordMsg: "&7Aquí tienes nuestro discord, &a%sender% &7:\n&9&nhttps://discord.gg/HHtQ8wU2TK"
-  # COMANDO DE CAÍDA LIBRE
   freefallMsg: "&d&lHas sido teletransportado aquí arriba por nuv"
-  # MENSAJES DE LOS TÍTULOS
+  coordsMsg: "&8[&c%sender%&8 -> &cTú&8] &7Mis coordenadas son:\n&aX: &7%x%\n&aY: &7%y%\n&aZ: &7%z%"
+  worldIsBlocked: "&cEste mundo está bloqueado"
+  worldBlocked: "&cSe ha bloqueado el mundo"
+  worldUnblocked: "&aSe ha desbloqueado el mundo"
+  youGotPaidXP: "&e%player% &7te ha dado &e%amount% &7niveles de &aXP"
+  notEnoughLevels: "&cNo tienes suficientes niveles para esto!"
+  youWasMentioned: "&e%player% &7te ha mencionado!"
+  mentionFormat: "&a&l"
   deathTitleMsg: "&c&l%player% ha muerto"
   joinTitleMsg: "&aHa entrado al servidor!"
   leaveTitleMsg: "&cSe ha ido del servidor!"
   joinLeaveNameFormat: "&e"
-  # COMANDO DE ENVIAR COORDENADAS
-  coordsMsg: "&8[&c%sender%&8 -> &cTú&8] &7Mis coordenadas son:\n&aX: &7%x%\n&aY: &7%y%\n&aZ: &7%z%"
-  # NOMBRES DE LOS ITEMS CUSTOM
+
+  # BELOW THIS LINE REQUIRES SERVER RESTART
+
+  #----------------------------------#
+  # COMMAND ARGUMENTS                #
+  #----------------------------------#
+  player: "jugador"
+  levels: "niveles"
+  times: "veces"
+  world: "mundo"
+
+  #----------------------------------#
+  # COMMAND DESCRIPTIONS             #
+  #----------------------------------#
+  spawnDescription: "Teletransporta al jugador al spawn"
+  lobbyDescription: "Teletransporta al jugador al lobby"
+  discordDescription: "Muestra el discord del servidor"
+  freefallDescription: "Teletransporta al jugador a la altura del cielo"
+  sendcoordsDescription: "Manda tus coordenadas a otro jugador"
+  blockworldDescription: "Bloquea un mundo"
+  payxpDescription: "Paga niveles de XP a otro jugador"
+  astickDescription: "Te da el Admin Stick"
+  reloadDescription: "Recarga la configuración del plugin"
+  thunderDescription: "Invoca un rayo en la posición del jugador"
+  globalchestDescription: "Abre el cofre global" 
+
+  #----------------------------------#
+  # CUSTOM ITEMS                     #
+  #----------------------------------#
   scissorsName: "&e&lTijeras"
   scissorsLore: "&7Vacas, cerdos, zombies"
   adminStickName: "&c&lADMIN STICK"
   adminStickLore: "&dUn palo para dominarlos a todos!"
-  # BLOQUEADOR DE MUNDOS
-  worldIsBlocked: "&cEste mundo está bloqueado"
-  worldBlocked: "&cSe ha bloqueado el mundo"
-  worldUnblocked: "&aSe ha desbloqueado el mundo"
-  # COMANDO DE PAGAR/ENVIAR XP
-  youGotPaidXP: "&e%player% &7te ha dado &e%amount% &7niveles de &aXP"
-  notEnoughLevels: "&cNo tienes suficientes niveles para esto!"
-  # ==================================================================================================================
-  
-  # en_US ============================================================================================================
-  # PLUGIN THINGS
-  #prefix: "&6[&9SimpleTools&6]"
-  #configReloaded: "&aConfig reloaded!"
-  # ERRORS
-  #onlyPlayerCommand: "&cThis command can only be executed by a player"
-  #noPermission: "&cYou don't have permissions to do that!"
-  #tooManyArguments: "&cToo many arguments!"
-  #playerRequired: "&cYou must specify a player!"
-  #invalidArgument: "&cInvalid argument!"
-  #temporarilyDisabled: "&cThis command is temporarily disabled"
-  # GLOBAL CHEST COMMAND
-  #globalChestTitle: "&8Global chest"
-  # SPAWN COMMAND
-  #spawnSelf: "&7You have been teleported to the spawn"
-  #spawnYouOthers: "&7You've sent &a%victim% &7to the spawn"
-  #spawnOthersYou: "&7You've been sent to the spawn by &a%sender%"
-  # LOBBY COMMAND
-  #lobbySelf: "&7You have been teleported to lobby"
-  #lobbyYouOthers: "&7You've sent &a%victim% &7to the lobby"
-  #lobbyOthersYou: "&7You've been sent to the lobby by &a%sender%"
-  #noLobby: "&cThere's no lobby defined in the config!"
-  # DISCORD COMMAND
-  #discordMsg: "&7Here's our discord, &a%sender% &7:\n&9&nhttps://discord.gg/HHtQ8wU2TK"
-  # FREE FALL COMMAND
-  #freefallMsg: "&d&lU have been teleported up here, fool!"
-  # TITLES MESSAGES
-  #deathTitleMsg: "&c&l%player% has died"
-  #joinTitleMsg: "&aJoined the server!"
-  #leaveTitleMsg: "&cLeft the server!"
-  #joinLeaveNameFormat: "&e"
-  # COORDS MESSAGE
-  #coordsMsg: "&8[&c%sender%&8 -> &cYou&8] &7These are my coords:\n&aX: &7%x%\n&aY: &7%y%\n&aZ: &7%z%"
-  # ITEMS NAMES
-  #scissorsName: "&e&lScissors"
-  #scissorsLore: "&7Try cutting off some cows, pigs or zombies"
-  #adminStickName: "&c&lADMIN STICK"
-  #adminStickLore: "&dA stick to rule them all!"
-  # WORLD BLOCKER
-  #worldIsBlocked: "&cThis world is blocked"
-  #worldBlocked: "&cThe world has been blocked"
-  #worldUnblocked: "&aThe world has been unblocked"
-  # XP PAY
-  #youGotPaidXP: "&e%player% &7sent you &e%amount% &aXP &7levels"
-  #notEnoughLevels: "&cYou don't have enough levels for this!"
-  # ==================================================================================================================
 
-version: 2.0.0
+# DO NOT EDIT
+file-version: 2
 ```
