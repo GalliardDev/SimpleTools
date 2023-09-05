@@ -46,7 +46,7 @@ public class SimpleTools extends JavaPlugin implements Listener {
             if (pluginVersion.compareTo(versionFromAPI) == 0) {
                 this.getLogger().info("I'm up to date!");
             } else if(pluginVersion.compareTo(versionFromAPI) > 0) {
-            	this.getLogger().warning("This is a DEV BUILD");
+            	this.getLogger().warning("Using version " + pluginVersion.toString() + " which is a DEV BUILD!");
             } else {
                 this.getLogger().severe("I'm not up to date! You can download my last version from " + SPIGOT_LINK);
             }
