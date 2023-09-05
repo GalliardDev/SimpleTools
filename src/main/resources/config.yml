@@ -8,6 +8,10 @@ config:
   deathTitle: true
   harvestOnRightClick: true
   autoItemRefill: true
+  adminChat: true
+  chatFormat: true
+  mentions: true
+  emojis: true
   
   #----------------------------------#
   # LOBBY WORLD DEFINITION           #
@@ -94,4 +98,4 @@ language:
   adminStickLore: "&dUn palo para dominarlos a todos!"
 
 # DO NOT EDIT
-file-version: 2
+file-version: 3

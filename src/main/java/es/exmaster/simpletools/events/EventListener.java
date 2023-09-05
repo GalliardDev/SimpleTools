@@ -314,11 +314,8 @@ public class EventListener {
 			@EventHandler
 			public void onCampfireCook(BlockCookEvent event) {
 				if (event.getBlock().getType() == Material.CAMPFIRE) {
-					System.out.println("Es hoguera");
 					if (event.getSource().getType() == Material.ROTTEN_FLESH) {
-						System.out.println("Es rotten flesh");
 						event.setResult(new ItemStack(Utils.getMaterialWithProb()));
-						System.out.println("Se ha escogido el item random");
 					}
 				}
 			}
@@ -344,64 +341,73 @@ public class EventListener {
 			
 			@EventHandler
 			public void onChatMessage(AsyncPlayerChatEvent event) {
-				if(event.getPlayer().hasPermission("simpletools.chatformat")) {
-					event.setMessage(Utils.colorCodeParser(event.getMessage()));
+				if(config.getBoolean("config.chatFormat") == true) {
+					if(event.getPlayer().hasPermission("simpletools.chatformat")) {
+						event.setMessage(Utils.colorCodeParser(event.getMessage()));
+					}
 				}
 			}
 			
 			@EventHandler
 			public void onEmojiMessage(AsyncPlayerChatEvent event) {
-				EmojiMap<String, String> emojisByName = new EmojiMap<>();
-				String msg = event.getMessage();
-				for (String s : emojisByName.keySet()) {
-					if (msg.contains(s)) {
-						msg = msg.replace(s, emojisByName.get(s));
+				if(config.getBoolean("config.emojis") == true) {
+					EmojiMap<String, String> emojisByName = new EmojiMap<>();
+					String msg = event.getMessage();
+					for (String s : emojisByName.keySet()) {
+						if (msg.contains(s)) {
+							msg = msg.replace(s, emojisByName.get(s));
+						}
 					}
+					event.setMessage(msg);
 				}
-				event.setMessage(msg);
 			}
 			
 			@EventHandler
 			public void onAdminMessage(AsyncPlayerChatEvent event) {
-				if(event.getMessage().startsWith("#") && event.getPlayer().hasPermission("simpletools.adminchat")) {
-					String msg = event.getMessage().replace("#",
-							Utils.colorCodeParser(config.getString("language.adminchatPrefix"))+" "+
-								ChatColor.GRAY+event.getPlayer().getName()+ChatColor.AQUA+":"+ChatColor.RESET+" ")
-									.replace("  ", " ");
-					event.setCancelled(true);
-					for(Player p:Bukkit.getOnlinePlayers()) {
-						if(p.hasPermission("simpletools.adminchat")) {
-							p.sendRawMessage(msg);
+				if(config.getBoolean("config.adminChat") == true) {
+					if(event.getMessage().startsWith("#") && event.getPlayer().hasPermission("simpletools.adminchat")) {
+						String msg = event.getMessage().replace("#",
+								Utils.colorCodeParser(config.getString("language.adminchatPrefix"))+" "+
+									ChatColor.GRAY+event.getPlayer().getName()+ChatColor.AQUA+":"+ChatColor.RESET+" ")
+										.replace("  ", " ");
+						event.setCancelled(true);
+						for(Player p:Bukkit.getOnlinePlayers()) {
+							if(p.hasPermission("simpletools.adminchat")) {
+								p.sendRawMessage(msg);
+							}
 						}
+					} else if(event.getMessage().startsWith("#") && !event.getPlayer().hasPermission("simpletools.adminchat")) {
+						event.setCancelled(true);
+						event.getPlayer().sendMessage(CommandManager.PREFIX + " " +
+			                    Utils.colorCodeParser(config.getString("language.noPermission")));
 					}
-				} else if(event.getMessage().startsWith("#") && !event.getPlayer().hasPermission("simpletools.adminchat")) {
-					event.setCancelled(true);
-					event.getPlayer().sendMessage(CommandManager.PREFIX + " " +
-		                    Utils.colorCodeParser(config.getString("language.noPermission")));
 				}
 			}
 			
 			@EventHandler
 			public void onMention(AsyncPlayerChatEvent event) {
-				List<String> players = Bukkit.getServer().getOnlinePlayers().stream().map(x->x.getName()).toList();
-				if(event.getMessage().startsWith("@") && event.getPlayer().hasPermission("simpletools.mentions")) {
-					Player victim = null;
-					if(players.contains(event.getMessage().split(" ")[0].replace("@", ""))) {
-						victim = Bukkit.getServer().getPlayer(event.getMessage().split(" ")[0].replace("@", ""));
-					}
-					String mention = event.getMessage().split(" ")[0];
-					String formattedMention = Utils.colorCodeParser(config.getString("language.mentionFormat")+mention)+ChatColor.RESET;
-					if(victim != null) {
-						event.setMessage(event.getMessage().replace(mention, formattedMention));
-						victim.sendMessage(CommandManager.PREFIX + " " +
-		                    Utils.placeholderParser(Utils.colorCodeParser(config.getString("language.youWasMentioned")),
-		                    		List.of("%player%"),
-		                    		List.of(event.getPlayer().getName())));
-						victim.playSound(victim, Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
-					} else {
-						event.setCancelled(true);
-						event.getPlayer().sendMessage(CommandManager.PREFIX + " " +
-		                    Utils.colorCodeParser(config.getString("language.notOnlineOrConnected")));
+				if(config.getBoolean("config.mentions") == true) {
+					List<String> players = Bukkit.getServer().getOnlinePlayers().stream().map(x->x.getName()).toList();
+					boolean containsPlayer = false;
+					if(event.getPlayer().hasPermission("simpletools.mentions")) {
+						Player victim = null;
+						for(String s:players) {
+							if(event.getMessage().contains(s)) {
+								victim = Bukkit.getServer().getPlayer(s);
+								containsPlayer = true;
+							}
+						}
+						if (victim != null && containsPlayer){
+							String formattedMention = Utils.colorCodeParser(config.getString("language.mentionFormat")+"@"+victim.getName())+ChatColor.RESET;
+							event.setMessage(event.getMessage().replace(victim.getName(), formattedMention));
+							victim.sendMessage(CommandManager.PREFIX + " " +
+			                    Utils.placeholderParser(Utils.colorCodeParser(config.getString("language.youWasMentioned")),
+			                    		List.of("%player%"),
+			                    		List.of(event.getPlayer().getName())));
+							victim.playSound(victim, Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
+						} else {
+							
+						}
 					}
 				}
 			}
