@@ -475,7 +475,8 @@ public class CommandManager {
 			
 			int numberOfRows = (booleans / 9) + (booleans % 9 > 0 ? 1 : 0);
 			
-			ChestGui gui = new ChestGui(booleans >= 9 ? numberOfRows : 1, "Config");
+			ChestGui gui = new ChestGui(booleans >= 9 ? numberOfRows : 1,
+					Utils.colorCodeParser(config.getString("language.configMenuTitle")));
 			
 			OutlinePane pane = new OutlinePane(0, 0, booleans, numberOfRows);
 			

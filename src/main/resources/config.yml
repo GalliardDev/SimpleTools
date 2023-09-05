@@ -41,7 +41,7 @@ language:
   #----------------------------------#
   # MESSAGES                         #
   #----------------------------------#
-  globalChestTitle: "&8Cofre global"
+  globalChestTitle: "&#ff3f1fCofre global"
   spawnSelf: "&7Has sido teletransportado al spawn"
   spawnYouOthers: "&7Has teletransportado a &a%victim% &7al spawn"
   spawnOthersYou: "&7Has sido teletransportado al spawn por &a%sender%"
@@ -65,6 +65,7 @@ language:
   joinLeaveNameFormat: "&e"
   configMenuValueName: "&#ff3f1f&l"
   configMenuValueLore: "&7Valor: &#ff3f1f"
+  configMenuTitle: "&#ff3f1fConfiguración"
 
   # BELOW THIS LINE REQUIRES SERVER RESTART
 

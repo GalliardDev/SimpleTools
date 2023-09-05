@@ -53,6 +53,7 @@ language:
   joinLeaveNameFormat: "&e"
   configMenuValueName: "&#ff3f1f&l"
   configMenuValueLore: "&7Valor: &#ff3f1f"
+  configMenuTitle: "&#ff3f1fConfiguración"
 
   # POR DEBAJO DE ESTA LÍNEA REQUIERE REINICIO DEL SERVIDOR
 
@@ -143,6 +144,7 @@ language:
   joinLeaveNameFormat: "&e"
   configMenuValueName: "&#ff3f1f&l"
   configMenuValueLore: "&7Value: &#ff3f1f"
+  configMenuTitle: "&#ff3f1fConfiguration"
 
   # BELOW THIS LINE REQUIRES SERVER RESTART
 
@@ -238,6 +240,7 @@ language:
   joinLeaveNameFormat: "&e"
   configMenuValueName: "&#ff3f1f&l"
   configMenuValueLore: "&7Valore: &#ff3f1f"
+  configMenuTitle: "&#ff3f1fConfigurazione"
 
   # BELOW THIS LINE REQUIRES SERVER RESTART
 
@@ -328,6 +331,7 @@ language:
   joinLeaveNameFormat: "&e"
   configMenuValueName: "&#ff3f1f&l"
   configMenuValueLore: "&7Valeur: &#ff3f1f"
+  configMenuTitle: "&#ff3f1fConfiguration"
 
   # BELOW THIS LINE REQUIRES SERVER RESTART
 
@@ -418,6 +422,7 @@ language:
   joinLeaveNameFormat: "&e"
   configMenuValueName: "&#ff3f1f&l"
   configMenuValueLore: "&7Wert: &#ff3f1f"
+  configMenuTitle: "&#ff3f1fKonfiguration"
 
   # BELOW THIS LINE REQUIRES SERVER RESTART
 
@@ -508,6 +513,7 @@ language:
   joinLeaveNameFormat: "&e"
   configMenuValueName: "&#ff3f1f&l"
   configMenuValueLore: "&7Ценность: &#ff3f1f"
+  configMenuTitle: "&#ff3f1fПараметр"
 
   # BELOW THIS LINE REQUIRES SERVER RESTART
 
