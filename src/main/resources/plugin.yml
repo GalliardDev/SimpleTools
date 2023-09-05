@@ -70,7 +70,7 @@ permissions:
          simpletools.lobby: true
          simpletools.payxp: true
          simpletools.chatformat: true
-         simpletools.mentions:true
+         simpletools.mentions: true
    simpletools.*:
       description: This gives you all the perms
       default: op
