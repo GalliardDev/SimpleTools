@@ -50,13 +50,11 @@ import es.exmaster.simpletools.utils.CustomConfigManager;
 import es.exmaster.simpletools.utils.EmojiMap;
 import es.exmaster.simpletools.utils.GlobalChest;
 import es.exmaster.simpletools.utils.MinepacksAccessor;
-import es.exmaster.simpletools.utils.SimpleLogger;
 import es.exmaster.simpletools.utils.Utils;
 import net.md_5.bungee.api.ChatColor;
 
 public class EventListener {
 	private static ConfigWrapper config = SimpleTools.getConf();
-	private static SimpleLogger logger = new SimpleLogger();
 	public static void registerEvents() {
 		Bukkit.getPluginManager().registerEvents(new Listener() {
 			@EventHandler
@@ -90,7 +88,6 @@ public class EventListener {
 
 			@EventHandler
 			public void onPlayerJoin(PlayerJoinEvent event) {
-				logger.info(config.getBoolean("config.joinTitle")+"");
 				if (config.getBoolean("config.joinTitle") == true) {
 					Player player = event.getPlayer();
 					Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();

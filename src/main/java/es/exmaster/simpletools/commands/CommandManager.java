@@ -1,13 +1,24 @@
 package es.exmaster.simpletools.commands;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
+import com.github.stefvanschie.inventoryframework.gui.GuiItem;
+import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
+import com.github.stefvanschie.inventoryframework.pane.OutlinePane;
+
+import dev.dejvokep.boostedyaml.block.implementation.Section;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.arguments.Argument;
 import dev.jorel.commandapi.arguments.ArgumentSuggestions;
@@ -16,10 +27,11 @@ import dev.jorel.commandapi.arguments.PlayerArgument;
 import dev.jorel.commandapi.arguments.StringArgument;
 import es.exmaster.simpletools.SimpleTools;
 import es.exmaster.simpletools.tasks.LocationTracker;
-import es.exmaster.simpletools.utils.CustomConfigManager;
 import es.exmaster.simpletools.utils.ConfigWrapper;
+import es.exmaster.simpletools.utils.CustomConfigManager;
 import es.exmaster.simpletools.utils.GlobalChest;
 import es.exmaster.simpletools.utils.Utils;
+import net.md_5.bungee.api.ChatColor;
 
 public class CommandManager {
 	private static ConfigWrapper config = SimpleTools.getConf();
@@ -41,7 +53,7 @@ public class CommandManager {
 	private static Argument<?> worlds = new StringArgument(config.getString("language.world"))
 			.replaceSuggestions(ArgumentSuggestions.strings(info -> Bukkit.getWorlds().stream().map(x -> x.getName())
 					.toList().toArray(new String[Bukkit.getWorlds().size()])));
-	
+				
 	public static void registerCommands() {
 		// SIMPLETOOLS COMMAND
 		new CommandAPICommand("simpletools")
@@ -443,5 +455,94 @@ public class CommandManager {
 		        }
 		})
 		.register();
+		
+		//CONFIG COMMAND
+		new CommandAPICommand("stconfig")
+		.withAliases("stc")
+		.withFullDescription("Config")
+		.withShortDescription("Config")
+		.executesPlayer((sender, args) -> {
+			
+			Section confSec = config.getConfig().getSection("config");
+			
+			Map<String,Object> values = confSec.getStringRouteMappedValues(false);
+			
+			int booleans = (int) values.entrySet().stream()
+					.map(x->x.getValue())
+					.map(x->x.toString())
+					.filter(x->x.equals("true") || x.equals("false"))
+					.count();
+			
+			int numberOfRows = (booleans / 9) + (booleans % 9 > 0 ? 1 : 0);
+			
+			ChestGui gui = new ChestGui(booleans >= 9 ? numberOfRows : 1, "Config");
+			
+			OutlinePane pane = new OutlinePane(0, 0, booleans, numberOfRows);
+			
+			List<String> configItemsDisplayNames = values.entrySet().stream()
+					.filter(x->x.getValue().toString().equals("true") ||
+							x.getValue().toString().equals("false"))
+					.map(x->"§x§f§f§3§f§1§f§l"+x.getKey()).toList();
+			
+			List<String> configItemsLores = values.entrySet().stream()
+					.filter(x->x.getValue().toString().equals("true") ||
+							x.getValue().toString().equals("false"))
+					.map(x->"§7Valor: §x§f§f§3§f§1§f" + x.getValue().toString()).toList();
+			
+			List<ItemStack> configItems = new ArrayList<>();
+			
+			for(int x = 0; x < booleans; x++) {
+				ItemStack item = new ItemStack(Material.PAPER,1);
+				ItemMeta itemMeta = item.getItemMeta();
+				itemMeta.setDisplayName(configItemsDisplayNames.get(x));
+				itemMeta.setLore(List.of(configItemsLores.get(x)));
+				item.setItemMeta(itemMeta);
+				configItems.add(item);
+			}
+			
+			List<GuiItem> guiItems = configItems.stream().map(x->new GuiItem(x,event -> {
+				event.setCancelled(true);
+				reloadConfigItem(event);
+			})).toList();
+
+			guiItems.stream().forEach(x->pane.addItem(x));
+			gui.addPane(pane);
+			gui.show(sender);
+			
+		})
+		.register();
+		
+	}
+	
+	private static void reloadConfigItem(InventoryClickEvent event) {
+	    ItemStack clickedItem = event.getCurrentItem();
+	    if (clickedItem == null || clickedItem.getType() != Material.PAPER) {
+	        return; 
+	    }
+	    
+	    ItemMeta itemMeta = clickedItem.getItemMeta();
+	    if (itemMeta == null || !itemMeta.hasDisplayName()) {
+	        return;
+	    }
+	    
+	    String displayName = itemMeta.getDisplayName();
+	    String configKey = "config." + ChatColor.stripColor(displayName);
+	    
+	    boolean currentValue = config.getBoolean(configKey);
+	    boolean newValue = !currentValue;
+	    
+	    config.getConfig().set(configKey, newValue);
+	    config.save();
+	    
+	    itemMeta.setLore(List.of("§7Valor: §x§f§f§3§f§1§f" + newValue));
+	    clickedItem.setItemMeta(itemMeta);
+	    
+	    if (event.getWhoClicked() instanceof Player) {
+	        Player player = (Player) event.getWhoClicked();
+	        player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 1);
+	    }
+	    
+	    event.setCancelled(true);
+	    event.getInventory().setItem(event.getSlot(), clickedItem);
 	}
 }
