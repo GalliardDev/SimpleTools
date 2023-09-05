@@ -56,6 +56,20 @@ permissions:
    simpletools.chatformat:
       description: Allows you to use format and colors in chat messages
       default: op
+   simpletools.config:
+      description: Allows you to configure the plugin through the gui
+      default: op
+   simpletools.player:
+      description: Player recommended permissions
+      default: op
+      children:
+         simpletools.spawn: true
+         simpletools.discord: true
+         simpletools.globalchest: true
+         simpletools.sendcoords: true
+         simpletools.lobby: true
+         simpletools.payxp: true
+         simpletools.chatformat: true
    simpletools.*:
       description: This gives you all the perms
       default: op
@@ -76,3 +90,4 @@ permissions:
          simpletools.adminchat: true
          simpletools.mentions: true
          simpletools.chatformat: true
+         simpletools.config: true
