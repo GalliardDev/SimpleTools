@@ -10,6 +10,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -42,18 +44,32 @@ public class Utils {
 	}
 	
 	public static String MojangHEXParser(String input) {
-		String res = null;
-        if(input.startsWith("&#")) {
-        	StringBuilder parsedString = new StringBuilder();
-            String code = input.substring(0,8);
-            for (char c : code.toCharArray()) {
-                parsedString.append('&').append(c);
-            }
-            res = parsedString.toString().replace("&&&#", "&x")+input.substring(8,input.length());
-        } else {
-        	res = input;
-        }
-        return res;
+       String hex = "&#[0-9A-Fa-f]{6}";
+       Pattern pattern = Pattern.compile(hex);
+       Matcher matcher = pattern.matcher(input);
+       String res = null;
+        
+       if(matcher.find()) {
+    	   String hexColor = matcher.group();
+           String minecraftColor = convertHexToMinecraftColor(hexColor);
+           res = input.replace(hexColor, minecraftColor);
+       } else {
+    	   res = input;
+       }
+       return res;
+    }
+
+	public static String convertHexToMinecraftColor(String hexColor) {
+        // Extraer los valores R, G y B del formato HEX
+        String r1 = hexColor.substring(2, 3);
+        String r2 = hexColor.substring(3,4);
+        String g1 = hexColor.substring(4, 5);
+        String g2 = hexColor.substring(5, 6);
+        String b1 = hexColor.substring(6,7);
+        String b2 = hexColor.substring(7);
+
+        // Construir el formato de color de Minecraft 
+        return "&x&" + r1 + "&" + r2 + "&" + g1 + "&" + g2 + "&" + b1 + "&" + b2;
     }
 	
 	public static Material getMaterialWithProb() {
