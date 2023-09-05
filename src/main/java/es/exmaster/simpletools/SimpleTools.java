@@ -3,6 +3,8 @@ package es.exmaster.simpletools;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import org.apache.maven.artifact.versioning.ComparableVersion;
+
 import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPIBukkitConfig;
 import es.exmaster.simpletools.commands.CommandManager;
@@ -38,9 +40,13 @@ public class SimpleTools extends JavaPlugin implements Listener {
         GlobalChest.loadChest();
         LocationTracker.startLocationTrackingTask();
         new UpdateChecker(this, ID).getLatestVersion(version -> {
-            String currentVersion = plugin.getDescription().getVersion();
-            if (version.equals(currentVersion)) {
+            ComparableVersion versionFromAPI = new ComparableVersion(version);
+        	ComparableVersion pluginVersion = new ComparableVersion(plugin.getDescription().getVersion());
+            
+            if (pluginVersion.compareTo(versionFromAPI) == 0) {
                 this.getLogger().info("I'm up to date!");
+            } else if(pluginVersion.compareTo(versionFromAPI) > 0) {
+            	this.getLogger().warning("This is a DEV BUILD");
             } else {
                 this.getLogger().severe("I'm not up to date! You can download my last version from " + SPIGOT_LINK);
             }
