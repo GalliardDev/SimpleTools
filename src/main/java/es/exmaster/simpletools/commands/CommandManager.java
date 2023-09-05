@@ -10,7 +10,6 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -31,7 +30,6 @@ import es.exmaster.simpletools.utils.ConfigWrapper;
 import es.exmaster.simpletools.utils.CustomConfigManager;
 import es.exmaster.simpletools.utils.GlobalChest;
 import es.exmaster.simpletools.utils.Utils;
-import net.md_5.bungee.api.ChatColor;
 
 public class CommandManager {
 	private static ConfigWrapper config = SimpleTools.getConf();
@@ -505,7 +503,7 @@ public class CommandManager {
 			
 			List<GuiItem> guiItems = configItems.stream().map(x->new GuiItem(x,event -> {
 				event.setCancelled(true);
-				reloadConfigItem(event);
+				Utils.reloadConfigItem(event);
 			})).toList();
 
 			guiItems.stream().forEach(x->pane.addItem(x));
@@ -515,37 +513,5 @@ public class CommandManager {
 		})
 		.register();
 		
-	}
-	
-	private static void reloadConfigItem(InventoryClickEvent event) {
-	    ItemStack clickedItem = event.getCurrentItem();
-	    if (clickedItem == null || clickedItem.getType() != Material.PAPER) {
-	        return; 
-	    }
-	    
-	    ItemMeta itemMeta = clickedItem.getItemMeta();
-	    if (itemMeta == null || !itemMeta.hasDisplayName()) {
-	        return;
-	    }
-	    
-	    String displayName = itemMeta.getDisplayName();
-	    String configKey = "config." + ChatColor.stripColor(displayName);
-	    
-	    boolean currentValue = config.getBoolean(configKey);
-	    boolean newValue = !currentValue;
-	    
-	    config.getConfig().set(configKey, newValue);
-	    config.save();
-	    
-	    itemMeta.setLore(List.of(Utils.colorCodeParser(config.getString("language.configMenuValueLore")) + newValue));
-	    clickedItem.setItemMeta(itemMeta);
-	    
-	    if (event.getWhoClicked() instanceof Player) {
-	        Player player = (Player) event.getWhoClicked();
-	        player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 1);
-	    }
-	    
-	    event.setCancelled(true);
-	    event.getInventory().setItem(event.getSlot(), clickedItem);
 	}
 }

@@ -14,8 +14,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
@@ -23,6 +25,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import es.exmaster.simpletools.SimpleTools;
+import net.md_5.bungee.api.ChatColor;
 
 public class Utils {
 	private static ConfigWrapper config = SimpleTools.getConf();
@@ -207,5 +210,37 @@ public class Utils {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void reloadConfigItem(InventoryClickEvent event) {
+	    ItemStack clickedItem = event.getCurrentItem();
+	    if (clickedItem == null || clickedItem.getType() != Material.PAPER) {
+	        return; 
+	    }
+	    
+	    ItemMeta itemMeta = clickedItem.getItemMeta();
+	    if (itemMeta == null || !itemMeta.hasDisplayName()) {
+	        return;
+	    }
+	    
+	    String displayName = itemMeta.getDisplayName();
+	    String configKey = "config." + ChatColor.stripColor(displayName);
+	    
+	    boolean currentValue = config.getBoolean(configKey);
+	    boolean newValue = !currentValue;
+	    
+	    config.getConfig().set(configKey, newValue);
+	    config.save();
+	    
+	    itemMeta.setLore(List.of(Utils.colorCodeParser(config.getString("language.configMenuValueLore")) + newValue));
+	    clickedItem.setItemMeta(itemMeta);
+	    
+	    if (event.getWhoClicked() instanceof Player) {
+	        Player player = (Player) event.getWhoClicked();
+	        player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 1);
+	    }
+	    
+	    event.setCancelled(true);
+	    event.getInventory().setItem(event.getSlot(), clickedItem);
 	}
 }
