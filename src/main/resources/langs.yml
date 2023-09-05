@@ -51,6 +51,8 @@ language:
   joinTitleMsg: "&aHa entrado al servidor!"
   leaveTitleMsg: "&cSe ha ido del servidor!"
   joinLeaveNameFormat: "&e"
+  configMenuValueName: "&#ff3f1f&l"
+  configMenuValueLore: "&7Valor: &#ff3f1f"
 
   # POR DEBAJO DE ESTA LÍNEA REQUIERE REINICIO DEL SERVIDOR
 
@@ -75,7 +77,8 @@ language:
   astickDescription: "Te da el Admin Stick"
   reloadDescription: "Recarga la configuración del plugin"
   thunderDescription: "Invoca un rayo en la posición del jugador"
-  globalchestDescription: "Abre el cofre global" 
+  globalchestDescription: "Abre el cofre global"
+  stconfigDescription: "Abre el menu de configuracion" 
 
   #----------------------------------#
   # ITEMS CUSTOM                     #
@@ -138,6 +141,8 @@ language:
   joinTitleMsg: "&aHas joined the server!"
   leaveTitleMsg: "&cHas left the server!"
   joinLeaveNameFormat: "&e"
+  configMenuValueName: "&#ff3f1f&l"
+  configMenuValueLore: "&7Value: &#ff3f1f"
 
   # BELOW THIS LINE REQUIRES SERVER RESTART
 
@@ -162,7 +167,8 @@ language:
   astickDescription: "Gives you the Admin Stick"
   reloadDescription: "Reloads the plugin configuration"
   thunderDescription: "Summons a lightning bolt at the player's position"
-  globalchestDescription: "Opens the global chest" 
+  globalchestDescription: "Opens the global chest"
+  stconfigDescription: "Opens the configuration menu" 
 
   #----------------------------------#
   # CUSTOM ITEMS                     #
@@ -230,6 +236,8 @@ language:
   joinTitleMsg: "&aÈ entrato nel server!"
   leaveTitleMsg: "&cÈ uscito dal server!"
   joinLeaveNameFormat: "&e"
+  configMenuValueName: "&#ff3f1f&l"
+  configMenuValueLore: "&7Valore: &#ff3f1f"
 
   # BELOW THIS LINE REQUIRES SERVER RESTART
 
@@ -255,6 +263,7 @@ language:
   reloadDescription: "Ricarica la configurazione del plugin"
   thunderDescription: "Evoca un fulmine nella posizione del giocatore"
   globalchestDescription: "Apre la cassa globale"
+  stconfigDescription: "Apre il menu di configurazione"
 
   #----------------------------------#
   # CUSTOM ITEMS                     #
@@ -317,6 +326,8 @@ language:
   joinTitleMsg: "&aA rejoint le serveur !"
   leaveTitleMsg: "&cA quitté le serveur !"
   joinLeaveNameFormat: "&e"
+  configMenuValueName: "&#ff3f1f&l"
+  configMenuValueLore: "&7Valeur: &#ff3f1f"
 
   # BELOW THIS LINE REQUIRES SERVER RESTART
 
@@ -342,6 +353,7 @@ language:
   reloadDescription: "Recharge la configuration du plugin"
   thunderDescription: "Invoque un éclair à la position du joueur"
   globalchestDescription: "Ouvre le coffre global"
+  stconfigDescription: "Ouvrir le menu de configuration"
 
   #----------------------------------#
   # CUSTOM ITEMS                     #
@@ -404,6 +416,8 @@ language:
   joinTitleMsg: "&aIst dem Server beigetreten!"
   leaveTitleMsg: "&cHat den Server verlassen!"
   joinLeaveNameFormat: "&e"
+  configMenuValueName: "&#ff3f1f&l"
+  configMenuValueLore: "&7Wert: &#ff3f1f"
 
   # BELOW THIS LINE REQUIRES SERVER RESTART
 
@@ -429,6 +443,7 @@ language:
   reloadDescription: "Lädt die Konfiguration des Plugins neu"
   thunderDescription: "Ruft einen Blitz an der Position des Spielers herbei"
   globalchestDescription: "Öffnet die globale Truhe"
+  stconfigDescription: "Öffne das Konfigurationsmenü"
 
   #----------------------------------#
   # CUSTOM ITEMS                     #
@@ -490,6 +505,9 @@ language:
   deathTitleMsg: "&c&l%player% умер"
   joinTitleMsg: "&aПрисоединился к серверу!"
   leaveTitleMsg: "&cПокинул сервер!"
+  joinLeaveNameFormat: "&e"
+  configMenuValueName: "&#ff3f1f&l"
+  configMenuValueLore: "&7Ценность: &#ff3f1f"
 
   # BELOW THIS LINE REQUIRES SERVER RESTART
 
@@ -515,6 +533,8 @@ language:
   reloadDescription: "Перезагружает конфигурацию плагина"
   thunderDescription: "Призывает молнию в позиции игрока"
   globalchestDescription: "Открывает глобальный сундук"
+  stconfigDescription: "Открыть меню настройки"
+
 
   #----------------------------------#
   # CUSTOM ITEMS                     #

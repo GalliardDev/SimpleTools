@@ -356,6 +356,7 @@ public class CommandManager {
 		
 		//RELOAD COMMAND
 		new CommandAPICommand("streload")
+		.withAliases("str")
 		.withFullDescription(config.getString("language.reloadDescription"))
 		.withPermission("simpletools.reload")
 		.withShortDescription(config.getString("language.reloadDescription"))
@@ -459,8 +460,9 @@ public class CommandManager {
 		//CONFIG COMMAND
 		new CommandAPICommand("stconfig")
 		.withAliases("stc")
-		.withFullDescription("Config")
-		.withShortDescription("Config")
+		.withPermission("simpletools.config")
+		.withFullDescription(config.getString("language.stconfigDescription"))
+		.withShortDescription(config.getString("language.stconfigDescription"))
 		.executesPlayer((sender, args) -> {
 			
 			Section confSec = config.getConfig().getSection("config");
@@ -482,12 +484,13 @@ public class CommandManager {
 			List<String> configItemsDisplayNames = values.entrySet().stream()
 					.filter(x->x.getValue().toString().equals("true") ||
 							x.getValue().toString().equals("false"))
-					.map(x->"§x§f§f§3§f§1§f§l"+x.getKey()).toList();
+					.map(x->Utils.colorCodeParser(config.getString("language.configMenuValueName"))
+							+x.getKey()).toList();
 			
 			List<String> configItemsLores = values.entrySet().stream()
 					.filter(x->x.getValue().toString().equals("true") ||
 							x.getValue().toString().equals("false"))
-					.map(x->"§7Valor: §x§f§f§3§f§1§f" + x.getValue().toString()).toList();
+					.map(x->Utils.colorCodeParser(config.getString("language.configMenuValueLore")) + x.getValue().toString()).toList();
 			
 			List<ItemStack> configItems = new ArrayList<>();
 			
@@ -534,7 +537,7 @@ public class CommandManager {
 	    config.getConfig().set(configKey, newValue);
 	    config.save();
 	    
-	    itemMeta.setLore(List.of("§7Valor: §x§f§f§3§f§1§f" + newValue));
+	    itemMeta.setLore(List.of(Utils.colorCodeParser(config.getString("language.configMenuValueLore")) + newValue));
 	    clickedItem.setItemMeta(itemMeta);
 	    
 	    if (event.getWhoClicked() instanceof Player) {

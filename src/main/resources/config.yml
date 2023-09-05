@@ -63,6 +63,8 @@ language:
   joinTitleMsg: "&aHa entrado al servidor!"
   leaveTitleMsg: "&cSe ha ido del servidor!"
   joinLeaveNameFormat: "&e"
+  configMenuValueName: "&#ff3f1f&l"
+  configMenuValueLore: "&7Valor: &#ff3f1f"
 
   # BELOW THIS LINE REQUIRES SERVER RESTART
 
@@ -88,6 +90,7 @@ language:
   reloadDescription: "Recarga la configuración del plugin"
   thunderDescription: "Invoca un rayo en la posición del jugador"
   globalchestDescription: "Abre el cofre global" 
+  stconfigDescription: "Abre el menu de configuracion"
 
   #----------------------------------#
   # CUSTOM ITEMS                     #
@@ -98,4 +101,4 @@ language:
   adminStickLore: "&dUn palo para dominarlos a todos!"
 
 # DO NOT EDIT
-file-version: 3
+file-version: 4
