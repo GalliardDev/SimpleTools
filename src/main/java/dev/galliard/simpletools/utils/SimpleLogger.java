@@ -1,6 +1,6 @@
-package es.exmaster.simpletools.utils;
+package dev.galliard.simpletools.utils;
 
-import es.exmaster.simpletools.SimpleTools;
+import dev.galliard.simpletools.SimpleTools;
 
 public class SimpleLogger {
 	private SimpleTools main;

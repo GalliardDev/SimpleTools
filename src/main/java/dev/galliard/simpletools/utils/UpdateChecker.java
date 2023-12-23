@@ -1,4 +1,4 @@
-package es.exmaster.simpletools.utils;
+package dev.galliard.simpletools.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
-import es.exmaster.simpletools.SimpleTools;
+import dev.galliard.simpletools.SimpleTools;
 
 public class UpdateChecker {
     private SimpleTools plugin;

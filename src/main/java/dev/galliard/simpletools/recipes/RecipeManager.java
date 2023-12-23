@@ -1,4 +1,4 @@
-package es.exmaster.simpletools.recipes;
+package dev.galliard.simpletools.recipes;
 
 import org.bukkit.Bukkit;
 

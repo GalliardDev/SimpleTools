@@ -1,4 +1,4 @@
-package es.exmaster.simpletools.utils;
+package dev.galliard.simpletools.utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import es.exmaster.simpletools.SimpleTools;
+import dev.galliard.simpletools.SimpleTools;
 
 public class GlobalChest {
 	private static File itemsFile;

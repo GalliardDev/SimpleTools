@@ -1,4 +1,4 @@
-package es.exmaster.simpletools.utils;
+package dev.galliard.simpletools.utils;
 
 import java.io.File;
 import java.io.IOException;

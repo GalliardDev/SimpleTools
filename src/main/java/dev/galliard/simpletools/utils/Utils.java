@@ -1,4 +1,4 @@
-package es.exmaster.simpletools.utils;
+package dev.galliard.simpletools.utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,7 +24,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import es.exmaster.simpletools.SimpleTools;
+import dev.galliard.simpletools.SimpleTools;
 import net.md_5.bungee.api.ChatColor;
 
 public class Utils {

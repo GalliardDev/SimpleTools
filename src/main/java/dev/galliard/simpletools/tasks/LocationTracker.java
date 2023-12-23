@@ -1,4 +1,4 @@
-package es.exmaster.simpletools.tasks;
+package dev.galliard.simpletools.tasks;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import es.exmaster.simpletools.SimpleTools;
+import dev.galliard.simpletools.SimpleTools;
 
 public class LocationTracker {
     private final static Map<Player, Location> LOCATIONS = new HashMap<>();

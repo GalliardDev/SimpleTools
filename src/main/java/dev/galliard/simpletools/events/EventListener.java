@@ -1,8 +1,9 @@
-package es.exmaster.simpletools.events;
+package dev.galliard.simpletools.events;
 
 import java.util.Collection;
 import java.util.List;
 
+import dev.galliard.simpletools.utils.MinepacksAccessor;
 import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;
 import org.bukkit.Location;
@@ -42,15 +43,14 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import es.exmaster.simpletools.SimpleTools;
-import es.exmaster.simpletools.commands.CommandManager;
-import es.exmaster.simpletools.tasks.LocationTracker;
-import es.exmaster.simpletools.utils.ConfigWrapper;
-import es.exmaster.simpletools.utils.CustomConfigManager;
-import es.exmaster.simpletools.utils.EmojiMap;
-import es.exmaster.simpletools.utils.GlobalChest;
-import es.exmaster.simpletools.utils.MinepacksAccessor;
-import es.exmaster.simpletools.utils.Utils;
+import dev.galliard.simpletools.SimpleTools;
+import dev.galliard.simpletools.commands.CommandManager;
+import dev.galliard.simpletools.tasks.LocationTracker;
+import dev.galliard.simpletools.utils.ConfigWrapper;
+import dev.galliard.simpletools.utils.CustomConfigManager;
+import dev.galliard.simpletools.utils.EmojiMap;
+import dev.galliard.simpletools.utils.GlobalChest;
+import dev.galliard.simpletools.utils.Utils;
 import net.md_5.bungee.api.ChatColor;
 
 public class EventListener {

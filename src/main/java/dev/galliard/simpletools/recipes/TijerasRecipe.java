@@ -1,4 +1,4 @@
-package es.exmaster.simpletools.recipes;
+package dev.galliard.simpletools.recipes;
 
 import java.util.Collections;
 
@@ -10,8 +10,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import es.exmaster.simpletools.SimpleTools;
-import es.exmaster.simpletools.utils.Utils;
+import dev.galliard.simpletools.SimpleTools;
+import dev.galliard.simpletools.utils.Utils;
 
 public class TijerasRecipe {
 	private static ItemStack crear() {

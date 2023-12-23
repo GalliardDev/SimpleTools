@@ -1,9 +1,15 @@
-package es.exmaster.simpletools.commands;
+package dev.galliard.simpletools.commands;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import dev.galliard.simpletools.SimpleTools;
+import dev.galliard.simpletools.tasks.LocationTracker;
+import dev.galliard.simpletools.utils.ConfigWrapper;
+import dev.galliard.simpletools.utils.CustomConfigManager;
+import dev.galliard.simpletools.utils.GlobalChest;
+import dev.galliard.simpletools.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -24,12 +30,6 @@ import dev.jorel.commandapi.arguments.ArgumentSuggestions;
 import dev.jorel.commandapi.arguments.IntegerArgument;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import dev.jorel.commandapi.arguments.StringArgument;
-import es.exmaster.simpletools.SimpleTools;
-import es.exmaster.simpletools.tasks.LocationTracker;
-import es.exmaster.simpletools.utils.ConfigWrapper;
-import es.exmaster.simpletools.utils.CustomConfigManager;
-import es.exmaster.simpletools.utils.GlobalChest;
-import es.exmaster.simpletools.utils.Utils;
 
 public class CommandManager {
 	private static ConfigWrapper config = SimpleTools.getConf();

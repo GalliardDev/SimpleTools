@@ -1,11 +1,11 @@
-package es.exmaster.simpletools.recipes;
+package dev.galliard.simpletools.recipes;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.CampfireRecipe;
 import org.bukkit.inventory.ItemStack;
 
-import es.exmaster.simpletools.SimpleTools;
+import dev.galliard.simpletools.SimpleTools;
 
 public class RottenFleshCampfireRecipe {
     public static CampfireRecipe get() {

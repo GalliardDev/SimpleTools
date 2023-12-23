@@ -1,5 +1,12 @@
-package es.exmaster.simpletools;
+package dev.galliard.simpletools;
 
+import dev.galliard.simpletools.events.EventListener;
+import dev.galliard.simpletools.recipes.RecipeManager;
+import dev.galliard.simpletools.tasks.LocationTracker;
+import dev.galliard.simpletools.utils.ConfigWrapper;
+import dev.galliard.simpletools.utils.GlobalChest;
+import dev.galliard.simpletools.utils.UpdateChecker;
+import dev.galliard.simpletools.utils.Utils;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -7,14 +14,7 @@ import org.apache.maven.artifact.versioning.ComparableVersion;
 
 import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPIBukkitConfig;
-import es.exmaster.simpletools.commands.CommandManager;
-import es.exmaster.simpletools.events.EventListener;
-import es.exmaster.simpletools.recipes.RecipeManager;
-import es.exmaster.simpletools.tasks.LocationTracker;
-import es.exmaster.simpletools.utils.ConfigWrapper;
-import es.exmaster.simpletools.utils.GlobalChest;
-import es.exmaster.simpletools.utils.UpdateChecker;
-import es.exmaster.simpletools.utils.Utils;
+import dev.galliard.simpletools.commands.CommandManager;
 
 public class SimpleTools extends JavaPlugin implements Listener {
     
